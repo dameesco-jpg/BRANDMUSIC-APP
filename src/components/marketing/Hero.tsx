@@ -82,18 +82,18 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.3 }}
           className="flex flex-col sm:flex-row gap-4 justify-center items-center"
         >
-         <a href="/signup">
-     <Button size="lg" className="group">
-       Start Free with 2,500 Tokens
-       <Wand2 className="w-5 h-5 group-hover:rotate-12 transition-transform" />
-     </Button>
-   </a>
-   <a href="/library">
-     <Button variant="outline" size="lg" className="group">
-       <Play className="w-5 h-5" />
-       Browse Music
-     </Button>
-   </a>
+          <a href="/signup">
+            <Button size="lg" className="group">
+              Start Free Trial
+              <Wand2 className="w-5 h-5 group-hover:rotate-12 transition-transform" />
+            </Button>
+          </a>
+          <a href="/library">
+            <Button variant="outline" size="lg" className="group">
+              <Play className="w-5 h-5" />
+              Browse Music
+            </Button>
+          </a>
         </motion.div>
 
         <motion.div
@@ -123,30 +123,62 @@ export default function Hero() {
           transition={{ duration: 1, delay: 0.5 }}
           className="mt-20 relative"
         >
-          <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-surface-elevated">
-            {/* Mock interface preview */}
-            <div className="aspect-video bg-gradient-to-br from-surface via-surface-elevated to-surface p-8">
-              <div className="grid grid-cols-3 gap-4 h-full">
-                {/* Search input mockup */}
-                <div className="col-span-3 bg-background/50 rounded-xl p-6 border border-white/5">
-                  <div className="h-4 bg-electric-blue/30 rounded w-2/3 mb-4"></div>
-                  <div className="h-3 bg-text-muted/30 rounded w-1/2"></div>
-                </div>
-                
-                {/* Results mockup */}
-                {[...Array(3)].map((_, i) => (
-                  <div key={i} className="bg-background/30 rounded-xl p-4 border border-white/5">
-                    <div className="aspect-square bg-gradient-to-br from-electric-blue/20 to-electric-purple/20 rounded-lg mb-3"></div>
-                    <div className="h-3 bg-text-muted/30 rounded w-full mb-2"></div>
-                    <div className="h-2 bg-text-muted/20 rounded w-2/3"></div>
-                  </div>
+          <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl backdrop-blur-sm bg-surface-elevated/50">
+            <div className="aspect-video bg-gradient-to-br from-electric-blue/10 to-electric-purple/10 flex items-center justify-center">
+              <div className="grid grid-cols-3 gap-4 p-8 w-full max-w-4xl">
+                {[...Array(9)].map((_, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5, delay: 0.7 + i * 0.1 }}
+                    className="aspect-square bg-surface-elevated rounded-xl border border-white/10 p-4 flex flex-col justify-between"
+                  >
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 bg-electric-blue rounded-full"></div>
+                      <div className="h-2 bg-white/20 rounded flex-1"></div>
+                    </div>
+                    <div className="space-y-2">
+                      <div className="h-1.5 bg-white/10 rounded"></div>
+                      <div className="h-1.5 bg-white/10 rounded w-2/3"></div>
+                    </div>
+                  </motion.div>
                 ))}
               </div>
             </div>
-            
-            {/* Glow effect */}
-            <div className="absolute -inset-0.5 bg-gradient-to-r from-electric-blue via-electric-purple to-electric-pink opacity-20 blur-xl -z-10"></div>
           </div>
+
+          {/* Floating elements */}
+          <motion.div
+            animate={{
+              y: [0, -10, 0],
+            }}
+            transition={{
+              duration: 3,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+            className="absolute -top-6 -left-6 w-32 h-32 bg-electric-blue/20 rounded-2xl backdrop-blur-sm border border-white/10 p-4 shadow-xl"
+          >
+            <div className="text-xs text-text-tertiary mb-2">AI Search</div>
+            <div className="text-sm font-semibold text-white">Natural Language</div>
+          </motion.div>
+
+          <motion.div
+            animate={{
+              y: [0, 10, 0],
+            }}
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 0.5
+            }}
+            className="absolute -bottom-6 -right-6 w-32 h-32 bg-electric-purple/20 rounded-2xl backdrop-blur-sm border border-white/10 p-4 shadow-xl"
+          >
+            <div className="text-xs text-text-tertiary mb-2">Stem Studio</div>
+            <div className="text-sm font-semibold text-white">Full Control</div>
+          </motion.div>
         </motion.div>
       </div>
     </section>
