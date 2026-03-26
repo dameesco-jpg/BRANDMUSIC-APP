@@ -82,14 +82,18 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.3 }}
           className="flex flex-col sm:flex-row gap-4 justify-center items-center"
         >
-          <Button size="lg" className="group">
-            Start Free with 2,500 Tokens
-            <Wand2 className="w-5 h-5 group-hover:rotate-12 transition-transform" />
-          </Button>
-          <Button variant="outline" size="lg" className="group">
-            <Play className="w-5 h-5" />
-            Watch Demo
-          </Button>
+         <a href="/signup">
+     <Button size="lg" className="group">
+       Start Free with 2,500 Tokens
+       <Wand2 className="w-5 h-5 group-hover:rotate-12 transition-transform" />
+     </Button>
+   </a>
+   <a href="/library">
+     <Button variant="outline" size="lg" className="group">
+       <Play className="w-5 h-5" />
+       Browse Music
+     </Button>
+   </a>
         </motion.div>
 
         <motion.div
