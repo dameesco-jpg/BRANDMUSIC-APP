@@ -15,7 +15,8 @@ import {
   Menu,
   X,
   ChevronDown,
-  User
+  User,
+  Music
 } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 
@@ -55,7 +56,7 @@ export default function AppSidebar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setIsOpen(false)}
-            className="lg:hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
+            className="lg:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-40"
           />
         )}
       </AnimatePresence>
@@ -64,143 +65,140 @@ export default function AppSidebar() {
       <motion.aside
         initial={false}
         animate={{ x: isOpen ? 0 : '-100%' }}
-        className="lg:translate-x-0 fixed left-0 top-0 h-screen w-72 bg-surface border-r border-white/5 z-40 lg:z-0 flex flex-col"
+        transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+        className="lg:translate-x-0 fixed lg:sticky top-0 left-0 h-screen w-64 bg-surface border-r border-white/5 flex flex-col z-40"
       >
         {/* Logo */}
-        <div className="h-20 flex items-center px-6 border-b border-white/5">
-          <Link href="/app/dashboard" className="flex items-center space-x-3">
+        <div className="p-6 border-b border-white/5">
+          <Link href="/app/dashboard" className="flex items-center gap-3 group">
             <div className="w-10 h-10 bg-gradient-to-br from-electric-blue to-electric-purple rounded-lg flex items-center justify-center">
-              <div className="w-6 h-6 border-2 border-white rounded"></div>
+              <span className="text-xl font-display font-bold text-black">B</span>
             </div>
-            <span className="font-display font-semibold text-xl">
-              Brandmusic
-            </span>
+            <div>
+              <h1 className="font-display font-bold text-lg group-hover:text-electric-blue transition-colors">
+                Brandmusic
+              </h1>
+              <p className="text-xs text-text-tertiary">AI Sound OS</p>
+            </div>
           </Link>
         </div>
 
         {/* Token Balance */}
         <div className="px-6 py-4 border-b border-white/5">
-          <div className="bg-surface-elevated rounded-xl p-4 border border-electric-blue/30">
+          <div className="p-3 bg-surface-elevated rounded-lg border border-white/10">
             <div className="flex items-center justify-between mb-2">
-              <div className="flex items-center gap-2">
-                <Coins className="w-4 h-4 text-electric-blue" />
-                <span className="text-sm text-text-secondary">Token Balance</span>
-              </div>
-              <button className="text-xs text-electric-blue hover:text-electric-cyan transition-colors font-semibold">
-                Buy more
-              </button>
+              <span className="text-xs text-text-tertiary">Token Balance</span>
+              <Coins className="w-4 h-4 text-electric-blue" />
             </div>
-            <div className="text-2xl font-display font-bold text-white">
+            <div className="text-xl font-display font-bold text-white mb-1">
               2,500
             </div>
-            <div className="mt-2 h-1.5 bg-surface rounded-full overflow-hidden">
-              <div className="h-full w-full bg-gradient-to-r from-electric-blue to-electric-purple"></div>
+            <div className="w-full h-1.5 bg-surface rounded-full overflow-hidden">
+              <div className="h-full w-[88%] bg-gradient-to-r from-electric-blue to-electric-purple rounded-full" />
             </div>
+            <p className="text-xs text-text-tertiary mt-2">
+              88% remaining
+            </p>
           </div>
         </div>
 
         {/* Navigation */}
-        <nav className="flex-1 overflow-y-auto py-6 px-4">
-          <ul className="space-y-1">
+        <nav className="flex-1 overflow-y-auto py-4">
+          <div className="px-3 space-y-1">
             {navItems.map((item) => {
               const isActive = pathname === item.href
               return (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    onClick={() => setIsOpen(false)}
-                    className={`
-                      flex items-center gap-3 px-4 py-3 rounded-lg transition-all group
-                      ${isActive 
-                        ? 'bg-electric-blue/10 text-electric-blue' 
-                        : 'text-text-secondary hover:bg-surface-hover hover:text-white'
-                      }
-                    `}
-                  >
-                    <item.icon className={`w-5 h-5 ${isActive ? 'text-electric-blue' : 'text-text-tertiary group-hover:text-white'}`} />
-                    <span className="font-medium">{item.label}</span>
-                    {item.badge && (
-                      <span className="ml-auto text-xs px-2 py-0.5 bg-electric-purple/20 text-electric-purple rounded-full">
-                        {item.badge}
-                      </span>
-                    )}
-                  </Link>
-                </li>
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setIsOpen(false)}
+                  className={`flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all group ${
+                    isActive
+                      ? 'bg-electric-blue/10 text-electric-blue'
+                      : 'text-text-secondary hover:bg-surface-hover hover:text-white'
+                  }`}
+                >
+                  <item.icon className="w-5 h-5" />
+                  <span className="flex-1 font-medium text-sm">{item.label}</span>
+                  {item.badge && (
+                    <span className="px-2 py-0.5 text-xs bg-electric-purple/20 text-electric-purple rounded-full">
+                      {item.badge}
+                    </span>
+                  )}
+                </Link>
               )
             })}
-          </ul>
-        </nav>
+          </div>
 
-        {/* Bottom Navigation */}
-        <div className="border-t border-white/5 px-4 py-4">
-          <ul className="space-y-1 mb-4">
+          <div className="mt-8 px-3 space-y-1">
+            <div className="px-3 py-2 text-xs text-text-tertiary uppercase tracking-wider font-semibold">
+              Settings
+            </div>
             {bottomNavItems.map((item) => {
               const isActive = pathname === item.href
               return (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    onClick={() => setIsOpen(false)}
-                    className={`
-                      flex items-center gap-3 px-4 py-3 rounded-lg transition-all
-                      ${isActive 
-                        ? 'bg-surface-elevated text-white' 
-                        : 'text-text-secondary hover:bg-surface-hover hover:text-white'
-                      }
-                    `}
-                  >
-                    <item.icon className="w-5 h-5" />
-                    <span className="font-medium text-sm">{item.label}</span>
-                  </Link>
-                </li>
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setIsOpen(false)}
+                  className={`flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all ${
+                    isActive
+                      ? 'bg-electric-blue/10 text-electric-blue'
+                      : 'text-text-secondary hover:bg-surface-hover hover:text-white'
+                  }`}
+                >
+                  <item.icon className="w-5 h-5" />
+                  <span className="font-medium text-sm">{item.label}</span>
+                </Link>
               )
             })}
-          </ul>
-
-          {/* User Menu */}
-          <div className="relative">
-            <button
-              onClick={() => setShowUserMenu(!showUserMenu)}
-              className="w-full flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-surface-hover transition-all group"
-            >
-              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-electric-blue to-electric-purple flex items-center justify-center">
-                <User className="w-4 h-4 text-white" />
-              </div>
-              <div className="flex-1 text-left">
-                <div className="text-sm font-medium text-white">John Doe</div>
-                <div className="text-xs text-text-tertiary">Pro Plan</div>
-              </div>
-              <ChevronDown className={`w-4 h-4 text-text-tertiary transition-transform ${showUserMenu ? 'rotate-180' : ''}`} />
-            </button>
-
-            <AnimatePresence>
-              {showUserMenu && (
-                <motion.div
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  className="absolute bottom-full left-0 right-0 mb-2 bg-surface-elevated rounded-lg border border-white/10 shadow-xl overflow-hidden"
-                >
-                  <Link
-                    href="/app/profile"
-                    className="block px-4 py-2 text-sm text-text-secondary hover:bg-surface-hover hover:text-white transition-colors"
-                  >
-                    Profile
-                  </Link>
-                  <Link
-                    href="/app/billing"
-                    className="block px-4 py-2 text-sm text-text-secondary hover:bg-surface-hover hover:text-white transition-colors"
-                  >
-                    Billing
-                  </Link>
-                  <div className="border-t border-white/10"></div>
-                  <button className="w-full text-left px-4 py-2 text-sm text-text-secondary hover:bg-surface-hover hover:text-white transition-colors">
-                    Log out
-                  </button>
-                </motion.div>
-              )}
-            </AnimatePresence>
           </div>
+        </nav>
+
+        {/* User Menu */}
+        <div className="p-4 border-t border-white/5">
+          <button
+            onClick={() => setShowUserMenu(!showUserMenu)}
+            className="w-full flex items-center gap-3 p-3 rounded-lg hover:bg-surface-hover transition-colors group"
+          >
+            <div className="w-10 h-10 bg-gradient-to-br from-electric-cyan to-electric-blue rounded-full flex items-center justify-center">
+              <User className="w-5 h-5 text-black" />
+            </div>
+            <div className="flex-1 text-left">
+              <div className="font-medium text-sm text-white group-hover:text-electric-blue transition-colors">
+                Demo User
+              </div>
+              <div className="text-xs text-text-tertiary">Pro Plan</div>
+            </div>
+            <ChevronDown
+              className={`w-4 h-4 text-text-tertiary transition-transform ${
+                showUserMenu ? 'rotate-180' : ''
+              }`}
+            />
+          </button>
+
+          <AnimatePresence>
+            {showUserMenu && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 'auto' }}
+                exit={{ opacity: 0, height: 0 }}
+                className="mt-2 overflow-hidden"
+              >
+                <div className="space-y-1">
+                  <button className="w-full text-left px-3 py-2 text-sm text-text-secondary hover:text-white hover:bg-surface-hover rounded-lg transition-colors">
+                    Account Settings
+                  </button>
+                  <button className="w-full text-left px-3 py-2 text-sm text-text-secondary hover:text-white hover:bg-surface-hover rounded-lg transition-colors">
+                    Billing
+                  </button>
+                  <button className="w-full text-left px-3 py-2 text-sm text-error hover:bg-error/10 rounded-lg transition-colors">
+                    Sign Out
+                  </button>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </motion.aside>
     </>
