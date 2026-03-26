@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Waveform, Music, ArrowRight } from 'lucide-react'
+import { AudioWaveform, Music, ArrowRight } from 'lucide-react'
 import Button from '../ui/Button'
 import Link from 'next/link'
 
@@ -17,7 +17,7 @@ export default function ServicesSection() {
           className="text-center mb-12"
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-surface-elevated/50 backdrop-blur-sm rounded-full border border-electric-purple/30 mb-6">
-            <Waveform className="w-4 h-4 text-electric-purple" />
+            <AudioWaveform className="w-4 h-4 text-electric-purple" />
             <span className="text-sm font-medium text-electric-purple">Premium Services</span>
           </div>
           
@@ -38,7 +38,7 @@ export default function ServicesSection() {
               description: 'Original compositions tailored to your brand'
             },
             {
-              icon: Waveform,
+              icon: AudioWaveform,
               title: 'Sonic Branding Packages',
               description: 'Complete sonic identity systems'
             },
@@ -48,7 +48,7 @@ export default function ServicesSection() {
               description: 'Memorable sonic signatures'
             },
             {
-              icon: Waveform,
+              icon: AudioWaveform,
               title: 'Brand Sound Strategy',
               description: 'Strategic sonic identity consultation'
             }
