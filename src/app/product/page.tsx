@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Search, Link2, Video, Sliders, Package, Users, FileText, BarChart3, Play } from 'lucide-react'
+import { Search, Video, Sliders, Fingerprint, Building2, Zap, Music, Globe } from 'lucide-react'
 import Navigation from '@/components/ui/Navigation'
 import Footer from '@/components/ui/Footer'
 import Button from '@/components/ui/Button'
@@ -9,167 +9,172 @@ import Card from '@/components/ui/Card'
 
 const features = [
   {
-    id: 'ai-search',
     icon: Search,
-    title: 'AI Search',
-    tagline: 'Natural language music discovery',
-    description: 'Describe what you need in plain English. Our AI understands context, mood, energy, and creative intent to surface the perfect tracks.',
-    features: [
-      'Natural language search queries',
-      'AI-powered semantic understanding',
-      'Mood, energy, and genre filtering',
-      'Real-time autocomplete suggestions',
-      'Contextual relevance ranking',
-      'Search refinement recommendations',
+    title: 'AI-Powered Search',
+    description: 'Find music by describing what you need',
+    details: [
+      'Natural language search - "confident but not aggressive"',
+      'Semantic understanding of mood and emotion',
+      'Context-aware recommendations',
+      'Filter by genre, BPM, key, instruments, vocals',
+      'Similar track suggestions',
+      'Save and organize favorites',
     ],
-    gradient: 'from-electric-blue to-electric-cyan',
+    color: 'blue',
   },
   {
-    id: 'similarity',
-    icon: Link2,
-    title: 'Similarity Search',
-    tagline: 'Find tracks like your references',
-    description: 'Paste Spotify or YouTube links and instantly discover similar tracks in our catalog. Perfect for matching existing creative directions.',
-    features: [
-      'Spotify link integration',
-      'YouTube link support',
-      'Audio embedding analysis',
-      'Multi-reference blending',
-      'Similarity scoring',
-      'Saveable moodboards',
-    ],
-    gradient: 'from-electric-cyan to-electric-blue',
-  },
-  {
-    id: 'video-sync',
     icon: Video,
-    title: 'Video Sync Studio',
-    tagline: 'Validate music against picture',
-    description: 'Upload your edit and test music in real-time. Swap tracks instantly, scrub timelines, and make confident decisions before licensing.',
-    features: [
-      'Drag-and-drop video upload',
-      'Real-time playback sync',
-      'Instant track swapping',
-      'Timeline scrubbing',
-      'AI sync suggestions',
-      'Export validation reports',
+    title: 'Video Sync',
+    description: 'Test tracks against your content instantly',
+    details: [
+      'Upload any video file (MP4, MOV, etc.)',
+      'Drag-and-drop track testing',
+      'Real-time playback synchronization',
+      'Compare multiple tracks side-by-side',
+      'Share synced previews with team',
+      'Free for all users',
     ],
-    gradient: 'from-electric-purple to-electric-pink',
+    color: 'purple',
   },
   {
-    id: 'stem-studio',
     icon: Sliders,
     title: 'Stem Studio',
-    tagline: 'Customize music at the stem level',
-    description: 'Access individual stems, adjust levels, mute instruments, trim sections, and create custom edits. Export modified versions with tokens.',
-    features: [
-      'Drums, bass, melody, vocals, FX stems',
-      'Mute and solo controls',
-      'Volume and pan adjustment',
-      'Section trimming and looping',
-      'Auto-generated cutdowns',
-      'Token-based exports',
+    description: 'Customize any track to match your vision',
+    details: [
+      'Isolate individual stems (drums, bass, melody, vocals, FX)',
+      'Adjust volume for each stem independently',
+      'Mute or solo specific instruments',
+      'Create custom mixes',
+      'Export customized versions',
+      'Preview changes before downloading',
     ],
-    gradient: 'from-electric-pink to-electric-purple',
+    color: 'cyan',
   },
   {
-    id: 'campaign-builder',
-    icon: Package,
-    title: 'Campaign Builder',
-    tagline: 'Organize music by project',
-    description: 'Create projects for campaigns, organize tracks into hero/alt/cutdown roles, add notes, and build comprehensive music kits.',
-    features: [
-      'Project organization',
-      'Track role assignment',
-      'Version control',
-      'Team collaboration',
-      'Campaign notes',
-      'Export campaign kits',
+    icon: Building2,
+    title: 'Brand Portal',
+    description: 'Centralized hub for your brand sound',
+    details: [
+      'Upload brand guidelines and reference tracks',
+      'Define approved and off-brand sounds',
+      'Team access with permissions',
+      'Campaign organization',
+      'Asset tagging and metadata',
+      'Enterprise feature',
     ],
-    gradient: 'from-electric-blue to-electric-purple',
+    color: 'blue',
   },
   {
-    id: 'collaboration',
-    icon: Users,
-    title: 'Team Collaboration',
-    tagline: 'Work together seamlessly',
-    description: 'Invite team members, comment on tracks, request approvals, and maintain a single source of truth for music decisions.',
-    features: [
-      'Team invites',
-      'Role-based permissions',
-      'Comments and annotations',
-      'Approval workflows',
-      'Activity logs',
-      'Shared workspaces',
+    icon: Fingerprint,
+    title: 'Sonic DNA',
+    description: 'AI learns and enforces your brand sound',
+    details: [
+      'Train AI on your brand examples',
+      'Auto-tag tracks as "on-brand" or "off-brand"',
+      'Improve search relevance over time',
+      'Export as shareable brand document',
+      'Version control and history',
+      'Enterprise feature',
     ],
-    gradient: 'from-electric-purple to-electric-blue',
+    color: 'purple',
   },
   {
-    id: 'licensing',
-    icon: FileText,
-    title: 'Licensing Workflow',
-    tagline: 'Streamlined rights management',
-    description: 'Submit licensing requests directly from the platform. Track usage, territories, media channels, and get clear pricing.',
-    features: [
-      'In-platform licensing requests',
-      'Territory and usage selection',
-      'Rights clearance tracking',
-      'Quote generation',
-      'License documentation',
-      'Usage reporting',
+    icon: Music,
+    title: 'Custom Commissions',
+    description: 'Original music created for your brand',
+    details: [
+      'Brief our composers on your vision',
+      'Receive 3 original demos',
+      'Unlimited revisions',
+      'Full commercial license included',
+      'Stems and cutdowns provided',
+      'Premium service - contact for quote',
     ],
-    gradient: 'from-electric-pink to-electric-cyan',
+    color: 'cyan',
   },
   {
-    id: 'analytics',
-    icon: BarChart3,
-    title: 'Analytics & Insights',
-    tagline: 'Understand your music usage',
-    description: 'Track searches, exports, licensing, and team activity. Enterprise clients get advanced reporting and usage analytics.',
-    features: [
-      'Search analytics',
-      'Token usage tracking',
-      'Team activity monitoring',
-      'License status reporting',
-      'Export history',
-      'Custom reports (Enterprise)',
+    icon: Zap,
+    title: 'API Access',
+    description: 'Integrate Brandmusic into your workflow',
+    details: [
+      'REST API for programmatic access',
+      'Webhook support for real-time updates',
+      'Search, download, and manage assets',
+      'Bulk operations',
+      'Developer documentation',
+      'Enterprise feature',
     ],
-    gradient: 'from-electric-cyan to-electric-purple',
+    color: 'blue',
+  },
+  {
+    icon: Globe,
+    title: 'Integrations',
+    description: 'Works with tools you already use',
+    details: [
+      'Adobe Premiere & After Effects',
+      'Final Cut Pro',
+      'Slack notifications',
+      'Google Drive sync',
+      'Frame.io collaboration',
+      'More integrations coming soon',
+    ],
+    color: 'purple',
+  },
+]
+
+const workflow = [
+  {
+    step: '01',
+    title: 'Discover',
+    description: 'Use AI search to find tracks that match your vision. Describe what you need in natural language.',
+    icon: Search,
+  },
+  {
+    step: '02',
+    title: 'Validate',
+    description: 'Upload your video and test tracks instantly. See how music works with your content before licensing.',
+    icon: Video,
+  },
+  {
+    step: '03',
+    title: 'Customize',
+    description: 'Adjust individual stems to perfect the mix. Create exactly the sound you need.',
+    icon: Sliders,
+  },
+  {
+    step: '04',
+    title: 'License',
+    description: 'Request a custom quote for commercial licensing. Our team provides transparent pricing based on your usage.',
+    icon: Fingerprint,
   },
 ]
 
 export default function ProductPage() {
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen bg-background">
       <Navigation />
-      
+
       {/* Hero */}
-      <section className="relative pt-32 pb-20 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-mesh opacity-30"></div>
-        <div className="absolute inset-0 noise-texture"></div>
-        
-        <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
+      <section className="pt-32 pb-20 border-b border-white/5">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-center max-w-4xl mx-auto"
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-surface-elevated/50 backdrop-blur-sm rounded-full border border-electric-blue/30 mb-8">
-              <Play className="w-4 h-4 text-electric-blue" />
-              <span className="text-sm font-medium text-electric-blue">Complete Music Workflow Platform</span>
+              <Zap className="w-4 h-4 text-electric-blue" />
+              <span className="text-sm font-medium text-electric-blue">Product Overview</span>
             </div>
-            
-            <h1 className="font-display font-bold text-display-lg md:text-display-xl mb-6">
-              <span className="gradient-blue-purple text-gradient">
-                AI-powered tools
-              </span>
+
+            <h1 className="font-display font-bold text-5xl md:text-6xl mb-6">
+              Everything You Need to
               <br />
-              for every step of your workflow
+              <span className="gradient-blue-purple text-gradient">Find Perfect Music</span>
             </h1>
-            
-            <p className="text-xl md:text-2xl text-text-secondary mb-12">
-              From discovery to delivery, Brandmusic provides intelligent features designed for modern creative teams working with brand sound.
+
+            <p className="text-xl md:text-2xl text-text-secondary max-w-3xl mx-auto mb-12">
+              AI-powered search, instant video sync, unlimited customization, and transparent licensing—all in one unified workflow.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -177,157 +182,202 @@ export default function ProductPage() {
                 Start Free Trial
               </Button>
               <Button variant="outline" size="lg">
-                Watch Product Tour
+                Browse Library
               </Button>
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Feature Sections */}
-      {features.map((feature, index) => (
-        <section
-          key={feature.id}
-          id={feature.id}
-          className={`relative py-32 ${index % 2 === 0 ? 'bg-background' : 'bg-surface'}`}
-        >
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className={`grid lg:grid-cols-2 gap-16 items-center ${
-              index % 2 === 0 ? '' : 'lg:flex-row-reverse'
-            }`}>
-              {/* Content */}
-              <motion.div
-                initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className={index % 2 === 0 ? '' : 'lg:order-2'}
-              >
-                <div className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br ${feature.gradient} mb-6`}>
-                  <feature.icon className="w-8 h-8 text-white" />
-                </div>
-                
-                <h2 className="font-display font-bold text-display-md mb-4">
-                  {feature.title}
-                </h2>
-                
-                <p className="text-xl text-electric-blue mb-6">
-                  {feature.tagline}
-                </p>
-                
-                <p className="text-lg text-text-secondary mb-8 leading-relaxed">
-                  {feature.description}
-                </p>
-
-                <div className="grid gap-3 mb-8">
-                  {feature.features.map((item) => (
-                    <div key={item} className="flex items-start gap-3">
-                      <div className={`w-6 h-6 rounded-full bg-gradient-to-br ${feature.gradient} flex items-center justify-center flex-shrink-0 mt-0.5`}>
-                        <Check className="w-3.5 h-3.5 text-white" />
-                      </div>
-                      <span className="text-text-secondary">
-                        {item}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-
-                <Button variant="outline">
-                  Try {feature.title}
-                </Button>
-              </motion.div>
-
-              {/* Visual */}
-              <motion.div
-                initial={{ opacity: 0, x: index % 2 === 0 ? 30 : -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className={index % 2 === 0 ? '' : 'lg:order-1'}
-              >
-                <Card className="relative overflow-hidden bg-surface-elevated border-white/10">
-                  <div className="aspect-video bg-gradient-to-br from-surface via-surface-elevated to-surface-hover p-8 flex items-center justify-center">
-                    {/* Mock interface preview */}
-                    <div className={`w-full h-full rounded-xl bg-gradient-to-br ${feature.gradient} opacity-10`}></div>
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <feature.icon className="w-24 h-24 text-white/20" />
-                    </div>
-                  </div>
-                  <div className={`absolute -inset-0.5 bg-gradient-to-br ${feature.gradient} opacity-20 blur-xl -z-10`}></div>
-                </Card>
-              </motion.div>
-            </div>
-          </div>
-        </section>
-      ))}
-
-      {/* Integration Section */}
-      <section className="relative py-32 bg-surface">
+      {/* Workflow */}
+      <section className="py-20 border-b border-white/5">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="font-display font-bold text-display-md mb-6">
-              Built for your workflow
+            <h2 className="font-display font-bold text-4xl md:text-5xl mb-6">
+              Streamlined Workflow
             </h2>
-            <p className="text-xl text-text-secondary max-w-2xl mx-auto">
-              Brandmusic integrates seamlessly with the tools you already use
+            <p className="text-xl text-text-secondary max-w-3xl mx-auto">
+              From discovery to licensing in four simple steps
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
-            {[
-              { name: 'Premiere Pro', desc: 'Export timelines directly' },
-              { name: 'Final Cut Pro', desc: 'Native integration' },
-              { name: 'Slack', desc: 'Team notifications' },
-              { name: 'Google Drive', desc: 'Asset storage' },
-              { name: 'Dropbox', desc: 'Cloud sync' },
-              { name: 'API Access', desc: 'Custom integrations' },
-            ].map((integration) => (
-              <Card key={integration.name} className="text-center">
-                <div className="w-12 h-12 rounded-xl bg-surface-hover mx-auto mb-4"></div>
-                <h3 className="font-semibold text-white mb-2">
-                  {integration.name}
-                </h3>
-                <p className="text-text-tertiary text-sm">
-                  {integration.desc}
-                </p>
-              </Card>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {workflow.map((item, index) => (
+              <motion.div
+                key={item.step}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+              >
+                <div className="text-center">
+                  <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-electric-blue/20 to-electric-purple/20 rounded-xl mb-4">
+                    <item.icon className="w-8 h-8 text-electric-blue" />
+                  </div>
+                  <div className="text-sm text-electric-blue font-mono font-bold mb-2">
+                    {item.step}
+                  </div>
+                  <h3 className="font-display font-bold text-xl mb-2">
+                    {item.title}
+                  </h3>
+                  <p className="text-text-secondary text-sm">
+                    {item.description}
+                  </p>
+                </div>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="relative py-32">
-        <div className="absolute inset-0 bg-gradient-mesh opacity-40"></div>
-        <div className="relative max-w-4xl mx-auto px-6 lg:px-8 text-center">
-          <h2 className="font-display font-bold text-display-md mb-6">
-            Ready to streamline your
-            <br />
-            <span className="gradient-blue-purple text-gradient">music workflow?</span>
+      {/* Features Grid */}
+      <section className="py-20">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="font-display font-bold text-4xl md:text-5xl mb-6">
+              Powerful Features
+            </h2>
+            <p className="text-xl text-text-secondary max-w-3xl mx-auto">
+              Professional tools for music supervisors, producers, and creative teams
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {features.map((feature, index) => (
+              <motion.div
+                key={feature.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+              >
+                <Card className="p-8 h-full hover:border-electric-blue/30 transition-colors">
+                  <div className="flex items-start gap-4 mb-6">
+                    <div className={`w-12 h-12 bg-gradient-to-br from-electric-${feature.color}/20 to-electric-purple/20 rounded-lg flex items-center justify-center flex-shrink-0`}>
+                      <feature.icon className="w-6 h-6 text-electric-blue" />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="font-display font-bold text-2xl mb-2">
+                        {feature.title}
+                      </h3>
+                      <p className="text-text-secondary">
+                        {feature.description}
+                      </p>
+                    </div>
+                  </div>
+
+                  <ul className="space-y-2">
+                    {feature.details.map((detail, i) => (
+                      <li key={i} className="flex items-start gap-2 text-sm text-text-tertiary">
+                        <div className="w-1.5 h-1.5 rounded-full bg-electric-blue mt-2 flex-shrink-0" />
+                        <span>{detail}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Feature Highlights */}
+      <section className="py-20 bg-surface/30 border-y border-white/5">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="grid lg:grid-cols-3 gap-12">
+            <div className="text-center">
+              <div className="text-5xl font-display font-bold text-electric-blue mb-2">
+                2,500+
+              </div>
+              <div className="text-text-secondary">
+                Curated Tracks
+              </div>
+            </div>
+
+            <div className="text-center">
+              <div className="text-5xl font-display font-bold text-electric-purple mb-2">
+                100%
+              </div>
+              <div className="text-text-secondary">
+                Customizable with Stems
+              </div>
+            </div>
+
+            <div className="text-center">
+              <div className="text-5xl font-display font-bold text-electric-cyan mb-2">
+                Free
+              </div>
+              <div className="text-text-secondary">
+                Video Sync & AI Search
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing Preview */}
+      <section className="py-20">
+        <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
+          <h2 className="font-display font-bold text-4xl mb-4">
+            Simple, Transparent Pricing
           </h2>
           <p className="text-xl text-text-secondary mb-8">
-            Start free with 2,500 tokens. No credit card required.
+            Browse free, subscribe for unlimited downloads, license per project.
+          </p>
+          <div className="grid md:grid-cols-3 gap-6 mb-8">
+            <Card className="p-6">
+              <div className="font-display font-bold text-2xl mb-2">Free</div>
+              <div className="text-text-secondary text-sm mb-4">
+                Watermarked downloads
+              </div>
+              <div className="text-4xl font-display font-bold mb-4">$0</div>
+            </Card>
+
+            <Card className="p-6 border-electric-blue">
+              <div className="font-display font-bold text-2xl mb-2">Pro</div>
+              <div className="text-text-secondary text-sm mb-4">
+                Unlimited clean downloads
+              </div>
+              <div className="text-4xl font-display font-bold mb-4">
+                $45<span className="text-lg text-text-tertiary">/seat</span>
+              </div>
+            </Card>
+
+            <Card className="p-6">
+              <div className="font-display font-bold text-2xl mb-2">Enterprise</div>
+              <div className="text-text-secondary text-sm mb-4">
+                10 seats + advanced features
+              </div>
+              <div className="text-4xl font-display font-bold mb-4">Custom</div>
+            </Card>
+          </div>
+          <Button size="lg">
+            View Full Pricing
+          </Button>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-20 border-t border-white/5 bg-surface/30">
+        <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
+          <h2 className="font-display font-bold text-4xl mb-4">
+            Ready to Transform Your Music Workflow?
+          </h2>
+          <p className="text-xl text-text-secondary mb-8">
+            Start browsing our catalog free, or try Pro with a 14-day trial.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg">
-              Start Free
+              Start Free Trial
             </Button>
             <Button variant="outline" size="lg">
-              Schedule Demo
+              Browse Library
             </Button>
           </div>
         </div>
       </section>
 
       <Footer />
-    </main>
-  )
-}
-
-function Check({ className }: { className?: string }) {
-  return (
-    <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-    </svg>
+    </div>
   )
 }
