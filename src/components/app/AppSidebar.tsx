@@ -11,7 +11,6 @@ import {
   Building2, 
   Settings, 
   HelpCircle,
-  Coins,
   Menu,
   X,
   ChevronDown,
@@ -83,21 +82,20 @@ export default function AppSidebar() {
           </Link>
         </div>
 
-        {/* Token Balance */}
+        {/* Plan Badge */}
         <div className="px-6 py-4 border-b border-white/5">
           <div className="p-3 bg-surface-elevated rounded-lg border border-white/10">
             <div className="flex items-center justify-between mb-2">
-              <span className="text-xs text-text-tertiary">Token Balance</span>
-              <Coins className="w-4 h-4 text-electric-blue" />
+              <span className="text-xs text-text-tertiary">Current Plan</span>
+              <span className="px-2 py-0.5 text-xs bg-electric-blue/20 text-electric-blue rounded-full font-semibold">
+                Pro
+              </span>
             </div>
-            <div className="text-xl font-display font-bold text-white mb-1">
-              2,500
+            <div className="text-sm font-semibold text-white mb-1">
+              Unlimited Downloads
             </div>
-            <div className="w-full h-1.5 bg-surface rounded-full overflow-hidden">
-              <div className="h-full w-[88%] bg-gradient-to-r from-electric-blue to-electric-purple rounded-full" />
-            </div>
-            <p className="text-xs text-text-tertiary mt-2">
-              88% remaining
+            <p className="text-xs text-text-tertiary">
+              Full stem access & customization
             </p>
           </div>
         </div>
@@ -191,6 +189,9 @@ export default function AppSidebar() {
                   </button>
                   <button className="w-full text-left px-3 py-2 text-sm text-text-secondary hover:text-white hover:bg-surface-hover rounded-lg transition-colors">
                     Billing
+                  </button>
+                  <button className="w-full text-left px-3 py-2 text-sm text-text-secondary hover:text-white hover:bg-surface-hover rounded-lg transition-colors">
+                    Upgrade Plan
                   </button>
                   <button className="w-full text-left px-3 py-2 text-sm text-error hover:bg-error/10 rounded-lg transition-colors">
                     Sign Out
