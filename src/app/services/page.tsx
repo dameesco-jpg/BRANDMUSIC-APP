@@ -2,7 +2,7 @@ import Navigation from '@/components/ui/Navigation'
 import Footer from '@/components/ui/Footer'
 import Button from '@/components/ui/Button'
 import Card from '@/components/ui/Card'
-import { Music, Waveform, Radio, FileText, ArrowRight, CheckCircle } from 'lucide-react'
+import { Music, Radio, FileText, ArrowRight, CheckCircle, AudioWaveform } from 'lucide-react'
 
 const services = [
   {
@@ -25,7 +25,7 @@ const services = [
     ]
   },
   {
-    icon: Waveform,
+    icon: AudioWaveform,
     title: 'Sonic Branding Packages',
     description: 'Comprehensive sonic identity system for your brand—from audio logos to full brand soundscapes.',
     whatYouGet: [
