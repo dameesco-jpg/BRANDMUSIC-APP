@@ -6,12 +6,12 @@ import { Menu, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const navItems = [
-     { label: 'Browse Music', href: '/library' },
-     { label: 'Product', href: '/product' },
-     { label: 'Enterprise', href: '/enterprise' },
-     { label: 'Pricing', href: '/pricing' },
-   ]
-
+  { label: 'Browse Music', href: '/library' },
+  { label: 'Product', href: '/product' },
+  { label: 'Pricing', href: '/pricing' },
+  { label: 'Services', href: '/services' },
+  { label: 'Enterprise', href: '/enterprise' },
+]
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
 
