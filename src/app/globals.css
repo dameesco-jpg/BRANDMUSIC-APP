@@ -1,0 +1,100 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom font imports */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+@import url('https://api.fontshare.com/v2/css?f[]=clash-display@200,300,400,500,600,700&display=swap');
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-text-primary font-sans antialiased;
+    overflow-x: hidden;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+  }
+  
+  .gradient-blue-purple {
+    @apply bg-gradient-to-r from-electric-blue via-electric-purple to-electric-pink;
+  }
+  
+  .gradient-blue-cyan {
+    @apply bg-gradient-to-r from-electric-blue to-electric-cyan;
+  }
+  
+  .border-gradient {
+    position: relative;
+    background: linear-gradient(#13131A, #13131A) padding-box,
+                linear-gradient(135deg, #00D9FF, #B84FFF) border-box;
+    border: 1px solid transparent;
+  }
+  
+  .glow-border {
+    box-shadow: 0 0 0 1px rgba(0, 217, 255, 0.3),
+                0 0 20px rgba(0, 217, 255, 0.1);
+  }
+  
+  .backdrop-blur-glass {
+    backdrop-filter: blur(12px) saturate(180%);
+    background-color: rgba(19, 19, 26, 0.7);
+  }
+  
+  .noise-texture {
+    position: relative;
+  }
+  
+  .noise-texture::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  }
+  
+  /* Waveform visualizations */
+  .waveform-bar {
+    @apply bg-gradient-to-t from-electric-blue/30 to-electric-blue/80;
+    animation: waveform-pulse 1.5s ease-in-out infinite;
+  }
+  
+  @keyframes waveform-pulse {
+    0%, 100% { transform: scaleY(0.5); opacity: 0.5; }
+    50% { transform: scaleY(1); opacity: 1; }
+  }
+  
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-surface;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-text-tertiary rounded-full;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-text-secondary;
+  }
+  
+  /* Selection */
+  ::selection {
+    @apply bg-electric-blue/30 text-white;
+  }
+}
