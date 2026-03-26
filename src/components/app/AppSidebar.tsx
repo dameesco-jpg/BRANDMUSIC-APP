@@ -20,7 +20,7 @@ import {
 import { motion, AnimatePresence } from 'framer-motion'
 
 const navItems = [
-  { icon: Search, label: 'AI Search', href: '/app/search' },
+  { icon: Music, label: 'Library', href: '/app/search' },
   { icon: Video, label: 'Video Sync', href: '/app/video-sync' },
   { icon: Sliders, label: 'Stem Studio', href: '/app/stem-studio' },
   { icon: Package, label: 'Projects', href: '/app/projects' },
