@@ -23,9 +23,7 @@ const plans = [
       'Email support',
     ],
     limitations: [
-      'No clean
-
-      <Footer />
-    </main>
-  )
-}
+      'No clean downloads',
+      'No commercial license',
+      'Watermarked tracks only',
+    ],
