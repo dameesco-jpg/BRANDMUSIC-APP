@@ -2,7 +2,7 @@ import Navigation from '@/components/ui/Navigation'
 import Footer from '@/components/ui/Footer'
 import Button from '@/components/ui/Button'
 import Card from '@/components/ui/Card'
-import { Music, Radio, FileText, ArrowRight, CheckCircle, AudioWaveform } from 'lucide-react'
+import { Music, AudioWaveform, Radio, FileText, ArrowRight, CheckCircle } from 'lucide-react'
 
 const services = [
   {
