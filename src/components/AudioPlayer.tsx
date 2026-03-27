@@ -28,17 +28,12 @@ export default function AudioPlayer({ track, onClose }: AudioPlayerProps) {
     if (track && audioRef.current) {
       audioRef.current.src = track.file_url
       audioRef.current.load()
-      
       const playPromise = audioRef.current.play()
       if (playPromise !== undefined) {
-        playPromise
-          .then(() => {
-            setIsPlaying(true)
-          })
-          .catch(error => {
-            console.error('Playback error:', error)
-            setIsPlaying(false)
-          })
+        playPromise.then(() => setIsPlaying(true)).catch(error => {
+          console.error('Playback error:', error)
+          setIsPlaying(false)
+        })
       }
     }
   }, [track])
@@ -47,26 +42,10 @@ export default function AudioPlayer({ track, onClose }: AudioPlayerProps) {
     const audio = audioRef.current
     if (!audio) return
 
-    const updateTime = () => {
-      setCurrentTime(audio.currentTime)
-    }
-    
-    const updateDuration = () => {
-      if (audio.duration && !isNaN(audio.duration)) {
-        setDuration(audio.duration)
-      }
-    }
-    
-    const handleEnded = () => {
-      setIsPlaying(false)
-      setCurrentTime(0)
-    }
-
-    const handleLoadedMetadata = () => {
-      if (audio.duration && !isNaN(audio.duration)) {
-        setDuration(audio.duration)
-      }
-    }
+    const updateTime = () => setCurrentTime(audio.currentTime)
+    const updateDuration = () => { if (audio.duration && !isNaN(audio.duration)) setDuration(audio.duration) }
+    const handleEnded = () => { setIsPlaying(false); setCurrentTime(0) }
+    const handleLoadedMetadata = () => { if (audio.duration && !isNaN(audio.duration)) setDuration(audio.duration) }
 
     audio.addEventListener('timeupdate', updateTime)
     audio.addEventListener('loadedmetadata', handleLoadedMetadata)
@@ -96,17 +75,13 @@ export default function AudioPlayer({ track, onClose }: AudioPlayerProps) {
   const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
     const time = parseFloat(e.target.value)
     setCurrentTime(time)
-    if (audioRef.current) {
-      audioRef.current.currentTime = time
-    }
+    if (audioRef.current) audioRef.current.currentTime = time
   }
 
   const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const vol = parseFloat(e.target.value)
     setVolume(vol)
-    if (audioRef.current) {
-      audioRef.current.volume = vol
-    }
+    if (audioRef.current) audioRef.current.volume = vol
     setIsMuted(vol === 0)
   }
 
@@ -159,11 +134,7 @@ export default function AudioPlayer({ track, onClose }: AudioPlayerProps) {
                 <SkipBack className="w-5 h-5" />
               </button>
               <button onClick={togglePlay} className="w-10 h-10 bg-electric-blue rounded-full flex items-center justify-center hover:bg-electric-blue/90 hover:scale-110 transition-transform shadow-md">
-                {isPlaying ? (
-                  <Pause className="w-5 h-5 text-white" />
-                ) : (
-                  <Play className="w-5 h-5 text-white ml-0.5" />
-                )}
+                {isPlaying ? <Pause className="w-5 h-5 text-white" /> : <Play className="w-5 h-5 text-white ml-0.5" />}
               </button>
               <button className="text-text-secondary hover:text-text-primary transition-colors">
                 <SkipForward className="w-5 h-5" />
@@ -171,14 +142,7 @@ export default function AudioPlayer({ track, onClose }: AudioPlayerProps) {
             </div>
             <div className="flex items-center gap-2 w-full max-w-md">
               <span className="text-xs text-text-tertiary w-10 text-right">{formatTime(currentTime)}</span>
-              <input 
-                type="range" 
-                min="0" 
-                max={duration || 100} 
-                value={currentTime} 
-                onChange={handleSeek} 
-                className="flex-1 h-1 bg-border-light rounded-full appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:bg-electric-blue [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:cursor-pointer [&::-moz-range-thumb]:appearance-none [&::-moz-range-thumb]:w-3 [&::-moz-range-thumb]:h-3 [&::-moz-range-thumb]:bg-electric-blue [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:border-0 [&::-moz-range-thumb]:cursor-pointer" 
-              />
+              <input type="range" min="0" max={duration || 100} value={currentTime} onChange={handleSeek} className="flex-1 h-1 bg-border-light rounded-full appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:bg-electric-blue [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:cursor-pointer [&::-moz-range-thumb]:appearance-none [&::-moz-range-thumb]:w-3 [&::-moz-range-thumb]:h-3 [&::-moz-range-thumb]:bg-electric-blue [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:border-0 [&::-moz-range-thumb]:cursor-pointer" />
               <span className="text-xs text-text-tertiary w-10">{formatTime(duration)}</span>
             </div>
           </div>
@@ -186,15 +150,7 @@ export default function AudioPlayer({ track, onClose }: AudioPlayerProps) {
             <button onClick={toggleMute} className="text-text-secondary hover:text-text-primary transition-colors">
               {isMuted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
             </button>
-            <input 
-              type="range" 
-              min="0" 
-              max="1" 
-              step="0.01" 
-              value={isMuted ? 0 : volume} 
-              onChange={handleVolumeChange} 
-              className="w-24 h-1 bg-border-light rounded-full appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:bg-electric-blue [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:cursor-pointer [&::-moz-range-thumb]:appearance-none [&::-moz-range-thumb]:w-3 [&::-moz-range-thumb]:h-3 [&::-moz-range-thumb]:bg-electric-blue [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:border-0 [&::-moz-range-thumb]:cursor-pointer" 
-            />
+            <input type="range" min="0" max="1" step="0.01" value={isMuted ? 0 : volume} onChange={handleVolumeChange} className="w-24 h-1 bg-border-light rounded-full appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:bg-electric-blue [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:cursor-pointer [&::-moz-range-thumb]:appearance-none [&::-moz-range-thumb]:w-3 [&::-moz-range-thumb]:h-3 [&::-moz-range-thumb]:bg-electric-blue [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:border-0 [&::-moz-range-thumb]:cursor-pointer" />
           </div>
         </div>
       </div>
