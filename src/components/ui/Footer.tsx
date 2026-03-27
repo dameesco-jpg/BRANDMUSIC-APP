@@ -1,120 +1,72 @@
 import Link from 'next/link'
-import { Github, Twitter, Linkedin } from 'lucide-react'
 
-const footerSections = [
-  {
-    title: 'Product',
-    links: [
-      { label: 'AI Search', href: '/product#ai-search' },
-      { label: 'Video Sync', href: '/product#video-sync' },
-      { label: 'Stem Studio', href: '/stem-studio' },
-      { label: 'Campaign Builder', href: '/product#campaign-builder' },
-    ],
-  },
-  {
-    title: 'Enterprise',
-    links: [
-      { label: 'Brand Portal', href: '/enterprise#brand-portal' },
-      { label: 'Sonic DNA', href: '/enterprise#sonic-dna' },
-      { label: 'Team Collaboration', href: '/enterprise#collaboration' },
-      { label: 'Analytics', href: '/enterprise#analytics' },
-    ],
-  },
-  {
-    title: 'Resources',
-    links: [
-      { label: 'Documentation', href: '/docs' },
-      { label: 'API Reference', href: '/api' },
-      { label: 'Use Cases', href: '/use-cases' },
-      { label: 'Blog', href: '/blog' },
-    ],
-  },
-  {
-    title: 'Company',
-    links: [
-      { label: 'About', href: '/about' },
-      { label: 'Careers', href: '/careers' },
-      { label: 'Contact', href: '/contact' },
-      { label: 'Partners', href: '/partners' },
-    ],
-  },
-]
-
-const socialLinks = [
-  { icon: Twitter, href: '#', label: 'Twitter' },
-  { icon: Linkedin, href: '#', label: 'LinkedIn' },
-  { icon: Github, href: '#', label: 'GitHub' },
-]
+const footerLinks = {
+  product: [
+    { label: 'Features', href: '/product' },
+    { label: 'Pricing', href: '/pricing' },
+    { label: 'Browse Music', href: '/library' },
+    { label: 'Services', href: '/services' },
+  ],
+  company: [
+    { label: 'About', href: '/about' },
+    { label: 'Enterprise', href: '/enterprise' },
+    { label: 'Careers', href: '/careers' },
+    { label: 'Contact', href: '/contact' },
+  ],
+  legal: [
+    { label: 'Privacy', href: '/privacy' },
+    { label: 'Terms', href: '/terms' },
+    { label: 'Licenses', href: '/licenses' },
+  ],
+}
 
 export default function Footer() {
   return (
-    <footer className="bg-surface border-t border-white/5">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
-        {/* Main Footer Content */}
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 mb-12">
-          {/* Brand Column */}
-          <div className="col-span-2">
-            <Link href="/" className="flex items-center space-x-3 mb-4">
+    <footer className="bg-white border-t border-border-light">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-12">
+        <div className="grid md:grid-cols-4 gap-8 mb-8">
+          <div>
+            <div className="flex items-center space-x-3 mb-4">
               <div className="w-10 h-10 bg-gradient-to-br from-electric-blue to-electric-purple rounded-lg flex items-center justify-center">
                 <div className="w-6 h-6 border-2 border-white rounded"></div>
               </div>
-              <span className="font-display font-semibold text-xl">
-                Brandmusic
-              </span>
-            </Link>
-            <p className="text-text-secondary text-sm max-w-xs mb-6">
-              The AI-powered operating system for brand sound. Discover, customize, and license music with intelligent workflows.
-            </p>
-            <div className="flex space-x-4">
-              {socialLinks.map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  className="w-10 h-10 rounded-lg bg-surface-elevated flex items-center justify-center text-text-secondary hover:text-electric-blue hover:bg-surface-hover transition-all"
-                  aria-label={social.label}
-                >
-                  <social.icon size={18} />
-                </a>
+              <span className="font-display font-semibold text-xl text-text-primary">Brandmusic</span>
+            </div>
+            <p className="text-sm text-text-secondary">AI-powered music discovery for your brand.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold text-text-primary mb-4">Product</h3>
+            <ul className="space-y-2">
+              {footerLinks.product.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="text-sm text-text-secondary hover:text-text-primary transition-colors">{link.label}</Link>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
-
-          {/* Link Columns */}
-          {footerSections.map((section) => (
-            <div key={section.title}>
-              <h3 className="font-semibold text-white mb-4">{section.title}</h3>
-              <ul className="space-y-3">
-                {section.links.map((link) => (
-                  <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className="text-text-secondary hover:text-white transition-colors text-sm"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          <div>
+            <h3 className="font-semibold text-text-primary mb-4">Company</h3>
+            <ul className="space-y-2">
+              {footerLinks.company.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="text-sm text-text-secondary hover:text-text-primary transition-colors">{link.label}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h3 className="font-semibold text-text-primary mb-4">Legal</h3>
+            <ul className="space-y-2">
+              {footerLinks.legal.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="text-sm text-text-secondary hover:text-text-primary transition-colors">{link.label}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
-
-        {/* Bottom Bar */}
-        <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-          <p className="text-text-tertiary text-sm">
-            © {new Date().getFullYear()} Brandmusic. All rights reserved.
-          </p>
-          <div className="flex space-x-6 text-sm">
-            <Link href="/privacy" className="text-text-tertiary hover:text-white transition-colors">
-              Privacy Policy
-            </Link>
-            <Link href="/terms" className="text-text-tertiary hover:text-white transition-colors">
-              Terms of Service
-            </Link>
-            <Link href="/cookies" className="text-text-tertiary hover:text-white transition-colors">
-              Cookie Policy
-            </Link>
-          </div>
+        <div className="pt-8 border-t border-border-light">
+          <p className="text-sm text-text-tertiary text-center">© {new Date().getFullYear()} Brandmusic. All rights reserved.</p>
         </div>
       </div>
     </footer>
