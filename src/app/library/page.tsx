@@ -54,13 +54,8 @@ export default function LibraryPage() {
 
   async function fetchTracks() {
     try {
-      const { data, error } = await supabase
-        .from('tracks')
-        .select('*')
-        .order('created_at', { ascending: false })
-
+      const { data, error } = await supabase.from('tracks').select('*').order('created_at', { ascending: false })
       if (error) throw error
-
       setTracks(data || [])
       setFilteredTracks(data || [])
     } catch (error) {
@@ -78,7 +73,6 @@ export default function LibraryPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ query: searchQuery }),
       })
-
       const data = await response.json()
       setFilteredTracks(data.tracks || [])
     } catch (error) {
@@ -91,22 +85,18 @@ export default function LibraryPage() {
 
   function filterTracks() {
     let filtered = tracks
-
     if (searchQuery && !useAI) {
       filtered = filtered.filter(track =>
         track.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         track.artist.toLowerCase().includes(searchQuery.toLowerCase())
       )
     }
-
     if (selectedGenre !== 'all') {
       filtered = filtered.filter(track => track.genre === selectedGenre)
     }
-
     if (selectedMood !== 'all') {
       filtered = filtered.filter(track => track.mood === selectedMood)
     }
-
     setFilteredTracks(filtered)
   }
 
@@ -139,9 +129,7 @@ export default function LibraryPage() {
             <h1 className="font-display font-bold text-[32px] md:text-[40px] mb-4 text-text-primary leading-tight">
               AI-Powered Music Search
             </h1>
-            <p className="text-lg md:text-xl text-text-secondary">
-              Describe what you need in natural language
-            </p>
+            <p className="text-lg md:text-xl text-text-secondary">Describe what you need in natural language</p>
           </div>
 
           <div className="mb-8 space-y-4">
@@ -157,9 +145,7 @@ export default function LibraryPage() {
                 }}
                 className="w-full pl-12 pr-12 py-4 bg-white border border-border-light rounded-lg text-text-primary placeholder:text-text-tertiary focus:border-electric-blue focus:outline-none focus:ring-2 focus:ring-electric-blue/20 text-base md:text-lg transition-all"
               />
-              {useAI && (
-                <Sparkles className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-electric-blue animate-pulse" />
-              )}
+              {useAI && <Sparkles className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-electric-blue animate-pulse" />}
             </div>
 
             <div className="flex flex-wrap gap-2">
@@ -179,27 +165,15 @@ export default function LibraryPage() {
             </div>
 
             <div className="flex flex-wrap gap-4 items-center">
-              <select
-                value={selectedGenre}
-                onChange={(e) => setSelectedGenre(e.target.value)}
-                className="px-4 py-2 bg-white border border-border-light rounded-lg text-text-primary text-sm md:text-base focus:border-electric-blue focus:outline-none focus:ring-2 focus:ring-electric-blue/20 transition-all"
-              >
+              <select value={selectedGenre} onChange={(e) => setSelectedGenre(e.target.value)} className="px-4 py-2 bg-white border border-border-light rounded-lg text-text-primary text-sm md:text-base focus:border-electric-blue focus:outline-none focus:ring-2 focus:ring-electric-blue/20 transition-all">
                 {genres.map(genre => (
-                  <option key={genre} value={genre}>
-                    {genre === 'all' ? 'All Genres' : genre}
-                  </option>
+                  <option key={genre} value={genre}>{genre === 'all' ? 'All Genres' : genre}</option>
                 ))}
               </select>
 
-              <select
-                value={selectedMood}
-                onChange={(e) => setSelectedMood(e.target.value)}
-                className="px-4 py-2 bg-white border border-border-light rounded-lg text-text-primary text-sm md:text-base focus:border-electric-blue focus:outline-none focus:ring-2 focus:ring-electric-blue/20 transition-all"
-              >
+              <select value={selectedMood} onChange={(e) => setSelectedMood(e.target.value)} className="px-4 py-2 bg-white border border-border-light rounded-lg text-text-primary text-sm md:text-base focus:border-electric-blue focus:outline-none focus:ring-2 focus:ring-electric-blue/20 transition-all">
                 {moods.map(mood => (
-                  <option key={mood} value={mood}>
-                    {mood === 'all' ? 'All Moods' : mood}
-                  </option>
+                  <option key={mood} value={mood}>{mood === 'all' ? 'All Moods' : mood}</option>
                 ))}
               </select>
 
@@ -224,27 +198,17 @@ export default function LibraryPage() {
           ) : (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredTracks.map((track) => (
-                <div
-                  key={track.id}
-                  className="group bg-white rounded-xl border border-border-light overflow-hidden hover:border-electric-blue hover:shadow-card-hover transition-all"
-                >
+                <div key={track.id} className="group bg-white rounded-xl border border-border-light overflow-hidden hover:border-electric-blue hover:shadow-card-hover transition-all">
                   <div className="aspect-square bg-gradient-to-br from-electric-blue/10 to-electric-purple/10 relative">
                     <div className="w-full h-full flex items-center justify-center">
                       <div className="flex items-center gap-0.5">
                         {[...Array(12)].map((_, i) => (
-                          <div
-                            key={i}
-                            className="w-1 bg-electric-blue rounded-full"
-                            style={{ height: `${Math.random() * 60 + 40}%` }}
-                          />
+                          <div key={i} className="w-1 bg-electric-blue rounded-full" style={{ height: `${Math.random() * 60 + 40}%` }} />
                         ))}
                       </div>
                     </div>
                     <div className="absolute inset-0 bg-white/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                      <button 
-                        onClick={() => setCurrentTrack(track)}
-                        className="w-16 h-16 bg-electric-blue rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-lg"
-                      >
+                      <button onClick={() => setCurrentTrack(track)} className="w-16 h-16 bg-electric-blue rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-lg">
                         <Play className="w-8 h-8 text-white ml-1" />
                       </button>
                     </div>
@@ -253,22 +217,14 @@ export default function LibraryPage() {
                     </button>
                   </div>
                   <div className="p-4">
-                    <h3 className="font-semibold text-base md:text-lg text-text-primary mb-1 truncate">
-                      {track.title}
-                    </h3>
-                    <p className="text-sm text-text-secondary mb-3 truncate">
-                      {track.artist}
-                    </p>
+                    <h3 className="font-semibold text-base md:text-lg text-text-primary mb-1 truncate">{track.title}</h3>
+                    <p className="text-sm text-text-secondary mb-3 truncate">{track.artist}</p>
                     <div className="flex items-center gap-2 flex-wrap mb-3">
                       {track.genre && (
-                        <span className="px-2 py-1 text-xs bg-electric-blue/10 text-electric-blue rounded-full">
-                          {track.genre}
-                        </span>
+                        <span className="px-2 py-1 text-xs bg-electric-blue/10 text-electric-blue rounded-full">{track.genre}</span>
                       )}
                       {track.mood && (
-                        <span className="px-2 py-1 text-xs bg-electric-purple/10 text-electric-purple rounded-full">
-                          {track.mood}
-                        </span>
+                        <span className="px-2 py-1 text-xs bg-electric-purple/10 text-electric-purple rounded-full">{track.mood}</span>
                       )}
                     </div>
                     <div className="flex items-center justify-between text-xs text-text-tertiary">
