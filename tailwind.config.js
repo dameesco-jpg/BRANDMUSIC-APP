@@ -9,24 +9,17 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Light mode backgrounds
         background: '#FFFFFF',
         'background-secondary': '#F9FAFB',
         surface: '#FFFFFF',
         'surface-elevated': '#F9FAFB',
         'surface-hover': '#F3F4F6',
-        
-        // Brand colors (keep your electric palette)
         'electric-blue': '#0066FF',
         'electric-cyan': '#00D4FF',
         'electric-purple': '#8B5CF6',
-        
-        // Text colors (dark on light)
         'text-primary': '#111827',
         'text-secondary': '#6B7280',
         'text-tertiary': '#9CA3AF',
-        
-        // Borders (subtle)
         'border-light': '#E5E7EB',
         'border-medium': '#D1D5DB',
         'border-dark': '#9CA3AF',
