@@ -1,4 +1,4 @@
-'use client'
+''use client'
 
 import { useEffect, useState } from 'react'
 import { supabase } from '@/lib/supabase'
@@ -60,24 +60,3 @@ export default function TestSupabase() {
     </div>
   )
 }
-```
-
-4. Commit the file
-
----
-
-### **Step 4: Trigger Netlify Deployment**
-
-1. Go to Netlify: https://app.netlify.com/
-2. Click on your site
-3. Go to **"Deploys"** tab
-4. Click **"Trigger deploy"** → **"Deploy site"**
-5. Wait for it to build (2-3 minutes)
-
----
-
-### **Step 5: Test It!**
-
-Once deployed, visit:
-```
-https://aos22.netlify.app/test-supabase
