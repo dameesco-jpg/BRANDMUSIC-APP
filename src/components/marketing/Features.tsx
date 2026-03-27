@@ -1,138 +1,115 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Search, Video, Sliders, Package, Fingerprint, Building2 } from 'lucide-react'
-import Card from '../ui/Card'
+import { Search, Video, Sliders, FileText, Sparkles, Zap } from 'lucide-react'
 
 const features = [
   {
     icon: Search,
-    title: 'AI Search & Similarity',
-    description: 'Natural language search and reference-based discovery. Paste Spotify or YouTube links to find similar tracks.',
-    gradient: 'from-electric-blue to-electric-cyan',
-    badge: 'Free',
+    title: 'AI-Powered Search',
+    description: 'Describe what you need in natural language',
+    example: '"Confident but not aggressive for a tech startup"',
+    color: 'from-electric-blue to-electric-cyan',
   },
   {
     icon: Video,
-    title: 'Video Sync Studio',
-    description: 'Upload edits and validate music against picture in real-time. Swap tracks instantly to find the perfect fit.',
-    gradient: 'from-electric-purple to-electric-pink',
-    badge: 'Free',
+    title: 'Free Video Sync',
+    description: 'Test tracks against your footage instantly',
+    example: 'Upload video, drag tracks, preview in real-time',
+    color: 'from-electric-purple to-electric-pink',
   },
   {
     icon: Sliders,
     title: 'Stem Studio',
-    description: 'Customize music at the stem level. Mute, solo, adjust, and rearrange. Export modified versions with tokens.',
-    gradient: 'from-electric-cyan to-electric-blue',
-    badge: 'Token-based',
+    description: 'Customize every element of any track',
+    example: 'Adjust drums, bass, melody, vocals independently',
+    color: 'from-electric-cyan to-electric-blue',
   },
   {
-    icon: Package,
-    title: 'Campaign Builder',
-    description: 'Organize tracks into projects. Create campaign kits, collaborate with teams, and manage versions.',
-    gradient: 'from-electric-pink to-electric-purple',
-    badge: 'Pro',
+    icon: FileText,
+    title: 'Transparent Licensing',
+    description: 'Clear quotes, no hidden fees',
+    example: 'Know costs upfront before committing',
+    color: 'from-electric-pink to-electric-purple',
   },
   {
-    icon: Fingerprint,
-    title: 'Sonic DNA',
-    description: 'Define your brand sound profile. AI filters ensure every track aligns with your sonic identity.',
-    gradient: 'from-electric-blue to-electric-purple',
-    badge: 'Enterprise',
-  },
-  {
-    icon: Building2,
+    icon: Sparkles,
     title: 'Brand Portal',
-    description: 'Centralized audio asset management. Secure storage, governance, team permissions, and analytics.',
-    gradient: 'from-electric-purple to-electric-blue',
-    badge: 'Enterprise',
+    description: 'Centralized hub for your brand sound',
+    example: 'Team access, campaign organization, asset library',
+    color: 'from-electric-blue to-electric-purple',
+  },
+  {
+    icon: Zap,
+    title: 'Custom Services',
+    description: 'Original music and sonic branding',
+    example: 'Audio logos, brand anthems, sonic strategy',
+    color: 'from-electric-cyan to-electric-pink',
   },
 ]
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-}
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-    },
-  },
-}
-
 export default function Features() {
   return (
-    <section className="relative py-32 overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-mesh opacity-30"></div>
-      
-      <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="text-center mb-20">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <span className="text-electric-blue font-semibold text-sm uppercase tracking-wider">
-              Complete Workflow
-            </span>
-            <h2 className="font-display font-bold text-display-md md:text-display-lg mt-4 mb-6">
-              Everything you need to
-              <br />
-              <span className="gradient-blue-purple text-gradient">master brand sound</span>
-            </h2>
-            <p className="text-xl text-text-secondary max-w-2xl mx-auto">
-              From discovery to delivery, Brandmusic provides intelligent tools for every step of your music workflow.
-            </p>
-          </motion.div>
-        </div>
-
+    <section className="py-20 lg:py-32 border-b border-white/5">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
         >
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-surface-elevated/50 backdrop-blur-sm rounded-full border border-electric-blue/30 mb-6">
+            <Sparkles className="w-4 h-4 text-electric-blue" />
+            <span className="text-sm font-medium text-electric-blue">Platform Capabilities</span>
+          </div>
+          
+          <h2 className="font-display font-bold text-4xl md:text-5xl mb-6">
+            Everything You Need,
+            <br />
+            <span className="gradient-blue-purple text-gradient">All in One Place</span>
+          </h2>
+          
+          <p className="text-xl text-text-secondary max-w-3xl mx-auto">
+            Professional tools built for agencies, brands, and music supervisors
+          </p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((feature, index) => (
-            <motion.div key={feature.title} variants={itemVariants}>
-              <Card className="h-full group cursor-pointer">
-                <div className="mb-6">
-                  <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${feature.gradient} p-0.5 mb-4`}>
-                    <div className="w-full h-full bg-surface-elevated rounded-xl flex items-center justify-center">
-                      <feature.icon className="w-6 h-6 text-white" />
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-3 mb-3">
-                    <h3 className="font-display font-semibold text-xl text-white group-hover:text-electric-blue transition-colors">
-                      {feature.title}
-                    </h3>
-                    <span className={`text-xs px-2 py-1 rounded-full ${
-                      feature.badge === 'Free' ? 'bg-success/20 text-success' :
-                      feature.badge === 'Token-based' ? 'bg-electric-blue/20 text-electric-blue' :
-                      'bg-electric-purple/20 text-electric-purple'
-                    }`}>
-                      {feature.badge}
-                    </span>
-                  </div>
-                  <p className="text-text-secondary">
-                    {feature.description}
+            <motion.div
+              key={feature.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              className="group relative"
+            >
+              <div className="p-8 bg-surface-elevated rounded-2xl border border-white/10 hover:border-electric-blue/30 transition-all h-full">
+                {/* Icon */}
+                <div className={`w-14 h-14 bg-gradient-to-br ${feature.color} bg-opacity-20 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
+                  <feature.icon className="w-7 h-7 text-electric-blue" />
+                </div>
+
+                {/* Content */}
+                <h3 className="font-display font-bold text-2xl mb-3 group-hover:text-electric-blue transition-colors">
+                  {feature.title}
+                </h3>
+                
+                <p className="text-text-secondary mb-4">
+                  {feature.description}
+                </p>
+
+                {/* Example */}
+                <div className="p-3 bg-surface rounded-lg border border-white/5">
+                  <p className="text-sm text-text-tertiary italic">
+                    {feature.example}
                   </p>
                 </div>
-              </Card>
+              </div>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   )
