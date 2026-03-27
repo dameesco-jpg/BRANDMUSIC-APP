@@ -28,8 +28,18 @@ export default function AudioPlayer({ track, onClose }: AudioPlayerProps) {
     if (track && audioRef.current) {
       audioRef.current.src = track.file_url
       audioRef.current.load()
-      audioRef.current.play()
-      setIsPlaying(true)
+      
+      const playPromise = audioRef.current.play()
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            setIsPlaying(true)
+          })
+          .catch(error => {
+            console.error('Playback error:', error)
+            setIsPlaying(false)
+          })
+      }
     }
   }, [track])
 
@@ -37,17 +47,36 @@ export default function AudioPlayer({ track, onClose }: AudioPlayerProps) {
     const audio = audioRef.current
     if (!audio) return
 
-    const updateTime = () => setCurrentTime(audio.currentTime)
-    const updateDuration = () => setDuration(audio.duration)
-    const handleEnded = () => setIsPlaying(false)
+    const updateTime = () => {
+      setCurrentTime(audio.currentTime)
+    }
+    
+    const updateDuration = () => {
+      if (audio.duration && !isNaN(audio.duration)) {
+        setDuration(audio.duration)
+      }
+    }
+    
+    const handleEnded = () => {
+      setIsPlaying(false)
+      setCurrentTime(0)
+    }
+
+    const handleLoadedMetadata = () => {
+      if (audio.duration && !isNaN(audio.duration)) {
+        setDuration(audio.duration)
+      }
+    }
 
     audio.addEventListener('timeupdate', updateTime)
-    audio.addEventListener('loadedmetadata', updateDuration)
+    audio.addEventListener('loadedmetadata', handleLoadedMetadata)
+    audio.addEventListener('durationchange', updateDuration)
     audio.addEventListener('ended', handleEnded)
 
     return () => {
       audio.removeEventListener('timeupdate', updateTime)
-      audio.removeEventListener('loadedmetadata', updateDuration)
+      audio.removeEventListener('loadedmetadata', handleLoadedMetadata)
+      audio.removeEventListener('durationchange', updateDuration)
       audio.removeEventListener('ended', handleEnded)
     }
   }, [])
@@ -56,10 +85,11 @@ export default function AudioPlayer({ track, onClose }: AudioPlayerProps) {
     if (audioRef.current) {
       if (isPlaying) {
         audioRef.current.pause()
+        setIsPlaying(false)
       } else {
         audioRef.current.play()
+        setIsPlaying(true)
       }
-      setIsPlaying(!isPlaying)
     }
   }
 
@@ -93,7 +123,7 @@ export default function AudioPlayer({ track, onClose }: AudioPlayerProps) {
   }
 
   const formatTime = (time: number) => {
-    if (isNaN(time)) return '0:00'
+    if (isNaN(time) || !isFinite(time)) return '0:00'
     const minutes = Math.floor(time / 60)
     const seconds = Math.floor(time % 60)
     return `${minutes}:${seconds.toString().padStart(2, '0')}`
@@ -103,7 +133,7 @@ export default function AudioPlayer({ track, onClose }: AudioPlayerProps) {
 
   return (
     <div className="fixed bottom-0 left-0 right-0 bg-surface-elevated border-t border-white/10 backdrop-blur-glass z-50">
-      <audio ref={audioRef} />
+      <audio ref={audioRef} preload="metadata" />
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex items-center gap-6">
           <div className="flex items-center gap-4 min-w-0 flex-1">
@@ -141,7 +171,14 @@ export default function AudioPlayer({ track, onClose }: AudioPlayerProps) {
             </div>
             <div className="flex items-center gap-2 w-full max-w-md">
               <span className="text-xs text-text-tertiary w-10 text-right">{formatTime(currentTime)}</span>
-              <input type="range" min="0" max={duration || 0} value={currentTime} onChange={handleSeek} className="flex-1 h-1 bg-white/10 rounded-full appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:bg-electric-blue [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:cursor-pointer" />
+              <input 
+                type="range" 
+                min="0" 
+                max={duration || 100} 
+                value={currentTime} 
+                onChange={handleSeek} 
+                className="flex-1 h-1 bg-white/10 rounded-full appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:bg-electric-blue [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:cursor-pointer [&::-moz-range-thumb]:appearance-none [&::-moz-range-thumb]:w-3 [&::-moz-range-thumb]:h-3 [&::-moz-range-thumb]:bg-electric-blue [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:border-0 [&::-moz-range-thumb]:cursor-pointer" 
+              />
               <span className="text-xs text-text-tertiary w-10">{formatTime(duration)}</span>
             </div>
           </div>
@@ -149,7 +186,15 @@ export default function AudioPlayer({ track, onClose }: AudioPlayerProps) {
             <button onClick={toggleMute} className="text-text-secondary hover:text-white transition-colors">
               {isMuted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
             </button>
-            <input type="range" min="0" max="1" step="0.01" value={isMuted ? 0 : volume} onChange={handleVolumeChange} className="w-24 h-1 bg-white/10 rounded-full appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:bg-electric-blue [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:cursor-pointer" />
+            <input 
+              type="range" 
+              min="0" 
+              max="1" 
+              step="0.01" 
+              value={isMuted ? 0 : volume} 
+              onChange={handleVolumeChange} 
+              className="w-24 h-1 bg-white/10 rounded-full appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:bg-electric-blue [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:cursor-pointer [&::-moz-range-thumb]:appearance-none [&::-moz-range-thumb]:w-3 [&::-moz-range-thumb]:h-3 [&::-moz-range-thumb]:bg-electric-blue [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:border-0 [&::-moz-range-thumb]:cursor-pointer" 
+            />
           </div>
         </div>
       </div>
