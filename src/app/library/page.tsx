@@ -119,11 +119,11 @@ export default function LibraryPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen bg-white">
         <Navigation />
         <div className="pt-32 pb-20">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <p className="text-white text-center">Loading tracks...</p>
+            <p className="text-text-primary text-center">Loading tracks...</p>
           </div>
         </div>
       </div>
@@ -131,15 +131,15 @@ export default function LibraryPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background-secondary">
       <Navigation />
       <div className="pt-32 pb-20 mb-24">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="mb-12">
-            <h1 className="font-display font-bold text-5xl mb-4 text-white">
+            <h1 className="font-display font-bold text-[32px] md:text-[40px] mb-4 text-text-primary leading-tight">
               AI-Powered Music Search
             </h1>
-            <p className="text-xl text-text-secondary">
+            <p className="text-lg md:text-xl text-text-secondary">
               Describe what you need in natural language
             </p>
           </div>
@@ -155,7 +155,7 @@ export default function LibraryPage() {
                   setSearchQuery(e.target.value)
                   setUseAI(e.target.value.length > 10)
                 }}
-                className="w-full pl-12 pr-12 py-4 bg-surface-elevated border border-white/10 rounded-lg text-white placeholder:text-text-tertiary focus:border-electric-blue focus:outline-none text-lg"
+                className="w-full pl-12 pr-12 py-4 bg-white border border-border-light rounded-lg text-text-primary placeholder:text-text-tertiary focus:border-electric-blue focus:outline-none focus:ring-2 focus:ring-electric-blue/20 text-base md:text-lg transition-all"
               />
               {useAI && (
                 <Sparkles className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-electric-blue animate-pulse" />
@@ -171,7 +171,7 @@ export default function LibraryPage() {
                     setSearchQuery(example)
                     setUseAI(true)
                   }}
-                  className="text-sm px-3 py-1 bg-surface-elevated border border-white/10 rounded-full text-text-secondary hover:text-electric-blue hover:border-electric-blue/30 transition-all"
+                  className="text-sm px-3 py-1 bg-white border border-border-light rounded-full text-text-secondary hover:text-electric-blue hover:border-electric-blue transition-all"
                 >
                   {example}
                 </button>
@@ -182,7 +182,7 @@ export default function LibraryPage() {
               <select
                 value={selectedGenre}
                 onChange={(e) => setSelectedGenre(e.target.value)}
-                className="px-4 py-2 bg-surface-elevated border border-white/10 rounded-lg text-white focus:border-electric-blue focus:outline-none"
+                className="px-4 py-2 bg-white border border-border-light rounded-lg text-text-primary text-sm md:text-base focus:border-electric-blue focus:outline-none focus:ring-2 focus:ring-electric-blue/20 transition-all"
               >
                 {genres.map(genre => (
                   <option key={genre} value={genre}>
@@ -194,7 +194,7 @@ export default function LibraryPage() {
               <select
                 value={selectedMood}
                 onChange={(e) => setSelectedMood(e.target.value)}
-                className="px-4 py-2 bg-surface-elevated border border-white/10 rounded-lg text-white focus:border-electric-blue focus:outline-none"
+                className="px-4 py-2 bg-white border border-border-light rounded-lg text-text-primary text-sm md:text-base focus:border-electric-blue focus:outline-none focus:ring-2 focus:ring-electric-blue/20 transition-all"
               >
                 {moods.map(mood => (
                   <option key={mood} value={mood}>
@@ -204,11 +204,11 @@ export default function LibraryPage() {
               </select>
 
               <div className="flex items-center gap-2 px-4 py-2">
-                <span className="text-text-secondary">
+                <span className="text-text-secondary text-sm md:text-base">
                   {searching ? 'Searching...' : `${filteredTracks.length} ${filteredTracks.length === 1 ? 'track' : 'tracks'}`}
                 </span>
                 {useAI && !searching && (
-                  <span className="px-2 py-1 text-xs bg-electric-blue/20 text-electric-blue rounded-full flex items-center gap-1">
+                  <span className="px-2 py-1 text-xs bg-electric-blue/10 text-electric-blue rounded-full flex items-center gap-1">
                     <Sparkles className="w-3 h-3" />
                     AI
                   </span>
@@ -219,16 +219,16 @@ export default function LibraryPage() {
 
           {filteredTracks.length === 0 ? (
             <div className="text-center py-12">
-              <p className="text-text-secondary text-lg">No tracks found. Try adjusting your search.</p>
+              <p className="text-text-secondary text-base md:text-lg">No tracks found. Try adjusting your search.</p>
             </div>
           ) : (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredTracks.map((track) => (
                 <div
                   key={track.id}
-                  className="group bg-surface-elevated rounded-xl border border-white/10 overflow-hidden hover:border-electric-blue/30 transition-all"
+                  className="group bg-white rounded-xl border border-border-light overflow-hidden hover:border-electric-blue hover:shadow-card-hover transition-all"
                 >
-                  <div className="aspect-square bg-gradient-to-br from-electric-blue/20 to-electric-purple/20 relative">
+                  <div className="aspect-square bg-gradient-to-br from-electric-blue/10 to-electric-purple/10 relative">
                     <div className="w-full h-full flex items-center justify-center">
                       <div className="flex items-center gap-0.5">
                         {[...Array(12)].map((_, i) => (
@@ -240,20 +240,20 @@ export default function LibraryPage() {
                         ))}
                       </div>
                     </div>
-                    <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <div className="absolute inset-0 bg-white/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                       <button 
                         onClick={() => setCurrentTrack(track)}
-                        className="w-16 h-16 bg-electric-blue rounded-full flex items-center justify-center hover:scale-110 transition-transform"
+                        className="w-16 h-16 bg-electric-blue rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-lg"
                       >
-                        <Play className="w-8 h-8 text-black ml-1" />
+                        <Play className="w-8 h-8 text-white ml-1" />
                       </button>
                     </div>
-                    <button className="absolute top-3 right-3 w-10 h-10 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/70">
-                      <Heart className="w-5 h-5 text-white" />
+                    <button className="absolute top-3 right-3 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white shadow-md">
+                      <Heart className="w-5 h-5 text-text-secondary" />
                     </button>
                   </div>
                   <div className="p-4">
-                    <h3 className="font-semibold text-white mb-1 truncate">
+                    <h3 className="font-semibold text-base md:text-lg text-text-primary mb-1 truncate">
                       {track.title}
                     </h3>
                     <p className="text-sm text-text-secondary mb-3 truncate">
@@ -261,12 +261,12 @@ export default function LibraryPage() {
                     </p>
                     <div className="flex items-center gap-2 flex-wrap mb-3">
                       {track.genre && (
-                        <span className="px-2 py-1 text-xs bg-electric-blue/20 text-electric-blue rounded-full">
+                        <span className="px-2 py-1 text-xs bg-electric-blue/10 text-electric-blue rounded-full">
                           {track.genre}
                         </span>
                       )}
                       {track.mood && (
-                        <span className="px-2 py-1 text-xs bg-electric-purple/20 text-electric-purple rounded-full">
+                        <span className="px-2 py-1 text-xs bg-electric-purple/10 text-electric-purple rounded-full">
                           {track.mood}
                         </span>
                       )}
