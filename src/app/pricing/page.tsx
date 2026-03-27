@@ -81,34 +81,21 @@ const plans = [
 const faqs = [
   {
     question: 'Do I need to pay for commercial licensing separately?',
-    answer: 'Yes. Pro and Enterprise subscriptions give you access to download and customize tracks, but commercial licensing is purchased separately per project. Our licensing team will provide custom quotes based on your usage type, territory, duration, and exclusivity needs.',
+    answer: 'Yes. Pro and Enterprise subscriptions give you access to download and customize tracks, but commercial licensing is purchased separately per project. Our licensing team provides custom quotes based on usage type (digital, broadcast, film), territory (local, national, global), duration (1 year, perpetual), and exclusivity. Typical licensing ranges from $500 for social media to $50,000+ for exclusive brand anthems.',
   },
   {
     question: 'What are watermarked tracks?',
-    answer: 'Watermarked tracks include a voice-over or audio marker every 15-20 seconds. This allows you to test tracks with your content for free, but prevents commercial use. Pro subscribers get unwatermarked downloads.',
+    answer: 'Watermarked tracks include a voice-over or audio marker every 15-20 seconds. This allows you to test tracks with your content for free, but prevents commercial use. Pro subscribers get unwatermarked downloads for unlimited testing and presentation.',
   },
   {
     question: 'Can I cancel anytime?',
-    answer: 'Yes! Pro plans are month-to-month with no long-term commitment. Enterprise plans are annual contracts. You can cancel your Pro subscription at any time.',
+    answer: 'Yes! Pro plans are month-to-month with no long-term commitment. You can cancel your Pro subscription at any time. Enterprise plans are annual contracts with custom terms.',
   },
   {
     question: 'How does per-seat pricing work?',
-    answer: 'Each seat gives one team member full access to Pro features. For Enterprise, 10 seats are included in your custom pricing. Additional seats are $40/month each.',
-  },
-  {
-    question: 'What is included in a commercial license?',
-    answer: 'Commercial licenses grant you the legal right to use music in your content. Pricing varies based on usage type (digital, broadcast, film), territory (local, national, global), duration (1 year, perpetual), and exclusivity. Contact our licensing team for a custom quote.',
-  },
-  {
-    question: 'Can I try Pro before committing?',
-    answer: 'Yes! We offer a 14-day free trial of Pro so you can test all features including unwatermarked downloads and stem customization.',
-  },
-  {
-    question: 'What if I need custom music or sonic branding?',
-    answer: 'We offer premium services including custom music commissions, sonic branding packages, audio logo creation, and brand sound strategy. Visit our Services page or contact our team for details.',
+    answer: 'Each seat gives one team member full access to Pro features (unlimited downloads, stem access, customization tools). For Enterprise, 10 seats are included in your custom pricing, and additional seats are $40/month each. Perfect for agencies managing multiple clients or brands with distributed teams.',
   },
 ]
-
 export default function PricingPage() {
   return (
     <div className="min-h-screen bg-background">
@@ -212,19 +199,7 @@ export default function PricingPage() {
         </div>
       </section>
 
-      <section className="py-12 border-y border-white/5 bg-surface/30">
-        <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
-          <h3 className="font-display font-bold text-2xl mb-4">
-            About Commercial Licensing
-          </h3>
-          <p className="text-text-secondary text-lg mb-4">
-            All plans require separate commercial licensing for business use. Licensing is purchased per-project with custom quotes based on your specific needs.
-          </p>
-          <p className="text-text-tertiary">
-            Typical licensing ranges from $500 for social media campaigns to $50,000+ for exclusive brand anthems.
-          </p>
-        </div>
-      </section>
+      
 
       <section className="py-20">
         <div className="max-w-4xl mx-auto px-6 lg:px-8">
