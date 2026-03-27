@@ -19,7 +19,7 @@ export default function Navigation() {
   const { user, signOut } = useAuth()
 
   return (
-    <nav className="fixed top-0 w-full z-50 backdrop-blur-glass border-b border-white/5">
+    <nav className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-border-light">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
@@ -27,7 +27,7 @@ export default function Navigation() {
             <div className="w-10 h-10 bg-gradient-to-br from-electric-blue to-electric-purple rounded-lg flex items-center justify-center">
               <div className="w-6 h-6 border-2 border-white rounded"></div>
             </div>
-            <span className="font-display font-semibold text-xl group-hover:text-electric-blue transition-colors">
+            <span className="font-display font-semibold text-lg md:text-xl text-text-primary group-hover:text-electric-blue transition-colors">
               Brandmusic
             </span>
           </Link>
@@ -38,7 +38,7 @@ export default function Navigation() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-text-secondary hover:text-white transition-colors font-medium"
+                className="text-sm md:text-base text-text-secondary hover:text-text-primary transition-colors font-medium"
               >
                 {item.label}
               </Link>
@@ -51,13 +51,13 @@ export default function Navigation() {
               <>
                 <Link
                   href="/app/search"
-                  className="text-text-secondary hover:text-white transition-colors font-medium"
+                  className="text-sm md:text-base text-text-secondary hover:text-text-primary transition-colors font-medium"
                 >
                   Dashboard
                 </Link>
                 <button
                   onClick={() => signOut()}
-                  className="text-text-secondary hover:text-white transition-colors font-medium"
+                  className="text-sm md:text-base text-text-secondary hover:text-text-primary transition-colors font-medium"
                 >
                   Log out
                 </button>
@@ -66,13 +66,13 @@ export default function Navigation() {
               <>
                 <Link
                   href="/login"
-                  className="text-text-secondary hover:text-white transition-colors font-medium"
+                  className="text-sm md:text-base text-text-secondary hover:text-text-primary transition-colors font-medium"
                 >
                   Log in
                 </Link>
                 <Link
                   href="/signup"
-                  className="px-6 py-2.5 bg-electric-blue text-black font-semibold rounded-lg hover:bg-electric-cyan transition-all hover:shadow-glow-sm"
+                  className="px-6 py-2.5 bg-electric-blue text-white font-semibold rounded-lg hover:bg-electric-blue/90 transition-all hover:shadow-glow-sm text-sm md:text-base"
                 >
                   Start Free
                 </Link>
@@ -83,7 +83,7 @@ export default function Navigation() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 text-text-secondary hover:text-white transition-colors"
+            className="md:hidden p-2 text-text-secondary hover:text-text-primary transition-colors"
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -97,25 +97,25 @@ export default function Navigation() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden border-t border-white/5 backdrop-blur-glass"
+            className="md:hidden border-t border-border-light bg-white"
           >
             <div className="px-6 py-6 space-y-4">
               {navItems.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="block text-text-secondary hover:text-white transition-colors font-medium py-2"
+                  className="block text-base text-text-secondary hover:text-text-primary transition-colors font-medium py-2"
                   onClick={() => setIsOpen(false)}
                 >
                   {item.label}
                 </Link>
               ))}
-              <div className="pt-4 border-t border-white/5 space-y-3">
+              <div className="pt-4 border-t border-border-light space-y-3">
                 {user ? (
                   <>
                     <Link
                       href="/app/search"
-                      className="block text-text-secondary hover:text-white transition-colors font-medium py-2"
+                      className="block text-base text-text-secondary hover:text-text-primary transition-colors font-medium py-2"
                       onClick={() => setIsOpen(false)}
                     >
                       Dashboard
@@ -125,7 +125,7 @@ export default function Navigation() {
                         signOut()
                         setIsOpen(false)
                       }}
-                      className="block w-full text-left text-text-secondary hover:text-white transition-colors font-medium py-2"
+                      className="block w-full text-left text-base text-text-secondary hover:text-text-primary transition-colors font-medium py-2"
                     >
                       Log out
                     </button>
@@ -134,14 +134,14 @@ export default function Navigation() {
                   <>
                     <Link
                       href="/login"
-                      className="block text-text-secondary hover:text-white transition-colors font-medium py-2"
+                      className="block text-base text-text-secondary hover:text-text-primary transition-colors font-medium py-2"
                       onClick={() => setIsOpen(false)}
                     >
                       Log in
                     </Link>
                     <Link
                       href="/signup"
-                      className="block px-6 py-2.5 bg-electric-blue text-black font-semibold rounded-lg hover:bg-electric-cyan transition-all text-center"
+                      className="block px-6 py-2.5 bg-electric-blue text-white font-semibold rounded-lg hover:bg-electric-blue/90 transition-all text-center text-base"
                       onClick={() => setIsOpen(false)}
                     >
                       Start Free
