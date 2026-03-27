@@ -29,32 +29,3 @@
     "typescript": "^5.2.2"
   }
 }
-```
-
----
-
-### **Step 3: Commit the changes**
-
-Click **"Commit changes"**
-
----
-
-### **Step 4: Netlify will auto-deploy**
-
-Once you commit, Netlify will automatically start a new build. Wait 2-3 minutes for it to finish.
-
----
-
-### **Step 5: Check the deployment**
-
-Go to: https://app.netlify.com/sites/aos22/deploys
-
-You should see a new deploy in progress. Wait for it to turn green ✅
-
----
-
-### **Step 6: Test the connection**
-
-Once deployed, visit:
-```
-https://aos22.netlify.app/test-supabase
