@@ -132,12 +132,12 @@ export default function AudioPlayer({ track, onClose }: AudioPlayerProps) {
   if (!track) return null
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-surface-elevated border-t border-white/10 backdrop-blur-glass z-50">
+    <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-border-light shadow-lg z-50">
       <audio ref={audioRef} preload="metadata" />
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex items-center gap-6">
           <div className="flex items-center gap-4 min-w-0 flex-1">
-            <div className="w-14 h-14 bg-gradient-to-br from-electric-blue/20 to-electric-purple/20 rounded-lg flex items-center justify-center flex-shrink-0">
+            <div className="w-14 h-14 bg-gradient-to-br from-electric-blue/10 to-electric-purple/10 rounded-lg flex items-center justify-center flex-shrink-0 border border-border-light">
               {track.cover_image_url ? (
                 <img src={track.cover_image_url} alt={track.title} className="w-full h-full object-cover rounded-lg" />
               ) : (
@@ -149,23 +149,23 @@ export default function AudioPlayer({ track, onClose }: AudioPlayerProps) {
               )}
             </div>
             <div className="min-w-0">
-              <h3 className="font-semibold text-white truncate">{track.title}</h3>
-              <p className="text-sm text-text-secondary truncate">{track.artist}</p>
+              <h3 className="font-semibold text-sm md:text-base text-text-primary truncate">{track.title}</h3>
+              <p className="text-xs md:text-sm text-text-secondary truncate">{track.artist}</p>
             </div>
           </div>
           <div className="flex flex-col items-center gap-2 flex-1">
             <div className="flex items-center gap-4">
-              <button className="text-text-secondary hover:text-white transition-colors">
+              <button className="text-text-secondary hover:text-text-primary transition-colors">
                 <SkipBack className="w-5 h-5" />
               </button>
-              <button onClick={togglePlay} className="w-10 h-10 bg-electric-blue rounded-full flex items-center justify-center hover:scale-110 transition-transform">
+              <button onClick={togglePlay} className="w-10 h-10 bg-electric-blue rounded-full flex items-center justify-center hover:bg-electric-blue/90 hover:scale-110 transition-transform shadow-md">
                 {isPlaying ? (
-                  <Pause className="w-5 h-5 text-black" />
+                  <Pause className="w-5 h-5 text-white" />
                 ) : (
-                  <Play className="w-5 h-5 text-black ml-0.5" />
+                  <Play className="w-5 h-5 text-white ml-0.5" />
                 )}
               </button>
-              <button className="text-text-secondary hover:text-white transition-colors">
+              <button className="text-text-secondary hover:text-text-primary transition-colors">
                 <SkipForward className="w-5 h-5" />
               </button>
             </div>
@@ -177,13 +177,13 @@ export default function AudioPlayer({ track, onClose }: AudioPlayerProps) {
                 max={duration || 100} 
                 value={currentTime} 
                 onChange={handleSeek} 
-                className="flex-1 h-1 bg-white/10 rounded-full appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:bg-electric-blue [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:cursor-pointer [&::-moz-range-thumb]:appearance-none [&::-moz-range-thumb]:w-3 [&::-moz-range-thumb]:h-3 [&::-moz-range-thumb]:bg-electric-blue [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:border-0 [&::-moz-range-thumb]:cursor-pointer" 
+                className="flex-1 h-1 bg-border-light rounded-full appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:bg-electric-blue [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:cursor-pointer [&::-moz-range-thumb]:appearance-none [&::-moz-range-thumb]:w-3 [&::-moz-range-thumb]:h-3 [&::-moz-range-thumb]:bg-electric-blue [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:border-0 [&::-moz-range-thumb]:cursor-pointer" 
               />
               <span className="text-xs text-text-tertiary w-10">{formatTime(duration)}</span>
             </div>
           </div>
           <div className="flex items-center gap-2 flex-1 justify-end">
-            <button onClick={toggleMute} className="text-text-secondary hover:text-white transition-colors">
+            <button onClick={toggleMute} className="text-text-secondary hover:text-text-primary transition-colors">
               {isMuted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
             </button>
             <input 
@@ -193,7 +193,7 @@ export default function AudioPlayer({ track, onClose }: AudioPlayerProps) {
               step="0.01" 
               value={isMuted ? 0 : volume} 
               onChange={handleVolumeChange} 
-              className="w-24 h-1 bg-white/10 rounded-full appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:bg-electric-blue [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:cursor-pointer [&::-moz-range-thumb]:appearance-none [&::-moz-range-thumb]:w-3 [&::-moz-range-thumb]:h-3 [&::-moz-range-thumb]:bg-electric-blue [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:border-0 [&::-moz-range-thumb]:cursor-pointer" 
+              className="w-24 h-1 bg-border-light rounded-full appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:bg-electric-blue [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:cursor-pointer [&::-moz-range-thumb]:appearance-none [&::-moz-range-thumb]:w-3 [&::-moz-range-thumb]:h-3 [&::-moz-range-thumb]:bg-electric-blue [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:border-0 [&::-moz-range-thumb]:cursor-pointer" 
             />
           </div>
         </div>
