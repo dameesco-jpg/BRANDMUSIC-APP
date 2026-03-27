@@ -9,24 +9,52 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.39.0",
+    "@supabase/auth-helpers-nextjs": "^0.8.7",
+    "framer-motion": "^10.16.4",
+    "lucide-react": "^0.294.0",
     "next": "14.2.18",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "dependencies": {
-  "@supabase/supabase-js": "^2.39.0",
-  "@supabase/auth-helpers-nextjs": "^0.8.7",
-  ... (keep all existing dependencies)
-}
-    "framer-motion": "^10.16.16",
-    "lucide-react": "^0.294.0"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@types/node": "20.10.5",
-    "@types/react": "18.2.45",
-    "@types/react-dom": "18.2.18",
-    "autoprefixer": "10.4.16",
-    "postcss": "8.4.32",
-    "tailwindcss": "3.3.6",
-    "typescript": "5.3.3"
+    "@types/node": "^20.8.0",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "autoprefixer": "^10.4.16",
+    "eslint": "^8.51.0",
+    "eslint-config-next": "14.2.18",
+    "postcss": "^8.4.31",
+    "tailwindcss": "^3.3.3",
+    "typescript": "^5.2.2"
   }
 }
+```
+
+---
+
+### **Step 3: Commit the changes**
+
+Click **"Commit changes"**
+
+---
+
+### **Step 4: Netlify will auto-deploy**
+
+Once you commit, Netlify will automatically start a new build. Wait 2-3 minutes for it to finish.
+
+---
+
+### **Step 5: Check the deployment**
+
+Go to: https://app.netlify.com/sites/aos22/deploys
+
+You should see a new deploy in progress. Wait for it to turn green ✅
+
+---
+
+### **Step 6: Test the connection**
+
+Once deployed, visit:
+```
+https://aos22.netlify.app/test-supabase
