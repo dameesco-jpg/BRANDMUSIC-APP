@@ -12,7 +12,7 @@ const navItems = [
   { label: 'Services', href: '/services' },
   { label: 'For Enterprise', href: '/enterprise' },
 ]
-]
+
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
 
@@ -99,7 +99,7 @@ export default function Navigation() {
                 </Link>
                 <Link
                   href="/signup"
-                  className="block px-6 py-2.5 bg-electric-blue text-black font-semibold rounded-lg text-center hover:bg-electric-cyan transition-all"
+                  className="block px-6 py-2.5 bg-electric-blue text-black font-semibold rounded-lg hover:bg-electric-cyan transition-all text-center"
                   onClick={() => setIsOpen(false)}
                 >
                   Start Free
