@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { supabase } from '@/lib/supabase'
 import Navigation from '@/components/ui/Navigation'
 import Footer from '@/components/ui/Footer'
-import { Search, Play, Heart } from 'lucide-react'
+import { Search, Play, Heart, Sparkles } from 'lucide-react'
 
 type Track = {
   id: string
@@ -22,20 +22,32 @@ export default function LibraryPage() {
   const [tracks, setTracks] = useState<Track[]>([])
   const [filteredTracks, setFilteredTracks] = useState<Track[]>([])
   const [loading, setLoading] = useState(true)
+  const [searching, setSearching] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedGenre, setSelectedGenre] = useState<string>('all')
   const [selectedMood, setSelectedMood] = useState<string>('all')
+  const [useAI, setUseAI] = useState(false)
 
   const genres = ['all', 'Ambient', 'Hip Hop', 'Electronic', 'Pop']
   const moods = ['all', 'Sophisticated', 'Confident', 'Optimistic', 'Uplifting', 'Mysterious']
+
+  const exampleQueries = [
+    'Confident but not aggressive for a tech startup',
+    'Luxury spa background music, calm and sophisticated',
+    'Upbeat workout motivation without vocals',
+  ]
 
   useEffect(() => {
     fetchTracks()
   }, [])
 
   useEffect(() => {
-    filterTracks()
-  }, [searchQuery, selectedGenre, selectedMood, tracks])
+    if (useAI && searchQuery.trim().length > 0) {
+      performAISearch()
+    } else {
+      filterTracks()
+    }
+  }, [searchQuery, selectedGenre, selectedMood, tracks, useAI])
 
   async function fetchTracks() {
     try {
@@ -55,10 +67,29 @@ export default function LibraryPage() {
     }
   }
 
+  async function performAISearch() {
+    setSearching(true)
+    try {
+      const response = await fetch('/api/ai-search', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query: searchQuery }),
+      })
+
+      const data = await response.json()
+      setFilteredTracks(data.tracks || [])
+    } catch (error) {
+      console.error('AI search error:', error)
+      filterTracks()
+    } finally {
+      setSearching(false)
+    }
+  }
+
   function filterTracks() {
     let filtered = tracks
 
-    if (searchQuery) {
+    if (searchQuery && !useAI) {
       filtered = filtered.filter(track =>
         track.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         track.artist.toLowerCase().includes(searchQuery.toLowerCase())
@@ -103,24 +134,48 @@ export default function LibraryPage() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="mb-12">
             <h1 className="font-display font-bold text-5xl mb-4 text-white">
-              Music Library
+              AI-Powered Music Search
             </h1>
             <p className="text-xl text-text-secondary">
-              Browse {tracks.length} premium tracks
+              Describe what you need in natural language
             </p>
           </div>
+
           <div className="mb-8 space-y-4">
             <div className="relative">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-text-tertiary" />
               <input
                 type="text"
-                placeholder="Search tracks or artists..."
+                placeholder="e.g., 'Confident but not aggressive for a tech startup'"
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-12 pr-4 py-3 bg-surface-elevated border border-white/10 rounded-lg text-white placeholder:text-text-tertiary focus:border-electric-blue focus:outline-none"
+                onChange={(e) => {
+                  setSearchQuery(e.target.value)
+                  setUseAI(e.target.value.length > 10)
+                }}
+                className="w-full pl-12 pr-12 py-4 bg-surface-elevated border border-white/10 rounded-lg text-white placeholder:text-text-tertiary focus:border-electric-blue focus:outline-none text-lg"
               />
+              {useAI && (
+                <Sparkles className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-electric-blue animate-pulse" />
+              )}
             </div>
-            <div className="flex flex-wrap gap-4">
+
+            <div className="flex flex-wrap gap-2">
+              <span className="text-sm text-text-tertiary">Try:</span>
+              {exampleQueries.map((example, i) => (
+                <button
+                  key={i}
+                  onClick={() => {
+                    setSearchQuery(example)
+                    setUseAI(true)
+                  }}
+                  className="text-sm px-3 py-1 bg-surface-elevated border border-white/10 rounded-full text-text-secondary hover:text-electric-blue hover:border-electric-blue/30 transition-all"
+                >
+                  {example}
+                </button>
+              ))}
+            </div>
+
+            <div className="flex flex-wrap gap-4 items-center">
               <select
                 value={selectedGenre}
                 onChange={(e) => setSelectedGenre(e.target.value)}
@@ -132,6 +187,7 @@ export default function LibraryPage() {
                   </option>
                 ))}
               </select>
+
               <select
                 value={selectedMood}
                 onChange={(e) => setSelectedMood(e.target.value)}
@@ -143,14 +199,24 @@ export default function LibraryPage() {
                   </option>
                 ))}
               </select>
-              <div className="flex items-center px-4 py-2 text-text-secondary">
-                {filteredTracks.length} {filteredTracks.length === 1 ? 'track' : 'tracks'}
+
+              <div className="flex items-center gap-2 px-4 py-2">
+                <span className="text-text-secondary">
+                  {searching ? 'Searching...' : `${filteredTracks.length} ${filteredTracks.length === 1 ? 'track' : 'tracks'}`}
+                </span>
+                {useAI && !searching && (
+                  <span className="px-2 py-1 text-xs bg-electric-blue/20 text-electric-blue rounded-full flex items-center gap-1">
+                    <Sparkles className="w-3 h-3" />
+                    AI
+                  </span>
+                )}
               </div>
             </div>
           </div>
+
           {filteredTracks.length === 0 ? (
             <div className="text-center py-12">
-              <p className="text-text-secondary text-lg">No tracks found. Try adjusting your filters.</p>
+              <p className="text-text-secondary text-lg">No tracks found. Try adjusting your search.</p>
             </div>
           ) : (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -160,25 +226,17 @@ export default function LibraryPage() {
                   className="group bg-surface-elevated rounded-xl border border-white/10 overflow-hidden hover:border-electric-blue/30 transition-all"
                 >
                   <div className="aspect-square bg-gradient-to-br from-electric-blue/20 to-electric-purple/20 relative">
-                    {track.cover_image_url ? (
-                      <img
-                        src={track.cover_image_url}
-                        alt={track.title}
-                        className="w-full h-full object-cover"
-                      />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center">
-                        <div className="flex items-center gap-0.5">
-                          {[...Array(12)].map((_, i) => (
-                            <div
-                              key={i}
-                              className="w-1 bg-electric-blue rounded-full"
-                              style={{ height: `${Math.random() * 60 + 40}%` }}
-                            />
-                          ))}
-                        </div>
+                    <div className="w-full h-full flex items-center justify-center">
+                      <div className="flex items-center gap-0.5">
+                        {[...Array(12)].map((_, i) => (
+                          <div
+                            key={i}
+                            className="w-1 bg-electric-blue rounded-full"
+                            style={{ height: `${Math.random() * 60 + 40}%` }}
+                          />
+                        ))}
                       </div>
-                    )}
+                    </div>
                     <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                       <button className="w-16 h-16 bg-electric-blue rounded-full flex items-center justify-center hover:scale-110 transition-transform">
                         <Play className="w-8 h-8 text-black ml-1" />
