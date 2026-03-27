@@ -4,6 +4,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useAuth } from '@/lib/AuthContext'
 
 const navItems = [
   { label: 'Browse Music', href: '/library' },
@@ -15,6 +16,7 @@ const navItems = [
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
+  const { user, signOut } = useAuth()
 
   return (
     <nav className="fixed top-0 w-full z-50 backdrop-blur-glass border-b border-white/5">
@@ -45,18 +47,37 @@ export default function Navigation() {
 
           {/* CTA Buttons */}
           <div className="hidden md:flex items-center space-x-4">
-            <Link
-              href="/login"
-              className="text-text-secondary hover:text-white transition-colors font-medium"
-            >
-              Log in
-            </Link>
-            <Link
-              href="/signup"
-              className="px-6 py-2.5 bg-electric-blue text-black font-semibold rounded-lg hover:bg-electric-cyan transition-all hover:shadow-glow-sm"
-            >
-              Start Free
-            </Link>
+            {user ? (
+              <>
+                <Link
+                  href="/app/search"
+                  className="text-text-secondary hover:text-white transition-colors font-medium"
+                >
+                  Dashboard
+                </Link>
+                <button
+                  onClick={() => signOut()}
+                  className="text-text-secondary hover:text-white transition-colors font-medium"
+                >
+                  Log out
+                </button>
+              </>
+            ) : (
+              <>
+                <Link
+                  href="/login"
+                  className="text-text-secondary hover:text-white transition-colors font-medium"
+                >
+                  Log in
+                </Link>
+                <Link
+                  href="/signup"
+                  className="px-6 py-2.5 bg-electric-blue text-black font-semibold rounded-lg hover:bg-electric-cyan transition-all hover:shadow-glow-sm"
+                >
+                  Start Free
+                </Link>
+              </>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -90,20 +111,43 @@ export default function Navigation() {
                 </Link>
               ))}
               <div className="pt-4 border-t border-white/5 space-y-3">
-                <Link
-                  href="/login"
-                  className="block text-text-secondary hover:text-white transition-colors font-medium py-2"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Log in
-                </Link>
-                <Link
-                  href="/signup"
-                  className="block px-6 py-2.5 bg-electric-blue text-black font-semibold rounded-lg hover:bg-electric-cyan transition-all text-center"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Start Free
-                </Link>
+                {user ? (
+                  <>
+                    <Link
+                      href="/app/search"
+                      className="block text-text-secondary hover:text-white transition-colors font-medium py-2"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      Dashboard
+                    </Link>
+                    <button
+                      onClick={() => {
+                        signOut()
+                        setIsOpen(false)
+                      }}
+                      className="block w-full text-left text-text-secondary hover:text-white transition-colors font-medium py-2"
+                    >
+                      Log out
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <Link
+                      href="/login"
+                      className="block text-text-secondary hover:text-white transition-colors font-medium py-2"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      Log in
+                    </Link>
+                    <Link
+                      href="/signup"
+                      className="block px-6 py-2.5 bg-electric-blue text-black font-semibold rounded-lg hover:bg-electric-cyan transition-all text-center"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      Start Free
+                    </Link>
+                  </>
+                )}
               </div>
             </div>
           </motion.div>
