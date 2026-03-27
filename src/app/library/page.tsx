@@ -109,11 +109,11 @@ export default function LibraryPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-white">
+      <div className="min-h-screen bg-background">
         <Navigation />
         <div className="pt-32 pb-20">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <p className="text-text-primary text-center">Loading tracks...</p>
+            <p className="text-text-primary text-center text-base">Loading tracks...</p>
           </div>
         </div>
       </div>
@@ -121,15 +121,15 @@ export default function LibraryPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background-secondary">
+    <div className="min-h-screen bg-background">
       <Navigation />
       <div className="pt-32 pb-20 mb-24">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="mb-12">
-            <h1 className="font-display font-bold text-[32px] md:text-[40px] mb-4 text-text-primary leading-tight">
+          <div className="mb-10">
+            <h1 className="font-display font-bold text-[28px] md:text-[36px] mb-3 text-text-primary leading-[1.2]">
               AI-Powered Music Search
             </h1>
-            <p className="text-lg md:text-xl text-text-secondary">Describe what you need in natural language</p>
+            <p className="text-base md:text-lg text-text-secondary">Describe what you need in natural language</p>
           </div>
 
           <div className="mb-8 space-y-4">
@@ -143,7 +143,7 @@ export default function LibraryPage() {
                   setSearchQuery(e.target.value)
                   setUseAI(e.target.value.length > 10)
                 }}
-                className="w-full pl-12 pr-12 py-4 bg-white border border-border-light rounded-lg text-text-primary placeholder:text-text-tertiary focus:border-electric-blue focus:outline-none focus:ring-2 focus:ring-electric-blue/20 text-base md:text-lg transition-all"
+                className="w-full pl-12 pr-12 py-3 bg-white border border-border-light rounded-lg text-text-primary placeholder:text-text-tertiary focus:border-electric-blue focus:outline-none focus:ring-2 focus:ring-electric-blue/20 text-base transition-all shadow-sm"
               />
               {useAI && <Sparkles className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-electric-blue animate-pulse" />}
             </div>
@@ -157,28 +157,28 @@ export default function LibraryPage() {
                     setSearchQuery(example)
                     setUseAI(true)
                   }}
-                  className="text-sm px-3 py-1 bg-white border border-border-light rounded-full text-text-secondary hover:text-electric-blue hover:border-electric-blue transition-all"
+                  className="text-sm px-3 py-1.5 bg-white border border-border-light rounded-full text-text-secondary hover:text-electric-blue hover:border-electric-blue transition-all shadow-sm"
                 >
                   {example}
                 </button>
               ))}
             </div>
 
-            <div className="flex flex-wrap gap-4 items-center">
-              <select value={selectedGenre} onChange={(e) => setSelectedGenre(e.target.value)} className="px-4 py-2 bg-white border border-border-light rounded-lg text-text-primary text-sm md:text-base focus:border-electric-blue focus:outline-none focus:ring-2 focus:ring-electric-blue/20 transition-all">
+            <div className="flex flex-wrap gap-3 items-center">
+              <select value={selectedGenre} onChange={(e) => setSelectedGenre(e.target.value)} className="px-4 py-2 bg-white border border-border-light rounded-lg text-text-primary text-sm focus:border-electric-blue focus:outline-none focus:ring-2 focus:ring-electric-blue/20 transition-all shadow-sm">
                 {genres.map(genre => (
                   <option key={genre} value={genre}>{genre === 'all' ? 'All Genres' : genre}</option>
                 ))}
               </select>
 
-              <select value={selectedMood} onChange={(e) => setSelectedMood(e.target.value)} className="px-4 py-2 bg-white border border-border-light rounded-lg text-text-primary text-sm md:text-base focus:border-electric-blue focus:outline-none focus:ring-2 focus:ring-electric-blue/20 transition-all">
+              <select value={selectedMood} onChange={(e) => setSelectedMood(e.target.value)} className="px-4 py-2 bg-white border border-border-light rounded-lg text-text-primary text-sm focus:border-electric-blue focus:outline-none focus:ring-2 focus:ring-electric-blue/20 transition-all shadow-sm">
                 {moods.map(mood => (
                   <option key={mood} value={mood}>{mood === 'all' ? 'All Moods' : mood}</option>
                 ))}
               </select>
 
-              <div className="flex items-center gap-2 px-4 py-2">
-                <span className="text-text-secondary text-sm md:text-base">
+              <div className="flex items-center gap-2 px-3 py-2">
+                <span className="text-text-secondary text-sm">
                   {searching ? 'Searching...' : `${filteredTracks.length} ${filteredTracks.length === 1 ? 'track' : 'tracks'}`}
                 </span>
                 {useAI && !searching && (
@@ -193,10 +193,10 @@ export default function LibraryPage() {
 
           {filteredTracks.length === 0 ? (
             <div className="text-center py-12">
-              <p className="text-text-secondary text-base md:text-lg">No tracks found. Try adjusting your search.</p>
+              <p className="text-text-secondary text-base">No tracks found. Try adjusting your search.</p>
             </div>
           ) : (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
               {filteredTracks.map((track) => (
                 <div key={track.id} className="group bg-white rounded-xl border border-border-light overflow-hidden hover:border-electric-blue hover:shadow-card-hover transition-all">
                   <div className="aspect-square bg-gradient-to-br from-electric-blue/10 to-electric-purple/10 relative">
@@ -208,16 +208,16 @@ export default function LibraryPage() {
                       </div>
                     </div>
                     <div className="absolute inset-0 bg-white/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                      <button onClick={() => setCurrentTrack(track)} className="w-16 h-16 bg-electric-blue rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-lg">
-                        <Play className="w-8 h-8 text-white ml-1" />
+                      <button onClick={() => setCurrentTrack(track)} className="w-14 h-14 bg-electric-blue rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-lg">
+                        <Play className="w-7 h-7 text-white ml-0.5" />
                       </button>
                     </div>
-                    <button className="absolute top-3 right-3 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white shadow-md">
-                      <Heart className="w-5 h-5 text-text-secondary" />
+                    <button className="absolute top-3 right-3 w-9 h-9 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white shadow-md">
+                      <Heart className="w-4 h-4 text-text-secondary" />
                     </button>
                   </div>
                   <div className="p-4">
-                    <h3 className="font-semibold text-base md:text-lg text-text-primary mb-1 truncate">{track.title}</h3>
+                    <h3 className="font-semibold text-base text-text-primary mb-1 truncate">{track.title}</h3>
                     <p className="text-sm text-text-secondary mb-3 truncate">{track.artist}</p>
                     <div className="flex items-center gap-2 flex-wrap mb-3">
                       {track.genre && (
