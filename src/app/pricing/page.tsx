@@ -96,11 +96,13 @@ const faqs = [
     answer: 'Each seat gives one team member full access to Pro features (unlimited downloads, stem access, customization tools). For Enterprise, 10 seats are included in your custom pricing, and additional seats are $40/month each. Perfect for agencies managing multiple clients or brands with distributed teams.',
   },
 ]
+
 export default function PricingPage() {
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
 
+      {/* Hero */}
       <section className="pt-32 pb-20 border-b border-white/5">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
           <motion.div
@@ -120,6 +122,7 @@ export default function PricingPage() {
         </div>
       </section>
 
+      {/* Pricing Cards */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-3 gap-8">
@@ -199,9 +202,8 @@ export default function PricingPage() {
         </div>
       </section>
 
-      
-
-      <section className="py-20">
+      {/* FAQ */}
+      <section className="py-20 border-t border-white/5">
         <div className="max-w-4xl mx-auto px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -237,6 +239,7 @@ export default function PricingPage() {
         </div>
       </section>
 
+      {/* CTA */}
       <section className="py-20 border-t border-white/5">
         <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
           <h2 className="font-display font-bold text-4xl mb-4">
