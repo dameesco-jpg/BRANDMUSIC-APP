@@ -7,10 +7,7 @@ import Button from '../ui/Button'
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white">
-      {/* Subtle gradient background */}
       <div className="absolute inset-0 bg-gradient-to-br from-electric-blue/5 via-white to-electric-purple/5" />
-      
-      {/* Floating orbs - lighter */}
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-electric-blue/10 rounded-full blur-3xl" />
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-electric-purple/10 rounded-full blur-3xl" />
       
@@ -43,13 +40,10 @@ export default function Hero() {
             </Button>
           </Link>
           <Link href="/library">
-            <Button variant="outline" size="lg">
-              Browse Library
-            </Button>
+            <Button variant="outline" size="lg">Browse Library</Button>
           </Link>
         </div>
         
-        {/* Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-3xl mx-auto">
           <div className="p-4 bg-white rounded-xl border border-border-light">
             <div className="text-2xl md:text-3xl font-bold text-text-primary mb-1">2,500+</div>
