@@ -7,10 +7,11 @@ import { motion, AnimatePresence } from 'framer-motion'
 
 const navItems = [
   { label: 'Browse Music', href: '/library' },
-  { label: 'Product', href: '/product' },
+  { label: 'Features', href: '/product' },
   { label: 'Pricing', href: '/pricing' },
   { label: 'Services', href: '/services' },
-  { label: 'Enterprise', href: '/enterprise' },
+  { label: 'For Enterprise', href: '/enterprise' },
+]
 ]
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
