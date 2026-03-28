@@ -30,19 +30,19 @@ const stats = [
 export default function CTASection() {
   return (
     <section className="relative py-24 overflow-hidden">
-      {/* Blue/Purple gradient background */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-electric-blue/5 via-transparent to-transparent" />
-      <div className="absolute left-1/4 top-1/3 w-[500px] h-[500px] bg-electric-blue/10 rounded-full blur-[120px]" />
-      <div className="absolute right-1/4 bottom-1/3 w-[500px] h-[500px] bg-electric-purple/10 rounded-full blur-[120px]" />
+      {/* Subtle blue/purple gradient background */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-electric-purple/5 via-transparent to-transparent" />
+      <div className="absolute left-1/4 top-1/3 w-[500px] h-[500px] bg-electric-blue/5 rounded-full blur-[120px]" />
+      <div className="absolute right-1/4 bottom-1/3 w-[500px] h-[500px] bg-electric-purple/5 rounded-full blur-[120px]" />
       
       <div className="relative max-w-5xl mx-auto px-6 lg:px-8">
         <div className="relative">
-          <div className="absolute -inset-4 bg-gradient-to-r from-electric-blue via-electric-purple to-electric-blue rounded-3xl blur-2xl opacity-20" />
+          <div className="absolute -inset-4 bg-gradient-to-r from-electric-blue via-electric-purple to-electric-cyan rounded-3xl blur-2xl opacity-10" />
           <div className="relative p-12 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-3xl border border-white/20">
             <div className="text-center mb-10">
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-electric-blue/10 border border-electric-blue/20 rounded-full text-sm font-medium mb-6 backdrop-blur-xl">
-                <Sparkles className="w-4 h-4 text-electric-blue" />
-                <span className="text-electric-blue/90">Start Today</span>
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-electric-purple/10 border border-electric-purple/20 rounded-full text-sm font-medium mb-6 backdrop-blur-xl">
+                <Sparkles className="w-4 h-4 text-electric-purple/80" />
+                <span className="text-electric-purple/90">Start Today</span>
               </div>
               
               <h2 className="font-display font-bold text-[36px] md:text-[48px] mb-4 text-white leading-[1.1]">
@@ -62,10 +62,10 @@ export default function CTASection() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-10">
               {stats.map((stat) => (
                 <div key={stat.label} className="group relative">
-                  <div className="absolute -inset-[1px] bg-gradient-to-r from-electric-blue to-electric-purple rounded-2xl opacity-0 group-hover:opacity-20 blur transition-opacity" />
+                  <div className="absolute -inset-[1px] bg-gradient-to-r from-electric-blue to-electric-purple rounded-2xl opacity-0 group-hover:opacity-10 blur transition-opacity" />
                   <div className="relative text-center p-6 bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10 hover:border-white/20 transition-all">
                     <div className="w-10 h-10 bg-gradient-to-br from-electric-blue/20 to-electric-purple/20 rounded-lg flex items-center justify-center mx-auto mb-3">
-                      <stat.icon className="w-5 h-5 text-electric-blue" />
+                      <stat.icon className="w-5 h-5 text-white/70" />
                     </div>
                     <div className="font-display font-bold text-2xl text-white mb-1">
                       {stat.value}
