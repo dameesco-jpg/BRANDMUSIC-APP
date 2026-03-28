@@ -19,7 +19,7 @@ export default function Navigation() {
               alt="Brandmusic"
               width={320}
               height={80}
-              className="h-16 w-auto"
+              className="h-16 w-auto brightness-0 invert"
               priority
             />
           </Link>
