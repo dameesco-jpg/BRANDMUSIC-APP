@@ -12,14 +12,14 @@ export default function Navigation() {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0A0A0A]/80 backdrop-blur-xl border-b border-white/5">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between py-6">
           <Link href="/" className="flex items-center">
             <Image
-              src="/BrandMusic_H.png"
+              src="/BrandMusic_H.svg"
               alt="Brandmusic"
-              width={200}
-              height={50}
-              className="h-10 w-auto brightness-0 invert"
+              width={280}
+              height={70}
+              className="h-12 w-auto"
               priority
             />
           </Link>
