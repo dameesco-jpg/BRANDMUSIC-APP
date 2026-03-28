@@ -118,22 +118,34 @@ export default function Hero() {
           </Link>
         </div>
         
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto">
-          <div className="p-4 bg-surface-elevated/80 rounded-xl border border-electric-blue/20 backdrop-blur-md hover:border-electric-blue/40 transition-all">
-            <div className="text-2xl md:text-3xl font-bold text-white mb-1">2,500+</div>
-            <div className="text-sm text-text-tertiary">Premium Tracks</div>
+        {/* Modern sleek stat cards */}
+        <div className="inline-flex flex-wrap justify-center gap-4 p-4 bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10">
+          <div className="group px-6 py-4 bg-gradient-to-br from-electric-blue/10 to-transparent rounded-xl border border-electric-blue/20 hover:border-electric-blue/40 transition-all min-w-[140px]">
+            <div className="text-3xl font-bold bg-gradient-to-r from-electric-blue to-electric-cyan bg-clip-text text-transparent mb-1">
+              50,000+
+            </div>
+            <div className="text-xs text-text-tertiary uppercase tracking-wide">Songs</div>
           </div>
-          <div className="p-4 bg-surface-elevated/80 rounded-xl border border-electric-cyan/20 backdrop-blur-md hover:border-electric-cyan/40 transition-all">
-            <div className="text-2xl md:text-3xl font-bold text-white mb-1">500+</div>
-            <div className="text-sm text-text-tertiary">Happy Agencies</div>
+          
+          <div className="group px-6 py-4 bg-gradient-to-br from-electric-purple/10 to-transparent rounded-xl border border-electric-purple/20 hover:border-electric-purple/40 transition-all min-w-[140px]">
+            <div className="text-3xl font-bold bg-gradient-to-r from-electric-purple to-fuchsia-500 bg-clip-text text-transparent mb-1">
+              250+
+            </div>
+            <div className="text-xs text-text-tertiary uppercase tracking-wide">Agencies & Brands</div>
           </div>
-          <div className="p-4 bg-surface-elevated/80 rounded-xl border border-electric-purple/20 backdrop-blur-md hover:border-electric-purple/40 transition-all">
-            <div className="text-2xl md:text-3xl font-bold text-white mb-1">100%</div>
-            <div className="text-sm text-text-tertiary">Customizable</div>
+          
+          <div className="group px-6 py-4 bg-gradient-to-br from-electric-cyan/10 to-transparent rounded-xl border border-electric-cyan/20 hover:border-electric-cyan/40 transition-all min-w-[140px]">
+            <div className="text-3xl font-bold bg-gradient-to-r from-electric-cyan to-electric-blue bg-clip-text text-transparent mb-1">
+              100%
+            </div>
+            <div className="text-xs text-text-tertiary uppercase tracking-wide">Customizable</div>
           </div>
-          <div className="p-4 bg-surface-elevated/80 rounded-xl border border-electric-blue/20 backdrop-blur-md hover:border-electric-blue/40 transition-all">
-            <div className="text-2xl md:text-3xl font-bold text-white mb-1">Free</div>
-            <div className="text-sm text-text-tertiary">Video Sync</div>
+          
+          <div className="group px-6 py-4 bg-gradient-to-br from-emerald-500/10 to-transparent rounded-xl border border-emerald-500/20 hover:border-emerald-500/40 transition-all min-w-[140px]">
+            <div className="text-3xl font-bold bg-gradient-to-r from-emerald-500 to-teal-500 bg-clip-text text-transparent mb-1">
+              Free
+            </div>
+            <div className="text-xs text-text-tertiary uppercase tracking-wide">Video Sync</div>
           </div>
         </div>
       </div>
