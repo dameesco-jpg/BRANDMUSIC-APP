@@ -135,7 +135,7 @@ const additionalFeatures = [
   },
 ]
 
-export default function FeaturesPageV2() {
+export default function FeaturesPage() {
   const [activeFeature, setActiveFeature] = useState(0)
 
   return (
@@ -183,9 +183,14 @@ export default function FeaturesPageV2() {
         </div>
       </section>
 
-      {/* Detailed Features - Alternating Layout */}
-      <section className="relative py-24">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      {/* Detailed Features - Alternating Layout with subtle bg treatment */}
+      <section className="relative py-24 bg-gradient-to-b from-transparent via-[#0A0515]/30 to-transparent overflow-hidden">
+        {/* Floating accent orb - left side */}
+        <div className="absolute left-0 top-1/4 w-[500px] h-[500px] bg-electric-purple/5 rounded-full blur-[100px]" />
+        {/* Floating accent orb - right side */}
+        <div className="absolute right-0 bottom-1/4 w-[500px] h-[500px] bg-electric-cyan/5 rounded-full blur-[100px]" />
+        
+        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
           <div className="space-y-32">
             {detailedFeatures.map((feature, idx) => (
               <div
@@ -248,9 +253,13 @@ export default function FeaturesPageV2() {
         </div>
       </section>
 
-      {/* Additional Features Grid */}
-      <section className="relative py-24 bg-gradient-to-b from-[#0A0A0A] via-[#0A0A15] to-[#0A0A0A]">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      {/* Additional Features Grid - Different subtle bg treatment */}
+      <section className="relative py-24 bg-gradient-to-b from-[#0A0A0A] via-[#0A0A15] to-[#0A0A0A] overflow-hidden">
+        {/* Accent orbs */}
+        <div className="absolute right-0 top-1/3 w-[600px] h-[600px] bg-electric-blue/5 rounded-full blur-[120px]" />
+        <div className="absolute left-0 bottom-1/3 w-[600px] h-[600px] bg-electric-cyan/5 rounded-full blur-[120px]" />
+        
+        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="font-display font-bold text-[40px] md:text-[56px] mb-6 text-white leading-[1.1]">
               Everything You Need
@@ -277,9 +286,11 @@ export default function FeaturesPageV2() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="relative py-24">
-        <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
+      {/* CTA Section - Subtle gradient treatment */}
+      <section className="relative py-24 overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-electric-purple/5 via-transparent to-transparent" />
+        
+        <div className="relative z-10 max-w-4xl mx-auto px-6 lg:px-8 text-center">
           <div className="relative">
             <div className="absolute -inset-4 bg-gradient-to-r from-electric-blue via-electric-purple to-electric-cyan rounded-3xl blur-2xl opacity-20" />
             <div className="relative p-12 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-3xl border border-white/20">
