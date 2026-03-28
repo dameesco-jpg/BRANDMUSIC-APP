@@ -7,7 +7,7 @@ import Button from '../ui/Button'
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-[#0A0A0A] via-[#0D1117] to-[#0A0A0A]">
-      {/* More defined animated waves */}
+      {/* Enhanced animated waves */}
       <div className="absolute inset-0 overflow-hidden">
         <svg
           className="absolute bottom-0 left-0 w-full h-auto"
@@ -32,7 +32,6 @@ export default function Hero() {
             </linearGradient>
           </defs>
           
-          {/* Bottom wave - most prominent */}
           <path
             fill="url(#wave-gradient-1)"
             d="M0,320 C240,240 360,400 600,320 C840,240 960,400 1200,320 C1320,280 1380,340 1440,320 L1440,800 L0,800 Z"
@@ -49,7 +48,6 @@ export default function Hero() {
             />
           </path>
           
-          {/* Middle wave */}
           <path
             fill="url(#wave-gradient-2)"
             d="M0,420 C300,340 450,500 750,420 C1050,340 1200,500 1440,420 L1440,800 L0,800 Z"
@@ -66,7 +64,6 @@ export default function Hero() {
             />
           </path>
           
-          {/* Top wave - subtle */}
           <path
             fill="url(#wave-gradient-3)"
             d="M0,520 C360,440 540,600 900,520 C1260,440 1380,600 1440,520 L1440,800 L0,800 Z"
@@ -85,7 +82,6 @@ export default function Hero() {
         </svg>
       </div>
       
-      {/* Floating orbs */}
       <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-electric-blue/30 rounded-full blur-3xl animate-pulse" />
       <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-electric-purple/30 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
       
