@@ -6,10 +6,10 @@ import Button from '../ui/Button'
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-white to-background">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-background to-background-secondary">
       <div className="absolute inset-0 bg-gradient-to-br from-electric-blue/5 via-transparent to-electric-purple/5" />
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-electric-blue/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-electric-purple/10 rounded-full blur-3xl" />
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-electric-blue/20 rounded-full blur-3xl animate-pulse" />
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-electric-purple/20 rounded-full blur-3xl animate-pulse" />
       
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 text-center pt-20">
         <div className="mb-6">
@@ -19,7 +19,7 @@ export default function Hero() {
           </span>
         </div>
         
-        <h1 className="font-display font-bold text-[32px] md:text-[40px] lg:text-[48px] mb-6 leading-[1.2] text-text-primary">
+        <h1 className="font-display font-bold text-[32px] md:text-[40px] lg:text-[48px] mb-6 leading-[1.2] text-white">
           Discover Music That
           <br />
           <span className="bg-gradient-to-r from-electric-blue to-electric-purple bg-clip-text text-transparent">
@@ -45,20 +45,20 @@ export default function Hero() {
         </div>
         
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto">
-          <div className="p-4 bg-white rounded-xl border border-border-light shadow-sm">
-            <div className="text-2xl md:text-3xl font-bold text-text-primary mb-1">2,500+</div>
+          <div className="p-4 bg-surface-elevated rounded-xl border border-white/10">
+            <div className="text-2xl md:text-3xl font-bold text-white mb-1">2,500+</div>
             <div className="text-sm text-text-tertiary">Premium Tracks</div>
           </div>
-          <div className="p-4 bg-white rounded-xl border border-border-light shadow-sm">
-            <div className="text-2xl md:text-3xl font-bold text-text-primary mb-1">500+</div>
+          <div className="p-4 bg-surface-elevated rounded-xl border border-white/10">
+            <div className="text-2xl md:text-3xl font-bold text-white mb-1">500+</div>
             <div className="text-sm text-text-tertiary">Happy Agencies</div>
           </div>
-          <div className="p-4 bg-white rounded-xl border border-border-light shadow-sm">
-            <div className="text-2xl md:text-3xl font-bold text-text-primary mb-1">100%</div>
+          <div className="p-4 bg-surface-elevated rounded-xl border border-white/10">
+            <div className="text-2xl md:text-3xl font-bold text-white mb-1">100%</div>
             <div className="text-sm text-text-tertiary">Customizable</div>
           </div>
-          <div className="p-4 bg-white rounded-xl border border-border-light shadow-sm">
-            <div className="text-2xl md:text-3xl font-bold text-text-primary mb-1">Free</div>
+          <div className="p-4 bg-surface-elevated rounded-xl border border-white/10">
+            <div className="text-2xl md:text-3xl font-bold text-white mb-1">Free</div>
             <div className="text-sm text-text-tertiary">Video Sync</div>
           </div>
         </div>
