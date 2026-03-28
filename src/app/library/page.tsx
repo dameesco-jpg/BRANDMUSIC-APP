@@ -113,7 +113,7 @@ export default function LibraryPage() {
         <Navigation />
         <div className="pt-32 pb-20">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <p className="text-text-primary text-center text-base">Loading tracks...</p>
+            <p className="text-white text-center text-base">Loading tracks...</p>
           </div>
         </div>
       </div>
@@ -126,7 +126,7 @@ export default function LibraryPage() {
       <div className="pt-32 pb-20 mb-24">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="mb-10">
-            <h1 className="font-display font-bold text-[28px] md:text-[36px] mb-3 text-text-primary leading-[1.2]">
+            <h1 className="font-display font-bold text-[28px] md:text-[36px] mb-3 text-white leading-[1.2]">
               AI-Powered Music Search
             </h1>
             <p className="text-base md:text-lg text-text-secondary">Describe what you need in natural language</p>
@@ -143,7 +143,7 @@ export default function LibraryPage() {
                   setSearchQuery(e.target.value)
                   setUseAI(e.target.value.length > 10)
                 }}
-                className="w-full pl-12 pr-12 py-3 bg-white border border-border-light rounded-lg text-text-primary placeholder:text-text-tertiary focus:border-electric-blue focus:outline-none focus:ring-2 focus:ring-electric-blue/20 text-base transition-all shadow-sm"
+                className="w-full pl-12 pr-12 py-3 bg-surface-elevated border border-white/10 rounded-lg text-white placeholder:text-text-tertiary focus:border-electric-blue focus:outline-none focus:ring-2 focus:ring-electric-blue/20 text-base transition-all"
               />
               {useAI && <Sparkles className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-electric-blue animate-pulse" />}
             </div>
@@ -157,7 +157,7 @@ export default function LibraryPage() {
                     setSearchQuery(example)
                     setUseAI(true)
                   }}
-                  className="text-sm px-3 py-1.5 bg-white border border-border-light rounded-full text-text-secondary hover:text-electric-blue hover:border-electric-blue transition-all shadow-sm"
+                  className="text-sm px-3 py-1.5 bg-surface-elevated border border-white/10 rounded-full text-text-secondary hover:text-electric-blue hover:border-electric-blue/30 transition-all"
                 >
                   {example}
                 </button>
@@ -165,13 +165,13 @@ export default function LibraryPage() {
             </div>
 
             <div className="flex flex-wrap gap-3 items-center">
-              <select value={selectedGenre} onChange={(e) => setSelectedGenre(e.target.value)} className="px-4 py-2 bg-white border border-border-light rounded-lg text-text-primary text-sm focus:border-electric-blue focus:outline-none focus:ring-2 focus:ring-electric-blue/20 transition-all shadow-sm">
+              <select value={selectedGenre} onChange={(e) => setSelectedGenre(e.target.value)} className="px-4 py-2 bg-surface-elevated border border-white/10 rounded-lg text-white text-sm focus:border-electric-blue focus:outline-none focus:ring-2 focus:ring-electric-blue/20 transition-all">
                 {genres.map(genre => (
                   <option key={genre} value={genre}>{genre === 'all' ? 'All Genres' : genre}</option>
                 ))}
               </select>
 
-              <select value={selectedMood} onChange={(e) => setSelectedMood(e.target.value)} className="px-4 py-2 bg-white border border-border-light rounded-lg text-text-primary text-sm focus:border-electric-blue focus:outline-none focus:ring-2 focus:ring-electric-blue/20 transition-all shadow-sm">
+              <select value={selectedMood} onChange={(e) => setSelectedMood(e.target.value)} className="px-4 py-2 bg-surface-elevated border border-white/10 rounded-lg text-white text-sm focus:border-electric-blue focus:outline-none focus:ring-2 focus:ring-electric-blue/20 transition-all">
                 {moods.map(mood => (
                   <option key={mood} value={mood}>{mood === 'all' ? 'All Moods' : mood}</option>
                 ))}
@@ -182,7 +182,7 @@ export default function LibraryPage() {
                   {searching ? 'Searching...' : `${filteredTracks.length} ${filteredTracks.length === 1 ? 'track' : 'tracks'}`}
                 </span>
                 {useAI && !searching && (
-                  <span className="px-2 py-1 text-xs bg-electric-blue/10 text-electric-blue rounded-full flex items-center gap-1">
+                  <span className="px-2 py-1 text-xs bg-electric-blue/20 text-electric-blue rounded-full flex items-center gap-1">
                     <Sparkles className="w-3 h-3" />
                     AI
                   </span>
@@ -198,8 +198,8 @@ export default function LibraryPage() {
           ) : (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
               {filteredTracks.map((track) => (
-                <div key={track.id} className="group bg-white rounded-xl border border-border-light overflow-hidden hover:border-electric-blue hover:shadow-card-hover transition-all">
-                  <div className="aspect-square bg-gradient-to-br from-electric-blue/10 to-electric-purple/10 relative">
+                <div key={track.id} className="group bg-surface-elevated rounded-xl border border-white/10 overflow-hidden hover:border-electric-blue/30 transition-all">
+                  <div className="aspect-square bg-gradient-to-br from-electric-blue/20 to-electric-purple/20 relative">
                     <div className="w-full h-full flex items-center justify-center">
                       <div className="flex items-center gap-0.5">
                         {[...Array(12)].map((_, i) => (
@@ -207,24 +207,24 @@ export default function LibraryPage() {
                         ))}
                       </div>
                     </div>
-                    <div className="absolute inset-0 bg-white/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                      <button onClick={() => setCurrentTrack(track)} className="w-14 h-14 bg-electric-blue rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-lg">
-                        <Play className="w-7 h-7 text-white ml-0.5" />
+                    <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                      <button onClick={() => setCurrentTrack(track)} className="w-14 h-14 bg-electric-blue rounded-full flex items-center justify-center hover:scale-110 transition-transform">
+                        <Play className="w-7 h-7 text-black ml-0.5" />
                       </button>
                     </div>
-                    <button className="absolute top-3 right-3 w-9 h-9 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white shadow-md">
-                      <Heart className="w-4 h-4 text-text-secondary" />
+                    <button className="absolute top-3 right-3 w-9 h-9 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/70">
+                      <Heart className="w-4 h-4 text-white" />
                     </button>
                   </div>
                   <div className="p-4">
-                    <h3 className="font-semibold text-base text-text-primary mb-1 truncate">{track.title}</h3>
+                    <h3 className="font-semibold text-base text-white mb-1 truncate">{track.title}</h3>
                     <p className="text-sm text-text-secondary mb-3 truncate">{track.artist}</p>
                     <div className="flex items-center gap-2 flex-wrap mb-3">
                       {track.genre && (
-                        <span className="px-2 py-1 text-xs bg-electric-blue/10 text-electric-blue rounded-full">{track.genre}</span>
+                        <span className="px-2 py-1 text-xs bg-electric-blue/20 text-electric-blue rounded-full">{track.genre}</span>
                       )}
                       {track.mood && (
-                        <span className="px-2 py-1 text-xs bg-electric-purple/10 text-electric-purple rounded-full">{track.mood}</span>
+                        <span className="px-2 py-1 text-xs bg-electric-purple/20 text-electric-purple rounded-full">{track.mood}</span>
                       )}
                     </div>
                     <div className="flex items-center justify-between text-xs text-text-tertiary">
