@@ -4,7 +4,7 @@ const features = [
   {
     icon: Sparkles,
     title: 'AI-Powered Search',
-    description: 'Talk to our AI like you'd talk to a music supervisor. "I need something confident but not aggressive" or "warm, nostalgic, with forward momentum"—the AI gets it.',
+    description: 'Talk to our AI like you\'d talk to a music supervisor. "I need something confident but not aggressive" or "warm, nostalgic, with forward momentum"—the AI gets it.',
   },
   {
     icon: Music,
