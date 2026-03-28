@@ -5,9 +5,11 @@ import Link from 'next/link'
 import Image from 'next/image'
 import Button from './Button'
 import { Menu, X } from 'lucide-react'
+import { useAuth } from '@/contexts/AuthContext'
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
+  const { user } = useAuth()
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0A0A0A]/80 backdrop-blur-xl border-b border-white/5">
@@ -43,14 +45,27 @@ export default function Navigation() {
           </div>
 
           <div className="hidden md:flex items-center gap-4">
-            <Link href="/login">
-              <button className="text-white/70 hover:text-white transition-colors">
-                Log in
-              </button>
-            </Link>
-            <Link href="/signup">
-              <Button>Start Free</Button>
-            </Link>
+            {user ? (
+              <>
+                <Link href="/profile" className="text-white/70 hover:text-white transition-colors">
+                  Profile
+                </Link>
+                <Link href="/library">
+                  <Button>Library</Button>
+                </Link>
+              </>
+            ) : (
+              <>
+                <Link href="/login">
+                  <button className="text-white/70 hover:text-white transition-colors">
+                    Log in
+                  </button>
+                </Link>
+                <Link href="/signup">
+                  <Button>Start Free</Button>
+                </Link>
+              </>
+            )}
           </div>
 
           <button
@@ -102,14 +117,29 @@ export default function Navigation() {
               For Enterprise
             </Link>
             <div className="pt-4 border-t border-white/5 space-y-3">
-              <Link href="/login" onClick={() => setIsOpen(false)}>
-                <button className="w-full text-left text-white/70 hover:text-white transition-colors py-2">
-                  Log in
-                </button>
-              </Link>
-              <Link href="/signup" onClick={() => setIsOpen(false)}>
-                <Button className="w-full">Start Free</Button>
-              </Link>
+              {user ? (
+                <>
+                  <Link href="/profile" onClick={() => setIsOpen(false)}>
+                    <button className="w-full text-left text-white/70 hover:text-white transition-colors py-2">
+                      Profile
+                    </button>
+                  </Link>
+                  <Link href="/library" onClick={() => setIsOpen(false)}>
+                    <Button className="w-full">Library</Button>
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <Link href="/login" onClick={() => setIsOpen(false)}>
+                    <button className="w-full text-left text-white/70 hover:text-white transition-colors py-2">
+                      Log in
+                    </button>
+                  </Link>
+                  <Link href="/signup" onClick={() => setIsOpen(false)}>
+                    <Button className="w-full">Start Free</Button>
+                  </Link>
+                </>
+              )}
             </div>
           </div>
         </div>
