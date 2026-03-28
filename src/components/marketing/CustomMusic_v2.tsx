@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect, useRef } from 'react'
 import { Music, Mic2, Volume2, Lightbulb } from 'lucide-react'
 import Link from 'next/link'
 import Button from '@/components/ui/Button'
@@ -28,19 +29,85 @@ const services = [
 ]
 
 export default function CustomMusicV2() {
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+
+  useEffect(() => {
+    const canvas = canvasRef.current
+    if (!canvas) return
+
+    const ctx = canvas.getContext('2d')
+    if (!ctx) return
+
+    // Set canvas size
+    const resizeCanvas = () => {
+      const parent = canvas.parentElement
+      if (parent) {
+        canvas.width = parent.offsetWidth
+        canvas.height = parent.offsetHeight
+      }
+    }
+    resizeCanvas()
+    window.addEventListener('resize', resizeCanvas)
+
+    // Audio visualization bars
+    const bars = 32
+    const barHeights = Array(bars).fill(0).map(() => Math.random())
+    const barTargets = Array(bars).fill(0).map(() => Math.random())
+    const barSpeeds = Array(bars).fill(0).map(() => 0.02 + Math.random() * 0.03)
+
+    const animate = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+
+      const barWidth = canvas.width / bars
+      const maxHeight = canvas.height * 0.8
+
+      barHeights.forEach((height, i) => {
+        // Smoothly interpolate to target
+        barHeights[i] += (barTargets[i] - height) * barSpeeds[i]
+
+        // Set new random target occasionally
+        if (Math.random() < 0.01) {
+          barTargets[i] = Math.random()
+        }
+
+        const x = i * barWidth + barWidth * 0.2
+        const w = barWidth * 0.6
+        const h = maxHeight * barHeights[i]
+        const y = canvas.height - h
+
+        // Gradient for each bar (pink to purple to cyan)
+        const gradient = ctx.createLinearGradient(x, y, x, canvas.height)
+        gradient.addColorStop(0, 'rgba(236, 72, 153, 0.8)') // pink
+        gradient.addColorStop(0.5, 'rgba(168, 85, 247, 0.8)') // purple
+        gradient.addColorStop(1, 'rgba(34, 211, 238, 0.8)') // cyan
+
+        ctx.fillStyle = gradient
+        ctx.fillRect(x, y, w, h)
+      })
+
+      requestAnimationFrame(animate)
+    }
+
+    animate()
+
+    return () => {
+      window.removeEventListener('resize', resizeCanvas)
+    }
+  }, [])
+
   return (
-    <section className="relative py-24 overflow-hidden bg-gradient-to-b from-[#0A0A0A] via-[#0A0A15] to-[#0A0A0A]">
-      {/* Background effects */}
-      <div className="absolute left-0 top-1/4 w-[500px] h-[500px] bg-electric-blue/5 rounded-full blur-[120px]" />
-      <div className="absolute right-0 bottom-1/4 w-[500px] h-[500px] bg-electric-purple/5 rounded-full blur-[120px]" />
+    <section className="relative py-24 overflow-hidden bg-gradient-to-b from-transparent via-[#0A0515]/50 to-transparent">
+      {/* Pink/Purple background effects */}
+      <div className="absolute left-0 top-1/4 w-[500px] h-[500px] bg-pink-500/10 rounded-full blur-[120px]" />
+      <div className="absolute right-0 bottom-1/4 w-[500px] h-[500px] bg-fuchsia-500/10 rounded-full blur-[120px]" />
       
       <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left side - Text content */}
           <div>
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-electric-purple/10 border border-electric-purple/20 rounded-full text-sm font-medium mb-8 backdrop-blur-xl">
-              <Music className="w-4 h-4 text-electric-purple/80" />
-              <span className="text-electric-purple/90">Premium Services</span>
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-pink-500/10 border border-pink-500/20 rounded-full text-sm font-medium mb-8 backdrop-blur-xl">
+              <Music className="w-4 h-4 text-pink-400" />
+              <span className="text-pink-300">Premium Services</span>
             </div>
             
             <h2 className="font-display font-bold text-[40px] md:text-[56px] mb-6 text-white leading-[1.1]">
@@ -51,60 +118,47 @@ export default function CustomMusicV2() {
               From custom compositions to complete sonic branding systems, our team of composers and strategists can create original music that's unmistakably yours.
             </p>
 
+            {/* Service cards in 2x2 grid */}
+            <div className="grid grid-cols-2 gap-4 mb-8">
+              {services.map((service) => (
+                <div key={service.title} className="group relative">
+                  <div className="absolute -inset-[1px] bg-gradient-to-r from-pink-500 to-fuchsia-500 rounded-xl opacity-0 group-hover:opacity-30 blur-lg transition-opacity" />
+                  <div className="relative p-4 bg-white/5 backdrop-blur-xl rounded-xl border border-white/10 hover:border-white/20 transition-all h-full flex flex-col">
+                    <div className="w-10 h-10 bg-gradient-to-br from-pink-500/20 to-fuchsia-500/20 rounded-lg flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                      <service.icon className="w-5 h-5 text-pink-400" />
+                    </div>
+                    <h3 className="font-bold text-base text-white mb-1">
+                      {service.title}
+                    </h3>
+                    <p className="text-xs text-white/60 leading-relaxed">
+                      {service.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
             <Link href="/services">
-              <Button size="lg" className="bg-gradient-to-r from-electric-blue to-electric-purple hover:shadow-xl hover:shadow-electric-blue/30">
+              <Button size="lg" className="bg-gradient-to-r from-pink-500 to-fuchsia-500 hover:shadow-xl hover:shadow-pink-500/30">
                 View All Services
               </Button>
             </Link>
           </div>
 
-          {/* Right side - Service cards in 2x2 grid */}
-          <div className="grid grid-cols-2 gap-6">
-            {services.map((service) => (
-              <div key={service.title} className="group relative">
-                <div className="absolute -inset-[1px] bg-gradient-to-r from-electric-blue to-electric-purple rounded-2xl opacity-0 group-hover:opacity-30 blur-lg transition-opacity" />
-                <div className="relative p-6 bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10 hover:border-white/20 transition-all h-full flex flex-col">
-                  <div className="w-12 h-12 bg-gradient-to-br from-electric-blue/20 to-electric-purple/20 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                    <service.icon className="w-6 h-6 text-electric-blue" />
-                  </div>
-                  <h3 className="font-bold text-lg text-white mb-2">
-                    {service.title}
-                  </h3>
-                  <p className="text-sm text-white/60 leading-relaxed">
-                    {service.description}
-                  </p>
-                </div>
+          {/* Right side - Animated visualization */}
+          <div className="relative">
+            <div className="absolute -inset-4 bg-gradient-to-r from-pink-500/20 via-fuchsia-500/20 to-cyan-400/20 rounded-3xl blur-xl opacity-50" />
+            <div className="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-3xl border border-white/20 p-8 overflow-hidden">
+              <div className="absolute top-4 right-4 px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full border border-white/20">
+                <span className="text-xs text-white/70">Custom Audio Visualization</span>
               </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Animated waveform visualization */}
-        <div className="mt-16 relative">
-          <div className="absolute inset-0 bg-gradient-to-r from-electric-blue/20 via-electric-purple/20 to-electric-cyan/20 rounded-2xl blur-xl opacity-50" />
-          <div className="relative h-32 bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10 p-6 flex items-end justify-center gap-1 overflow-hidden">
-            {Array.from({ length: 32 }).map((_, i) => (
-              <div
-                key={i}
-                className="w-1 bg-gradient-to-t from-electric-blue via-electric-purple to-electric-cyan rounded-full transition-all duration-300"
-                style={{
-                  height: `${Math.random() * 100}%`,
-                  opacity: 0.3 + Math.random() * 0.7,
-                  animation: `pulse ${1 + Math.random() * 2}s ease-in-out infinite`,
-                  animationDelay: `${i * 0.05}s`,
-                }}
-              />
-            ))}
+              <div className="relative h-64 mt-8">
+                <canvas ref={canvasRef} className="w-full h-full" />
+              </div>
+            </div>
           </div>
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes pulse {
-          0%, 100% { transform: scaleY(1); }
-          50% { transform: scaleY(0.5); }
-        }
-      `}</style>
     </section>
   )
 }
