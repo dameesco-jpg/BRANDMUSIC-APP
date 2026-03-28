@@ -1,128 +1,47 @@
-'use client'
-
-import { motion } from 'framer-motion'
-import { Search, Video, Sliders, FileText } from 'lucide-react'
+import { Search, Wand2, Download, CheckCircle2 } from 'lucide-react'
 
 const steps = [
   {
+    icon: Search,
     number: '01',
-    icon: Search,
-    title: 'Discover',
-    description: 'Use AI search to find tracks that match your vision. Describe what you need in natural language—our AI understands mood, energy, and context.',
+    title: 'Describe Your Vision',
+    description: 'Tell our AI what you need in plain English. "Upbeat indie for a product launch" or "calm piano for meditation app"—we understand context.',
   },
   {
+    icon: Wand2,
     number: '02',
-    icon: Video,
-    title: 'Validate',
-    description: 'Upload your video and test tracks instantly. See how music works with your content before licensing. Share synced previews with your team.',
+    title: 'AI Finds Perfect Matches',
+    description: 'Our AI analyzes mood, energy, genre, and brand fit to surface tracks that sound like they were made for your project.',
   },
   {
+    icon: Download,
     number: '03',
-    icon: Sliders,
-    title: 'Customize',
-    description: 'Adjust individual stems to perfect the mix. Control drums, bass, melody, and vocals independently. Create exactly the sound you need.',
+    title: 'Download & Customize',
+    description: 'Get instant access to high-quality stems. Mix, edit, and make it yours. All tracks are cleared for commercial use.',
   },
   {
+    icon: CheckCircle2,
     number: '04',
-    icon: FileText,
-    title: 'License',
-    description: 'Get transparent pricing with no hidden fees. Request a custom quote for commercial licensing based on your specific usage, territory, and duration.',
-  },
-]
-
-const features = [
-  {
-    icon: Search,
-    title: 'Export & License',
-    description: 'Download unwatermarked tracks and submit licensing requests for commercial use.',
-  },
-  {
-    icon: Video,
-    title: 'Build Campaigns',
-    description: 'Organize tracks into campaign kits. Collaborate with teams and manage approvals.',
-  },
-  {
-    icon: Sliders,
-    title: 'Store in Portal',
-    description: 'Enterprise clients store all licensed tracks in their private Brand Portal.',
+    title: 'Publish With Confidence',
+    description: 'Use your music anywhere—YouTube, TikTok, podcasts, ads. Full licensing included, no extra fees or royalties.',
   },
 ]
 
 export default function HowItWorks() {
   return (
-    <section className="py-20 lg:py-32 border-b border-white/5">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <h2 className="font-display font-bold text-4xl md:text-5xl mb-6">
-            How It Works
-          </h2>
-          <p className="text-xl text-text-secondary max-w-3xl mx-auto">
-            From discovery to licensing in four simple steps
-          </p>
-        </motion.div>
-
-        {/* Main Workflow */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
-          {steps.map((step, index) => (
-            <motion.div
-              key={step.number}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="relative"
-            >
-              {/* Connector Line */}
-              {index < steps.length - 1 && (
-                <div className="hidden lg:block absolute top-12 left-[60%] w-full h-0.5 bg-gradient-to-r from-electric-blue/50 to-transparent"></div>
-              )}
-
-              <div className="relative">
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-electric-blue/20 to-electric-purple/20 rounded-xl mb-4">
-                  <step.icon className="w-8 h-8 text-electric-blue" />
-                </div>
-                <div className="text-sm text-electric-blue font-mono font-bold mb-2">
-                  {step.number}
-                </div>
-                <h3 className="font-display font-bold text-2xl mb-3">
-                  {step.title}
-                </h3>
-                <p className="text-text-secondary">
-                  {step.description}
-                </p>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Additional Features */}
-        <div className="grid md:grid-cols-3 gap-8">
-          {features.map((feature, index) => (
-            <motion.div
-              key={feature.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="p-6 bg-surface-elevated rounded-xl border border-white/10 hover:border-electric-blue/30 transition-colors"
-            >
-              <feature.icon className="w-8 h-8 text-electric-blue mb-4" />
-              <h3 className="font-semibold text-lg mb-2">
-                {feature.title}
-              </h3>
-              <p className="text-sm text-text-secondary">
-                {feature.description}
-              </p>
-            </motion.div>
-          ))}
-        </div>
+    <section className="relative py-32 bg-gradient-to-b from-[#0A0A0A] via-[#1F0A1A] to-[#0A0A0A] overflow-hidden">
+      {/* Pink/Magenta glow effects */}
+      <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-pink-500/20 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-fuchsia-500/20 rounded-full blur-3xl" />
+      
+      {/* Decorative dots pattern */}
+      <div className="absolute inset-0 opacity-20">
+        <div className="absolute top-20 left-10 w-2 h-2 bg-pink-400 rounded-full animate-pulse" />
+        <div className="absolute top-40 right-20 w-3 h-3 bg-fuchsia-400 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }} />
+        <div className="absolute bottom-32 left-1/4 w-2 h-2 bg-pink-500 rounded-full animate-pulse" style={{ animationDelay: '1s' }} />
+        <div className="absolute bottom-20 right-1/3 w-3 h-3 bg-fuchsia-500 rounded-full animate-pulse" style={{ animationDelay: '1.5s' }} />
       </div>
-    </section>
-  )
-}
+      
+      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="text-center mb-20">
+          <div className="inline-flex items-center gap-2 px-3 py-1 bg-pink-500/10 border border-pink-500/30 rounded-full text-pink-400 text-xs font-medium mb-6">
