@@ -17,13 +17,12 @@ export default function Navigation() {
   <Image
     src="/BrandMusic_H.svg"
     alt="Brandmusic"
-    width={400}
-    height={100}
-    className="h-20 w-auto"
+    width={800}
+    height={200}
+    className="h-40 w-auto"
     priority
   />
 </Link>
-
           <div className="hidden md:flex items-center gap-8">
             <Link href="/library" className="text-white/70 hover:text-white transition-colors">
               Browse Music
