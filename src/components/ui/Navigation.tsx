@@ -12,39 +12,39 @@ export default function Navigation() {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0A0A0A]/95 backdrop-blur-xl border-b border-white/10">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="flex items-center justify-between h-24">
-          <Link href="/" className="flex items-center gap-3 px-6 py-3 bg-white/5 rounded-xl backdrop-blur-sm">
+        <div className="flex items-center justify-between h-32">
+          <Link href="/" className="flex items-center">
             <Image
               src="/BrandMusic_H.png"
               alt="Brandmusic"
-              width={500}
-              height={125}
-              className="h-16 w-auto"
+              width={600}
+              height={150}
+              className="h-24 w-auto"
               priority
             />
           </Link>
 
           <div className="hidden md:flex items-center gap-8">
-            <Link href="/library" className="text-white/70 hover:text-white transition-colors">
+            <Link href="/library" className="text-white/70 hover:text-white transition-colors text-base">
               Browse Music
             </Link>
-            <Link href="/features" className="text-white/70 hover:text-white transition-colors">
+            <Link href="/features" className="text-white/70 hover:text-white transition-colors text-base">
               Features
             </Link>
-            <Link href="/pricing" className="text-white/70 hover:text-white transition-colors">
+            <Link href="/pricing" className="text-white/70 hover:text-white transition-colors text-base">
               Pricing
             </Link>
-            <Link href="/services" className="text-white/70 hover:text-white transition-colors">
+            <Link href="/services" className="text-white/70 hover:text-white transition-colors text-base">
               Services
             </Link>
-            <Link href="/enterprise" className="text-white/70 hover:text-white transition-colors">
+            <Link href="/enterprise" className="text-white/70 hover:text-white transition-colors text-base">
               For Enterprise
             </Link>
           </div>
 
           <div className="hidden md:flex items-center gap-4">
             <Link href="/login">
-              <button className="text-white/70 hover:text-white transition-colors">
+              <button className="text-white/70 hover:text-white transition-colors text-base">
                 Log in
               </button>
             </Link>
