@@ -4,22 +4,22 @@ const features = [
   {
     icon: Sparkles,
     title: 'AI-Powered Search',
-    description: 'Describe what you need in plain English. Our AI understands context, mood, and brand personality to find the perfect match.',
+    description: 'Talk to our AI like you'd talk to a music supervisor. "I need something confident but not aggressive" or "warm, nostalgic, with forward momentum"—the AI gets it.',
   },
   {
     icon: Music,
-    title: 'Premium Library',
-    description: 'Access thousands of professionally produced tracks across every genre. New music added weekly.',
+    title: 'Curated Catalog',
+    description: 'Premium production music across every genre and mood. Professionally produced, cleared for commercial use, updated weekly.',
   },
   {
     icon: Download,
-    title: 'Unlimited Downloads',
-    description: 'Download as many tracks as you need. Full stems included. All cleared for commercial use.',
+    title: 'Stem-Level Control',
+    description: 'Full access to separated stems on every track. Give your post team complete flexibility to mix for brand fit and media requirements.',
   },
   {
     icon: Sliders,
-    title: 'Full Customization',
-    description: 'Access individual stems to create your perfect mix. Adjust, remix, and make it yours.',
+    title: 'Stakeholder Presentation Tools',
+    description: 'Sync tracks to client footage before licensing. Present multiple options with context. Get approvals faster with built-in preview tools.',
   },
 ]
 
@@ -37,10 +37,10 @@ export default function Features() {
               Everything You Need
             </div>
             <h2 className="font-display font-bold text-[36px] md:text-[48px] mb-6 text-white leading-[1.1]">
-              Built for Modern Creators
+              Built for Agency Workflows
             </h2>
             <p className="text-base text-text-secondary mb-12 leading-relaxed">
-              From AI-powered discovery to unlimited downloads, we've designed every feature to help you find and use the perfect music faster.
+              From campaign concepting to final delivery, tools designed for creative directors, producers, and brand teams who demand precision and flexibility.
             </p>
 
             <div className="space-y-8">
