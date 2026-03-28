@@ -1,147 +1,156 @@
 'use client'
 
-import { Sparkles, ArrowRight, Music, Mic2, Volume2, Lightbulb, Wand2 } from 'lucide-react'
+import { Music, Mic2, Volume2, Lightbulb, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 import Button from '../ui/Button'
+import { useEffect, useRef, useState } from 'react'
 
 const services = [
   {
     icon: Music,
     title: 'Custom Music Commissions',
-    description: 'Original compositions tailored to your brand',
-    color: 'from-teal-500 to-cyan-500',
+    description: 'Original compositions tailored specifically to your brand. Work directly with professional composers.',
+    gradient: 'from-teal-500 to-cyan-500',
   },
   {
     icon: Mic2,
     title: 'Sonic Branding Packages',
-    description: 'Complete sonic identity systems',
-    color: 'from-cyan-500 to-electric-blue',
+    description: 'Complete sonic identity systems from audio logos to brand anthems. Create consistency across all touchpoints.',
+    gradient: 'from-cyan-500 to-blue-500',
   },
   {
     icon: Volume2,
     title: 'Audio Logo Creation',
-    description: 'Memorable sonic signatures',
-    color: 'from-electric-blue to-teal-500',
+    description: 'Memorable sonic signatures that become synonymous with your brand. Think Intel\'s bong or McDonald\'s jingle.',
+    gradient: 'from-blue-500 to-teal-500',
   },
   {
     icon: Lightbulb,
     title: 'Brand Sound Strategy',
-    description: 'Strategic sonic identity consultation',
-    color: 'from-teal-600 to-cyan-600',
+    description: 'Strategic consulting to help you understand how sound can elevate your brand and create a roadmap.',
+    gradient: 'from-emerald-500 to-cyan-500',
   },
 ]
 
 export default function CustomMusicV2() {
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+  const [audioContext] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return new (window.AudioContext || (window as any).webkitAudioContext)()
+    }
+    return null
+  })
+
+  useEffect(() => {
+    const canvas = canvasRef.current
+    if (!canvas) return
+
+    const ctx = canvas.getContext('2d')
+    if (!ctx) return
+
+    // Set canvas size
+    const resize = () => {
+      canvas.width = canvas.offsetWidth * window.devicePixelRatio
+      canvas.height = canvas.offsetHeight * window.devicePixelRatio
+      ctx.scale(window.devicePixelRatio, window.devicePixelRatio)
+    }
+    resize()
+    window.addEventListener('resize', resize)
+
+    // Animated waveform
+    const bars = 32
+    const barWidth = canvas.offsetWidth / bars
+    let animationId: number
+
+    const animate = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+
+      for (let i = 0; i < bars; i++) {
+        // Create smooth wave pattern
+        const height = Math.sin(Date.now() * 0.001 + i * 0.3) * 30 + 40
+        const x = i * barWidth
+        const y = (canvas.offsetHeight - height) / 2
+
+        // Gradient from teal to cyan
+        const gradient = ctx.createLinearGradient(0, 0, canvas.offsetWidth, 0)
+        gradient.addColorStop(0, 'rgba(20, 184, 166, 0.6)') // teal-500
+        gradient.addColorStop(1, 'rgba(6, 182, 212, 0.6)') // cyan-500
+
+        ctx.fillStyle = gradient
+        ctx.fillRect(x, y, barWidth - 2, height)
+      }
+
+      animationId = requestAnimationFrame(animate)
+    }
+    animate()
+
+    return () => {
+      window.removeEventListener('resize', resize)
+      cancelAnimationFrame(animationId)
+    }
+  }, [])
+
   return (
     <section className="relative py-32 bg-gradient-to-b from-[#0A0A0A] via-[#0A1F1F] to-[#0A0A0A] overflow-hidden">
-      {/* Background effects */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-teal-500/20 via-transparent to-transparent" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-cyan-500/20 via-transparent to-transparent" />
-      
+      {/* Blended teal/cyan gradient that fades to black */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-teal-500/10 via-cyan-500/5 to-transparent" />
+      <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-teal-500/10 rounded-full blur-[120px]" />
+      <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-cyan-500/10 rounded-full blur-[120px]" />
+
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left: Content */}
-          <div>
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-teal-500/10 border border-teal-500/30 rounded-full text-sm font-medium mb-6 backdrop-blur-xl">
-              <Sparkles className="w-4 h-4 text-teal-400" />
-              <span className="text-teal-400">Premium Services</span>
-            </div>
-            
-            <h2 className="font-display font-bold text-[40px] md:text-[56px] mb-6 text-white leading-[1.1]">
-              Need Something Truly Unique?
-            </h2>
-            
-            <p className="text-lg text-white/70 mb-10 leading-relaxed">
-              From custom compositions to complete sonic branding systems, our team of composers and strategists can create original music that's unmistakably yours.
-            </p>
+        {/* Section header */}
+        <div className="text-center mb-16">
+          <h2 className="font-display font-bold text-[40px] md:text-[56px] mb-6 text-white leading-[1.1]">
+            Premium Services
+          </h2>
+          <p className="text-lg text-white/60 max-w-2xl mx-auto">
+            Need something truly unique? Our team can create custom music and sonic branding tailored to your brand.
+          </p>
+        </div>
 
-            {/* Services grid */}
-            <div className="grid sm:grid-cols-2 gap-4 mb-10">
-              {services.map((service, idx) => (
-                <div
-                  key={service.title}
-                  className="group relative overflow-hidden p-6 bg-gradient-to-br from-white/5 to-white/0 backdrop-blur-xl rounded-2xl border border-white/10 hover:border-teal-500/30 transition-all"
-                >
-                  {/* Gradient overlay on hover */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-10 transition-opacity`} />
-                  
-                  {/* Content */}
-                  <div className="relative">
-                    <div className={`w-12 h-12 bg-gradient-to-br ${service.color} opacity-20 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
-                      <service.icon className="w-6 h-6 text-teal-400" />
-                    </div>
-                    <h3 className="font-semibold text-base text-white mb-2">
-                      {service.title}
-                    </h3>
-                    <p className="text-sm text-white/60 leading-relaxed">
-                      {service.description}
-                    </p>
-                  </div>
-
-                  {/* Animated corner accent */}
-                  <div className={`absolute top-0 right-0 w-20 h-20 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-20 blur-2xl transition-opacity`} />
-                </div>
-              ))}
-            </div>
-
-            <Link href="/enterprise">
-              <Button size="lg" className="group bg-gradient-to-r from-teal-500 to-cyan-500 hover:from-teal-600 hover:to-cyan-600 shadow-lg shadow-teal-500/20 hover:shadow-2xl hover:shadow-teal-500/40 transition-all">
-                Explore Custom Services
-                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </Button>
-            </Link>
-          </div>
-
-          {/* Right: Visual */}
+        {/* Waveform visualization */}
+        <div className="max-w-4xl mx-auto mb-16">
           <div className="relative">
-            {/* Main card with waveform */}
-            <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-white/10 to-white/5 border border-white/20 p-12 backdrop-blur-2xl">
-              {/* Animated waveform */}
-              <div className="flex items-end justify-center gap-2 h-80">
-                {[...Array(32)].map((_, i) => (
-                  <div
-                    key={i}
-                    className="flex-1 bg-gradient-to-t from-teal-500 via-cyan-400 to-teal-300 rounded-full"
-                    style={{
-                      height: `${30 + Math.sin(i * 0.4) * 50}%`,
-                      animation: `wave ${1.5 + (i % 3) * 0.3}s ease-in-out infinite`,
-                      animationDelay: `${i * 0.05}s`,
-                    }}
-                  />
-                ))}
-              </div>
-              
-              {/* Center badge */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="px-6 py-3 bg-black/60 backdrop-blur-xl rounded-full border border-teal-500/30">
-                  <div className="flex items-center gap-2">
-                    <Wand2 className="w-5 h-5 text-teal-400" />
-                    <p className="text-sm text-teal-400 font-medium">Custom Audio Visualization</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-br from-teal-500/10 to-cyan-500/10 pointer-events-none" />
+            <div className="absolute -inset-4 bg-gradient-to-r from-teal-500/20 to-cyan-500/20 rounded-3xl blur-2xl" />
+            <div className="relative p-8 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-2xl rounded-3xl border border-white/10">
+              <canvas
+                ref={canvasRef}
+                className="w-full h-24 rounded-xl"
+              />
             </div>
-            
-            {/* Floating accent orbs */}
-            <div className="absolute -top-12 -right-12 w-40 h-40 bg-teal-500/30 rounded-full blur-3xl animate-pulse" />
-            <div className="absolute -bottom-12 -left-12 w-48 h-48 bg-cyan-500/30 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
           </div>
         </div>
-      </div>
 
-      <style jsx>{`
-        @keyframes wave {
-          0%, 100% {
-            transform: scaleY(1);
-          }
-          50% {
-            transform: scaleY(1.5);
-          }
-        }
-      `}</style>
+        {/* Services grid */}
+        <div className="grid md:grid-cols-2 gap-8 mb-12">
+          {services.map((service) => (
+            <div key={service.title} className="group relative">
+              <div className={`absolute -inset-[1px] bg-gradient-to-r ${service.gradient} rounded-3xl opacity-0 group-hover:opacity-30 blur-lg transition-opacity`} />
+              <div className="relative p-8 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-2xl rounded-3xl border border-white/10 hover:border-white/20 transition-all h-full">
+                <div className={`w-14 h-14 bg-gradient-to-br ${service.gradient} opacity-20 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
+                  <service.icon className="w-7 h-7 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-4">
+                  {service.title}
+                </h3>
+                <p className="text-white/60 leading-relaxed">
+                  {service.description}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* CTA */}
+        <div className="text-center">
+          <Link href="/services">
+            <Button size="lg" className="group bg-gradient-to-r from-teal-500 to-cyan-500 hover:shadow-xl hover:shadow-teal-500/30">
+              Explore Services
+              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </Button>
+          </Link>
+        </div>
+      </div>
     </section>
   )
 }
