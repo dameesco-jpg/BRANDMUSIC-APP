@@ -36,7 +36,7 @@ const plans = [
       'Everything in Free',
       'Unlimited downloads',
       'Full stem access',
-      'Commercial licensing',
+      'Commercial licensing (pay-per-use)',
       'Remove watermarks',
       'Team collaboration',
       'Priority support',
