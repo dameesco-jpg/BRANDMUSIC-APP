@@ -1,12 +1,10 @@
 'use client'
 
-import { useState } from 'react'
 import Navigation from '@/components/ui/Navigation'
 import Footer from '@/components/ui/Footer'
-import { Sparkles, Music, Mic2, Volume2, Lightbulb, Radio, Palette, Headphones, ArrowRight, Check } from 'lucide-react'
+import { Sparkles, Music, Mic2, Volume2, Lightbulb, Radio, Palette, Headphones, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 import Button from '@/components/ui/Button'
-import Image from 'next/image'
 
 const services = [
   {
@@ -14,88 +12,28 @@ const services = [
     title: 'Custom Music Commissions',
     tagline: 'Original compositions tailored to your brand',
     description: 'Work with our team of professional composers to create original music that\'s unmistakably yours. Perfect for brands that need something truly unique beyond our catalog.',
-    features: [
-      'Exclusive rights to your track',
-      'Unlimited revisions until perfect',
-      '3-4 week turnaround',
-      'Full stems and source files included',
-      'Work directly with composer',
-    ],
-    process: [
-      'Brief your vision and goals',
-      'Receive initial concepts',
-      'Refine and iterate',
-      'Final delivery with stems',
-    ],
     color: 'from-electric-blue to-electric-cyan',
-    image: 'https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=800&h=600&fit=crop',
-    pricing: 'Starting at $5,000',
   },
   {
     icon: Mic2,
     title: 'Sonic Branding Packages',
     tagline: 'Complete sonic identity systems',
     description: 'Develop a comprehensive sonic identity that works across all touchpoints—from audio logos to brand anthems. Create consistency in how your brand sounds.',
-    features: [
-      'Audio logo (sonic signature)',
-      'Brand anthem (60-90 seconds)',
-      'UI/UX sound design',
-      'On-hold music',
-      'Sonic brand guidelines',
-    ],
-    process: [
-      'Brand workshop and discovery',
-      'Sonic strategy development',
-      'Create audio assets',
-      'Deploy across touchpoints',
-    ],
     color: 'from-electric-purple to-fuchsia-500',
-    image: 'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=800&h=600&fit=crop',
-    pricing: 'Starting at $15,000',
   },
   {
     icon: Volume2,
     title: 'Audio Logo Creation',
     tagline: 'Memorable sonic signatures',
     description: 'A short, distinctive sound that becomes synonymous with your brand. Think Intel\'s bong or McDonald\'s "I\'m Lovin\' It." Make your brand instantly recognizable.',
-    features: [
-      '2-5 second sonic signature',
-      'Multiple variations (short/long)',
-      'Adaptable across media',
-      'Trademark support',
-      'Usage guidelines',
-    ],
-    process: [
-      'Understand brand attributes',
-      'Explore sonic directions',
-      'Test and refine',
-      'Final delivery and rollout',
-    ],
     color: 'from-electric-cyan to-electric-blue',
-    image: 'https://images.unsplash.com/photo-1487180144351-b8472da7d491?w=800&h=600&fit=crop',
-    pricing: 'Starting at $8,000',
   },
   {
     icon: Lightbulb,
     title: 'Brand Sound Strategy',
     tagline: 'Strategic sonic identity consultation',
     description: 'Not sure where to start? Our sonic strategists help you understand how sound can elevate your brand and create a roadmap for implementation.',
-    features: [
-      'Competitive sonic audit',
-      'Brand sound workshop',
-      'Strategic recommendations',
-      'Implementation roadmap',
-      '30-day support',
-    ],
-    process: [
-      'Discovery and research',
-      'Workshop with stakeholders',
-      'Strategy presentation',
-      'Roadmap and next steps',
-    ],
     color: 'from-pink-500 to-fuchsia-600',
-    image: 'https://images.unsplash.com/photo-1551818255-e6e10975bc17?w=800&h=600&fit=crop',
-    pricing: 'Starting at $3,500',
   },
 ]
 
@@ -120,26 +58,7 @@ const additionalServices = [
   },
 ]
 
-const caseStudies = [
-  {
-    client: 'TechForward Inc.',
-    challenge: 'Needed a complete sonic identity for brand refresh',
-    solution: 'Full sonic branding package with audio logo and anthem',
-    result: '89% increase in brand recall in audio-first environments',
-    image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&h=400&fit=crop',
-  },
-  {
-    client: 'Horizon Creative',
-    challenge: 'Required custom music for global campaign launch',
-    solution: 'Original composition with full stems for localization',
-    result: 'Campaign won 3 industry awards, music became brand signature',
-    image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600&h=400&fit=crop',
-  },
-]
-
 export default function ServicesPage() {
-  const [activeService, setActiveService] = useState(0)
-
   return (
     <main className="min-h-screen bg-[#0A0A0A]">
       <Navigation />
@@ -165,109 +84,45 @@ export default function ServicesPage() {
             From custom compositions to complete sonic branding systems, our team of composers and strategists can create original music that's unmistakably yours.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/contact">
-              <Button size="lg" className="bg-gradient-to-r from-teal-500 to-cyan-500 hover:shadow-xl hover:shadow-teal-500/30">
-                Schedule Consultation
-                <ArrowRight className="ml-2 w-5 h-5" />
-              </Button>
-            </Link>
-            <Link href="#services">
-              <Button variant="outline" size="lg" className="border-white/20 hover:border-white/40">
-                View Services
-              </Button>
-            </Link>
-          </div>
+          <Link href="/contact">
+            <Button size="lg" className="bg-gradient-to-r from-teal-500 to-cyan-500 hover:shadow-xl hover:shadow-teal-500/30">
+              Schedule Consultation
+              <ArrowRight className="ml-2 w-5 h-5" />
+            </Button>
+          </Link>
         </div>
       </section>
 
-      {/* Main Services - Detailed */}
-      <section id="services" className="relative py-24">
+      {/* Main Services Grid - Simplified */}
+      <section className="relative py-24">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="space-y-32">
-            {services.map((service, idx) => (
-              <div
-                key={service.title}
-                className={`grid lg:grid-cols-2 gap-16 items-center ${
-                  idx % 2 === 1 ? 'lg:flex-row-reverse' : ''
-                }`}
-              >
-                {/* Content */}
-                <div className={idx % 2 === 1 ? 'lg:order-2' : ''}>
+          <div className="grid md:grid-cols-2 gap-8">
+            {services.map((service) => (
+              <div key={service.title} className="group relative">
+                <div className={`absolute -inset-[1px] bg-gradient-to-r ${service.color} rounded-3xl opacity-0 group-hover:opacity-30 blur-lg transition-opacity`} />
+                <div className="relative p-10 bg-white/5 backdrop-blur-xl rounded-3xl border border-white/10 hover:border-white/20 transition-all h-full flex flex-col">
                   <div className={`w-16 h-16 bg-gradient-to-br ${service.color} opacity-20 rounded-2xl flex items-center justify-center mb-6`}>
                     <service.icon className="w-8 h-8 text-white" />
                   </div>
                   
-                  <h2 className="font-display font-bold text-[36px] md:text-[48px] mb-3 text-white leading-[1.1]">
+                  <h2 className="font-display font-bold text-3xl mb-3 text-white">
                     {service.title}
                   </h2>
                   
-                  <p className="text-lg text-teal-400 mb-6 font-medium">
+                  <p className={`text-base bg-gradient-to-r ${service.color} bg-clip-text text-transparent mb-6 font-medium`}>
                     {service.tagline}
                   </p>
                   
-                  <p className="text-lg text-white/70 mb-8 leading-relaxed">
+                  <p className="text-base text-white/70 mb-8 leading-relaxed flex-grow">
                     {service.description}
                   </p>
 
-                  {/* What's Included */}
-                  <div className="mb-8">
-                    <h3 className="font-semibold text-white mb-4">What's Included</h3>
-                    <div className="grid sm:grid-cols-2 gap-3">
-                      {service.features.map((feature) => (
-                        <div key={feature} className="flex items-start gap-2">
-                          <Check className={`w-5 h-5 bg-gradient-to-br ${service.color} bg-clip-text text-transparent flex-shrink-0 mt-0.5`} style={{ WebkitTextFillColor: 'transparent' }} />
-                          <span className="text-sm text-white/70">{feature}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Process */}
-                  <div className="mb-8">
-                    <h3 className="font-semibold text-white mb-4">Our Process</h3>
-                    <div className="flex items-center gap-2 flex-wrap">
-                      {service.process.map((step, i) => (
-                        <div key={step} className="flex items-center gap-2">
-                          <div className={`px-3 py-1.5 bg-gradient-to-r ${service.color} opacity-20 rounded-lg text-sm text-white backdrop-blur-xl border border-white/10`}>
-                            {i + 1}. {step}
-                          </div>
-                          {i < service.process.length - 1 && (
-                            <ArrowRight className="w-4 h-4 text-white/30" />
-                          )}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Pricing */}
-                  <div className="flex items-center justify-between p-4 bg-white/5 backdrop-blur-xl rounded-xl border border-white/10 mb-6">
-                    <span className="text-white/60">Investment</span>
-                    <span className="text-xl font-bold text-white">{service.pricing}</span>
-                  </div>
-
                   <Link href="/contact">
-                    <Button size="lg" className={`group bg-gradient-to-r ${service.color} hover:shadow-lg transition-all`}>
+                    <Button className={`w-full group bg-gradient-to-r ${service.color} hover:shadow-lg transition-all`}>
                       Get Started
                       <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                     </Button>
                   </Link>
-                </div>
-
-                {/* Visual */}
-                <div className={idx % 2 === 1 ? 'lg:order-1' : ''}>
-                  <div className="relative group">
-                    <div className={`absolute -inset-4 bg-gradient-to-r ${service.color} rounded-3xl opacity-20 blur-2xl group-hover:opacity-30 transition-opacity`} />
-                    <div className="relative aspect-[4/3] rounded-3xl overflow-hidden border border-white/20">
-                      <Image
-                        src={service.image}
-                        alt={service.title}
-                        fill
-                        className="object-cover"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                    </div>
-                  </div>
                 </div>
               </div>
             ))}
@@ -301,56 +156,6 @@ export default function ServicesPage() {
                     Learn More
                     <ArrowRight className="w-4 h-4" />
                   </Link>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Case Studies */}
-      <section className="relative py-24">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="font-display font-bold text-[40px] md:text-[56px] mb-6 text-white leading-[1.1]">
-              Client Success Stories
-            </h2>
-            <p className="text-lg text-white/60 max-w-2xl mx-auto">
-              See how we've helped brands find their sound
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            {caseStudies.map((study) => (
-              <div key={study.client} className="group relative">
-                <div className="absolute -inset-1 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-3xl opacity-0 group-hover:opacity-20 blur-xl transition-opacity" />
-                <div className="relative bg-white/5 backdrop-blur-xl rounded-3xl border border-white/10 overflow-hidden">
-                  <div className="relative h-48">
-                    <Image
-                      src={study.image}
-                      alt={study.client}
-                      fill
-                      className="object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
-                  </div>
-                  <div className="p-8">
-                    <h3 className="text-2xl font-bold text-white mb-4">{study.client}</h3>
-                    <div className="space-y-4">
-                      <div>
-                        <div className="text-sm text-teal-400 font-medium mb-1">Challenge</div>
-                        <p className="text-white/70">{study.challenge}</p>
-                      </div>
-                      <div>
-                        <div className="text-sm text-cyan-400 font-medium mb-1">Solution</div>
-                        <p className="text-white/70">{study.solution}</p>
-                      </div>
-                      <div>
-                        <div className="text-sm text-white font-medium mb-1">Result</div>
-                        <p className="text-white/90 font-semibold">{study.result}</p>
-                      </div>
-                    </div>
-                  </div>
                 </div>
               </div>
             ))}
