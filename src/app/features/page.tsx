@@ -12,7 +12,7 @@ const heroFeatures = [
   {
     icon: Search,
     title: 'AI-Powered Search',
-    description: 'Talk to our AI like you\'d talk to a music supervisor',
+    description: 'Talk to our AI like you would talk to a music supervisor',
     color: 'from-electric-blue to-electric-cyan',
   },
   {
@@ -106,7 +106,7 @@ const additionalFeatures = [
   {
     icon: Shield,
     title: 'Clear Licensing',
-    description: 'Transparent pricing and licensing terms. Know exactly what you\'re getting with no hidden fees or surprises.',
+    description: 'Transparent pricing and licensing terms. Know exactly what you are getting with no hidden fees or surprises.',
     color: 'from-electric-purple to-violet-500',
   },
   {
@@ -142,9 +142,7 @@ export default function FeaturesPage() {
     <main className="min-h-screen bg-[#0A0A0A]">
       <Navigation />
       
-      {/* Hero Section */}
       <section className="relative pt-32 pb-20 overflow-hidden">
-        {/* Background effects */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-electric-blue/10 via-transparent to-transparent" />
         <div className="absolute top-20 left-1/4 w-[600px] h-[600px] bg-electric-purple/10 rounded-full blur-[120px]" />
         <div className="absolute top-40 right-1/4 w-[600px] h-[600px] bg-electric-cyan/10 rounded-full blur-[120px]" />
@@ -165,7 +163,6 @@ export default function FeaturesPage() {
             </p>
           </div>
 
-          {/* Hero Feature Cards */}
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {heroFeatures.map((feature, idx) => (
               <div key={feature.title} className="group relative">
@@ -183,11 +180,8 @@ export default function FeaturesPage() {
         </div>
       </section>
 
-      {/* Detailed Features - Alternating Layout with subtle bg treatment */}
       <section className="relative py-24 bg-gradient-to-b from-transparent via-[#0A0515]/30 to-transparent overflow-hidden">
-        {/* Floating accent orb - left side */}
         <div className="absolute left-0 top-1/4 w-[500px] h-[500px] bg-electric-purple/5 rounded-full blur-[100px]" />
-        {/* Floating accent orb - right side */}
         <div className="absolute right-0 bottom-1/4 w-[500px] h-[500px] bg-electric-cyan/5 rounded-full blur-[100px]" />
         
         <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
@@ -199,7 +193,6 @@ export default function FeaturesPage() {
                   idx % 2 === 1 ? 'lg:flex-row-reverse' : ''
                 }`}
               >
-                {/* Content */}
                 <div className={idx % 2 === 1 ? 'lg:order-2' : ''}>
                   <div className={`w-14 h-14 bg-gradient-to-br ${feature.color} opacity-20 rounded-2xl flex items-center justify-center mb-6`}>
                     <feature.icon className="w-7 h-7 text-white" />
@@ -232,7 +225,6 @@ export default function FeaturesPage() {
                   </Link>
                 </div>
 
-                {/* Visual */}
                 <div className={idx % 2 === 1 ? 'lg:order-1' : ''}>
                   <div className="relative group">
                     <div className={`absolute -inset-4 bg-gradient-to-r ${feature.color} rounded-3xl opacity-20 blur-2xl group-hover:opacity-30 transition-opacity`} />
@@ -253,9 +245,7 @@ export default function FeaturesPage() {
         </div>
       </section>
 
-      {/* Additional Features Grid - Different subtle bg treatment */}
       <section className="relative py-24 bg-gradient-to-b from-[#0A0A0A] via-[#0A0A15] to-[#0A0A0A] overflow-hidden">
-        {/* Accent orbs */}
         <div className="absolute right-0 top-1/3 w-[600px] h-[600px] bg-electric-blue/5 rounded-full blur-[120px]" />
         <div className="absolute left-0 bottom-1/3 w-[600px] h-[600px] bg-electric-cyan/5 rounded-full blur-[120px]" />
         
@@ -286,7 +276,6 @@ export default function FeaturesPage() {
         </div>
       </section>
 
-      {/* CTA Section - Subtle gradient treatment */}
       <section className="relative py-24 overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-electric-purple/5 via-transparent to-transparent" />
         
