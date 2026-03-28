@@ -2,7 +2,7 @@
 
 import Navigation from '@/components/ui/Navigation'
 import Footer from '@/components/ui/Footer'
-import { Sparkles, Music, Mic2, Volume2, Lightbulb, Radio, Palette, Headphones, ArrowRight } from 'lucide-react'
+import { Sparkles, Music, Mic2, Volume2, Lightbulb, Radio, Palette, Headphones, ArrowRight, Code } from 'lucide-react'
 import Link from 'next/link'
 import Button from '@/components/ui/Button'
 
@@ -55,6 +55,12 @@ const additionalServices = [
     title: 'Music Supervision',
     description: 'Expert guidance on music selection and licensing',
     color: 'from-violet-500 to-purple-500',
+  },
+  {
+    icon: Code,
+    title: 'Live Commerce API Integration',
+    description: 'Power your e-commerce experiences with our music library via API',
+    color: 'from-indigo-500 to-blue-500',
   },
 ]
 
@@ -142,7 +148,7 @@ export default function ServicesPage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {additionalServices.map((service) => (
               <div key={service.title} className="group relative">
                 <div className={`absolute -inset-[1px] bg-gradient-to-r ${service.color} rounded-2xl opacity-0 group-hover:opacity-30 blur-lg transition-opacity`} />
