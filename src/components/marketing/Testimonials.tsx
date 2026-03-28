@@ -1,11 +1,12 @@
 import { Quote, Star } from 'lucide-react'
+import Image from 'next/image'
 
 const testimonials = [
   {
     quote: "Brandmusic's AI search saved us 10+ hours per campaign. We find perfect tracks in minutes, not days.",
     author: "Sarah Chen",
     role: "Music Supervisor",
-    company: "Havas Creative",
+    company: "Horizon Creative Agency",
     rating: 5,
   },
   {
@@ -17,7 +18,7 @@ const testimonials = [
   },
   {
     quote: "Finally, a platform built for professionals. Stem customization means we never have to settle for 'close enough'.",
-    author: "Emma Thompson",
+    author: "Emily Thompson",
     role: "Brand Manager",
     company: "TechForward Inc.",
     rating: 5,
@@ -25,12 +26,30 @@ const testimonials = [
 ]
 
 const brands = [
-  'Horizon Creative',
-  'Pulse Productions',
-  'TechForward',
-  'Momentum Agency',
-  'Vertex Media',
-  'Catalyst Brands',
+  {
+    name: 'Apple',
+    logo: 'https://cdn.brandfolder.io/V0OX3M52/at/8v3vkx-35vnvc-euop7k/Apple_logo_grey.svg'
+  },
+  {
+    name: 'Google',
+    logo: 'https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png'
+  },
+  {
+    name: 'Meta',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/7/7b/Meta_Platforms_Inc._logo.svg'
+  },
+  {
+    name: 'YouTube',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg'
+  },
+  {
+    name: 'American Airlines',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/7/7d/American_Airlines_logo_2013.svg'
+  },
+  {
+    name: 'Citibank',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/1/1b/Citi.svg'
+  },
 ]
 
 export default function Testimonials() {
@@ -108,21 +127,34 @@ export default function Testimonials() {
           ))}
         </div>
 
+        {/* Brand Logos Section - Real logos */}
         <div className="relative">
           <div className="text-center mb-10">
             <p className="text-sm text-text-tertiary uppercase tracking-wider">
-              Trusted by leading agencies and brands
+              Trusted by leading brands
             </p>
           </div>
           
-          <div className="flex flex-wrap justify-center items-center gap-8">
+          {/* Logo Grid with real brand logos */}
+          <div className="flex flex-wrap justify-center items-center gap-12">
             {brands.map((brand, idx) => (
-              <div key={brand} className="group relative" style={{ animationDelay: `${idx * 100}ms` }}>
-                <div className="absolute -inset-2 bg-gradient-to-r from-pink-500/0 via-pink-500/20 to-pink-500/0 opacity-0 group-hover:opacity-100 rounded-xl blur-xl transition-opacity" />
+              <div
+                key={brand.name}
+                className="group relative"
+                style={{ animationDelay: `${idx * 100}ms` }}
+              >
+                {/* Glow effect on hover */}
+                <div className="absolute -inset-4 bg-gradient-to-r from-pink-500/0 via-pink-500/20 to-pink-500/0 opacity-0 group-hover:opacity-100 rounded-xl blur-xl transition-opacity" />
                 
+                {/* Logo container */}
                 <div className="relative px-6 py-4 bg-surface-elevated/60 rounded-xl border border-pink-500/10 hover:border-pink-500/30 transition-all backdrop-blur-sm">
-                  <div className="text-base font-semibold text-white/50 group-hover:text-white transition-colors">
-                    {brand}
+                  <div className="relative h-12 w-32 flex items-center justify-center">
+                    <Image
+                      src={brand.logo}
+                      alt={brand.name}
+                      fill
+                      className="object-contain opacity-60 group-hover:opacity-100 transition-opacity grayscale group-hover:grayscale-0"
+                    />
                   </div>
                 </div>
               </div>
