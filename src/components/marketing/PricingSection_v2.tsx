@@ -128,10 +128,10 @@ export default function PricingSectionV2() {
                   {plan.description}
                 </p>
 
-                {/* Price */}
+                {/* Price - FIXED: Always white, no gradient on hover */}
                 <div className="mb-8">
                   <div className="flex items-baseline gap-2">
-                    <span className={`text-5xl font-bold bg-gradient-to-r ${plan.color} bg-clip-text text-transparent`}>
+                    <span className="text-5xl font-bold text-white">
                       {plan.price}
                     </span>
                     {plan.price !== 'Custom' && (
