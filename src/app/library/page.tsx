@@ -1,11 +1,12 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import Navigation from '@/components/ui/Navigation'
 import Footer from '@/components/ui/Footer'
-import { Search, Play, Heart, Share2, MoreVertical, Clock, Sparkles, TrendingUp, Music, Filter } from 'lucide-react'
+import { Search, Play, Heart, Download, Video, Upload, X, Sparkles, Filter, Music, TrendingUp } from 'lucide-react'
+import Image from 'next/image'
 
-// Mock data - replace with real data
+// Mock data
 const genres = [
   'All Genres',
   'Electronic',
@@ -39,7 +40,7 @@ const tracks = [
     bpm: 120,
     genre: 'Electronic',
     mood: 'Energetic',
-    waveform: '/waveforms/1.svg',
+    artwork: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=400&h=400&fit=crop',
   },
   {
     id: 2,
@@ -49,7 +50,7 @@ const tracks = [
     bpm: 95,
     genre: 'Ambient',
     mood: 'Calm',
-    waveform: '/waveforms/2.svg',
+    artwork: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=400&h=400&fit=crop',
   },
   {
     id: 3,
@@ -59,7 +60,7 @@ const tracks = [
     bpm: 140,
     genre: 'Hip Hop',
     mood: 'Confident',
-    waveform: '/waveforms/3.svg',
+    artwork: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=400&fit=crop',
   },
   {
     id: 4,
@@ -69,7 +70,7 @@ const tracks = [
     bpm: 88,
     genre: 'Folk',
     mood: 'Uplifting',
-    waveform: '/waveforms/4.svg',
+    artwork: 'https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=400&h=400&fit=crop',
   },
   {
     id: 5,
@@ -79,7 +80,7 @@ const tracks = [
     bpm: 128,
     genre: 'Electronic',
     mood: 'Dark',
-    waveform: '/waveforms/5.svg',
+    artwork: 'https://images.unsplash.com/photo-1487180144351-b8472da7d491?w=400&h=400&fit=crop',
   },
   {
     id: 6,
@@ -89,7 +90,27 @@ const tracks = [
     bpm: 110,
     genre: 'Pop',
     mood: 'Confident',
-    waveform: '/waveforms/6.svg',
+    artwork: 'https://images.unsplash.com/photo-1�459749411175-04bf5292ceea?w=400&h=400&fit=crop',
+  },
+  {
+    id: 7,
+    title: 'Jazz Lounge',
+    artist: 'Smooth Vibes',
+    duration: '5:18',
+    bpm: 92,
+    genre: 'Jazz',
+    mood: 'Calm',
+    artwork: 'https://images.unsplash.com/photo-1415201364774-f6f0bb35f28f?w=400&h=400&fit=crop',
+  },
+  {
+    id: 8,
+    title: 'Epic Journey',
+    artist: 'Cinematic Sounds',
+    duration: '6:22',
+    bpm: 75,
+    genre: 'Classical',
+    mood: 'Dramatic',
+    artwork: 'https://images.unsplash.com/photo-1507838153414-b4b713384a76?w=400&h=400&fit=crop',
   },
 ]
 
@@ -97,7 +118,16 @@ export default function BrowseMusicV2() {
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedGenre, setSelectedGenre] = useState('All Genres')
   const [selectedMood, setSelectedMood] = useState<string | null>(null)
-  const [hoveredTrack, setHoveredTrack] = useState<number | null>(null)
+  const [showVideoSync, setShowVideoSync] = useState(false)
+  const [videoFile, setVideoFile] = useState<File | null>(null)
+  const fileInputRef = useRef<HTMLInputElement>(null)
+
+  const handleVideoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (file) {
+      setVideoFile(file)
+    }
+  }
 
   return (
     <main className="min-h-screen bg-[#0A0A0A]">
@@ -147,7 +177,7 @@ export default function BrowseMusicV2() {
           </div>
 
           {/* Quick Filters - Moods */}
-          <div className="flex flex-wrap justify-center gap-3 mb-8">
+          <div className="flex flex-wrap justify-center gap-3">
             {moods.map((mood) => (
               <button
                 key={mood}
@@ -162,6 +192,70 @@ export default function BrowseMusicV2() {
               </button>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Video Sync Tool */}
+      <section className="relative py-8">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <button
+            onClick={() => setShowVideoSync(!showVideoSync)}
+            className="w-full group relative overflow-hidden"
+          >
+            <div className="absolute -inset-1 bg-gradient-to-r from-electric-cyan via-electric-blue to-electric-purple rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
+            <div className="relative flex items-center justify-center gap-3 p-6 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl border border-white/20 hover:border-white/30 transition-all">
+              <Video className="w-6 h-6 text-electric-cyan" />
+              <span className="text-lg font-semibold text-white">Video Sync Tool</span>
+              <span className="text-sm text-white/60">Preview tracks against your footage</span>
+            </div>
+          </button>
+
+          {/* Video Upload Area */}
+          {showVideoSync && (
+            <div className="mt-4 p-8 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl border border-white/20">
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="video/*"
+                onChange={handleVideoUpload}
+                className="hidden"
+              />
+              
+              {!videoFile ? (
+                <div
+                  onClick={() => fileInputRef.current?.click()}
+                  className="relative cursor-pointer group"
+                >
+                  <div className="absolute -inset-1 bg-gradient-to-r from-electric-blue to-electric-purple rounded-xl blur opacity-20 group-hover:opacity-40 transition"></div>
+                  <div className="relative flex flex-col items-center justify-center p-16 bg-white/5 border-2 border-dashed border-white/20 hover:border-white/40 rounded-xl transition-all">
+                    <Upload className="w-12 h-12 text-white/40 mb-4" />
+                    <p className="text-lg font-medium text-white mb-2">Drag a video to preview</p>
+                    <p className="text-sm text-white/50">or click here to select a file from your computer</p>
+                    <p className="text-xs text-white/30 mt-4">This video will not be uploaded to any server or cloud</p>
+                  </div>
+                </div>
+              ) : (
+                <div className="relative">
+                  <button
+                    onClick={() => setVideoFile(null)}
+                    className="absolute top-2 right-2 z-10 w-8 h-8 bg-black/60 hover:bg-black/80 rounded-full flex items-center justify-center transition-all"
+                  >
+                    <X className="w-5 h-5 text-white" />
+                  </button>
+                  <div className="aspect-video bg-black rounded-xl overflow-hidden">
+                    <video
+                      src={URL.createObjectURL(videoFile)}
+                      controls
+                      className="w-full h-full"
+                    />
+                  </div>
+                  <p className="text-sm text-white/60 mt-4 text-center">
+                    Click on any track below to preview it with your video
+                  </p>
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </section>
 
@@ -208,7 +302,7 @@ export default function BrowseMusicV2() {
               </div>
             </aside>
 
-            {/* Track List */}
+            {/* Track Grid - Boxed Layout */}
             <div className="flex-1">
               <div className="mb-6 flex items-center justify-between">
                 <div>
@@ -217,71 +311,67 @@ export default function BrowseMusicV2() {
                 </div>
               </div>
 
-              <div className="space-y-3">
-                {tracks.map((track, idx) => (
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                {tracks.map((track) => (
                   <div
                     key={track.id}
                     className="group relative"
-                    onMouseEnter={() => setHoveredTrack(track.id)}
-                    onMouseLeave={() => setHoveredTrack(null)}
                   >
                     {/* Glow effect on hover */}
-                    <div className="absolute -inset-[1px] bg-gradient-to-r from-electric-blue/0 via-electric-purple/30 to-electric-blue/0 rounded-2xl opacity-0 group-hover:opacity-100 blur-lg transition-opacity" />
+                    <div className="absolute -inset-1 bg-gradient-to-r from-electric-blue/0 via-electric-purple/40 to-electric-blue/0 rounded-2xl opacity-0 group-hover:opacity-100 blur-xl transition-opacity" />
                     
                     {/* Track Card */}
-                    <div className="relative flex items-center gap-4 p-4 bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10 group-hover:border-white/20 group-hover:bg-white/10 transition-all">
-                      {/* Play Button */}
-                      <button className="relative w-12 h-12 bg-gradient-to-br from-electric-blue/20 to-electric-purple/20 hover:from-electric-blue/40 hover:to-electric-purple/40 rounded-xl flex items-center justify-center transition-all group-hover:scale-110 border border-white/20">
-                        <Play className="w-5 h-5 text-white fill-white" />
-                      </button>
+                    <div className="relative bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10 group-hover:border-white/30 overflow-hidden transition-all group-hover:scale-105">
+                      {/* Album Artwork */}
+                      <div className="relative aspect-square overflow-hidden">
+                        <Image
+                          src={track.artwork}
+                          alt={track.title}
+                          fill
+                          className="object-cover group-hover:scale-110 transition-transform duration-500"
+                        />
+                        {/* Play overlay */}
+                        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                          <button className="w-16 h-16 bg-white/90 hover:bg-white rounded-full flex items-center justify-center transition-all hover:scale-110">
+                            <Play className="w-7 h-7 text-black fill-black ml-1" />
+                          </button>
+                        </div>
+                        {/* Duration badge */}
+                        <div className="absolute bottom-2 right-2 px-2 py-1 bg-black/60 backdrop-blur-sm rounded text-xs text-white">
+                          {track.duration}
+                        </div>
+                      </div>
 
                       {/* Track Info */}
-                      <div className="flex-1 min-w-0">
+                      <div className="p-4">
                         <h3 className="font-semibold text-white mb-1 truncate">
                           {track.title}
                         </h3>
-                        <p className="text-sm text-white/50 truncate">
+                        <p className="text-sm text-white/50 truncate mb-3">
                           {track.artist}
                         </p>
-                      </div>
 
-                      {/* Waveform Visualization */}
-                      <div className="hidden md:flex items-center gap-1 flex-1 max-w-xs h-12">
-                        {[...Array(40)].map((_, i) => (
-                          <div
-                            key={i}
-                            className="flex-1 bg-gradient-to-t from-electric-blue/40 to-electric-purple/40 rounded-full transition-all"
-                            style={{
-                              height: `${30 + Math.sin(i * 0.3) * 50}%`,
-                              opacity: hoveredTrack === track.id ? 1 : 0.4,
-                            }}
-                          />
-                        ))}
-                      </div>
-
-                      {/* Meta Info */}
-                      <div className="hidden lg:flex items-center gap-6 text-sm text-white/50">
-                        <div className="flex items-center gap-2">
-                          <Clock className="w-4 h-4" />
-                          {track.duration}
+                        {/* Meta tags */}
+                        <div className="flex flex-wrap gap-2 mb-3">
+                          <span className="px-2 py-1 bg-white/10 rounded text-xs text-white/70">
+                            {track.genre}
+                          </span>
+                          <span className="px-2 py-1 bg-white/10 rounded text-xs text-white/70">
+                            {track.bpm} BPM
+                          </span>
                         </div>
-                        <div className="flex items-center gap-2">
-                          <Music className="w-4 h-4" />
-                          {track.bpm} BPM
-                        </div>
-                      </div>
 
-                      {/* Action Buttons */}
-                      <div className="flex items-center gap-2">
-                        <button className="w-10 h-10 bg-white/5 hover:bg-white/10 rounded-lg flex items-center justify-center transition-all border border-white/10 hover:border-white/20">
-                          <Heart className="w-4 h-4 text-white/60 hover:text-white" />
-                        </button>
-                        <button className="w-10 h-10 bg-white/5 hover:bg-white/10 rounded-lg flex items-center justify-center transition-all border border-white/10 hover:border-white/20">
-                          <Share2 className="w-4 h-4 text-white/60 hover:text-white" />
-                        </button>
-                        <button className="w-10 h-10 bg-white/5 hover:bg-white/10 rounded-lg flex items-center justify-center transition-all border border-white/10 hover:border-white/20">
-                          <MoreVertical className="w-4 h-4 text-white/60 hover:text-white" />
-                        </button>
+                        {/* Action buttons */}
+                        <div className="flex gap-2">
+                          <button className="flex-1 px-3 py-2 bg-white/10 hover:bg-white/20 rounded-lg text-xs font-medium text-white transition-all flex items-center justify-center gap-1">
+                            <Heart className="w-3 h-3" />
+                            Save
+                          </button>
+                          <button className="flex-1 px-3 py-2 bg-gradient-to-r from-electric-blue to-electric-purple hover:shadow-lg hover:shadow-electric-blue/50 rounded-lg text-xs font-medium text-white transition-all flex items-center justify-center gap-1">
+                            <Download className="w-3 h-3" />
+                            License
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -289,7 +379,7 @@ export default function BrowseMusicV2() {
               </div>
 
               {/* Load More */}
-              <div className="mt-8 text-center">
+              <div className="mt-12 text-center">
                 <button className="px-8 py-3 bg-white/5 hover:bg-white/10 backdrop-blur-xl border border-white/10 hover:border-white/20 rounded-xl text-white font-medium transition-all">
                   Load More Tracks
                 </button>
