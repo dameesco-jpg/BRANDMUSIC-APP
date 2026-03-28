@@ -4,26 +4,26 @@ const steps = [
   {
     icon: Search,
     number: '01',
-    title: 'Search with AI',
-    description: 'Describe what you need in plain language. Our AI understands mood, energy, and context.',
+    title: 'Brief Your Sound',
+    description: 'Describe your brand personality and campaign goals. Our AI understands positioning, target audience, and competitive landscape.',
   },
   {
     icon: Wand2,
     number: '02',
-    title: 'Preview & Sync',
-    description: 'Upload your video and instantly preview tracks synced to your footage—before you even license.',
+    title: 'Present to Stakeholders',
+    description: 'Upload client footage and preview curated track selections synced to video—before licensing. Get buy-in faster.',
   },
   {
     icon: Download,
     number: '03',
-    title: 'Download Stems',
-    description: 'Get the full track plus separated stems. Customize the mix to fit your exact vision.',
+    title: 'Customize for Brand Fit',
+    description: 'Access separated stems to refine the mix. Adjust energy levels, emphasize brand-appropriate elements, ensure sonic consistency.',
   },
   {
     icon: CheckCircle2,
     number: '04',
-    title: 'Use Everywhere',
-    description: 'One license covers all platforms. No hidden fees, no per-use charges, no royalties.',
+    title: 'Deploy Across Touchpoints',
+    description: 'One master license covers your campaign across channels—paid media, social, experiential, internal. Clear licensing, predictable costs.',
   },
 ]
 
@@ -43,13 +43,13 @@ export default function HowItWorks() {
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
         <div className="text-center mb-20">
           <div className="inline-flex items-center gap-2 px-3 py-1 bg-pink-500/10 border border-pink-500/30 rounded-full text-pink-400 text-xs font-medium mb-6">
-            Simple Process
+            Professional Workflow
           </div>
           <h2 className="font-display font-bold text-[36px] md:text-[52px] mb-6 text-white leading-[1.1]">
             How It Works
           </h2>
           <p className="text-base md:text-lg text-text-secondary max-w-2xl mx-auto">
-            From search to soundtrack in minutes
+            From brand brief to campaign deployment—built for agencies and in-house teams
           </p>
         </div>
 
