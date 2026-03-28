@@ -4,26 +4,26 @@ const steps = [
   {
     icon: Search,
     number: '01',
-    title: 'Describe Your Vision',
-    description: 'Tell our AI what you need in plain English. "Upbeat indie for a product launch" or "calm piano for meditation app"—we understand context.',
+    title: 'Search with AI',
+    description: 'Describe what you need in plain language. Our AI understands mood, energy, and context.',
   },
   {
     icon: Wand2,
     number: '02',
-    title: 'AI Finds Perfect Matches',
-    description: 'Our AI analyzes mood, energy, genre, and brand fit to surface tracks that sound like they were made for your project.',
+    title: 'Preview & Sync',
+    description: 'Upload your video and instantly preview tracks synced to your footage—before you even license.',
   },
   {
     icon: Download,
     number: '03',
-    title: 'Download & Customize',
-    description: 'Get instant access to high-quality stems. Mix, edit, and make it yours. All tracks are cleared for commercial use.',
+    title: 'Download Stems',
+    description: 'Get the full track plus separated stems. Customize the mix to fit your exact vision.',
   },
   {
     icon: CheckCircle2,
     number: '04',
-    title: 'Publish With Confidence',
-    description: 'Use your music anywhere—YouTube, TikTok, podcasts, ads. Full licensing included, no extra fees or royalties.',
+    title: 'Use Everywhere',
+    description: 'One license covers all platforms. No hidden fees, no per-use charges, no royalties.',
   },
 ]
 
@@ -51,49 +51,10 @@ export default function HowItWorks() {
             How It Works
           </h2>
           <p className="text-base md:text-lg text-text-secondary max-w-2xl mx-auto">
-            From search to soundtrack in minutes. Our AI-powered workflow makes music licensing effortless.
+            From search to soundtrack in minutes
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
           {/* Connecting line */}
-          <div className="hidden lg:block absolute top-16 left-0 right-0 h-0.5 bg-gradient-to-r from-pink-500/0 via-pink-500/30 to-pink-500/0" />
-          
-          {steps.map((step, idx) => (
-            <div key={step.number} className="relative group">
-              {/* Step card */}
-              <div className="relative p-6 bg-surface-elevated/60 rounded-2xl border border-pink-500/20 hover:border-pink-500/50 transition-all backdrop-blur-sm h-full">
-                {/* Number badge */}
-                <div className="absolute -top-4 -left-4 w-12 h-12 bg-gradient-to-br from-pink-500 to-fuchsia-600 rounded-full flex items-center justify-center shadow-lg shadow-pink-500/50 group-hover:scale-110 transition-transform">
-                  <span className="text-white font-bold text-sm">{step.number}</span>
-                </div>
-                
-                {/* Icon */}
-                <div className="w-14 h-14 bg-gradient-to-br from-pink-500/20 to-fuchsia-500/20 rounded-xl flex items-center justify-center mb-6 mt-4 group-hover:scale-110 transition-transform border border-pink-500/30">
-                  <step.icon className="w-7 h-7 text-pink-400" />
-                </div>
-                
-                {/* Content */}
-                <h3 className="font-semibold text-lg text-white mb-3">
-                  {step.title}
-                </h3>
-                <p className="text-sm text-text-secondary leading-relaxed">
-                  {step.description}
-                </p>
-              </div>
-              
-              {/* Connector arrow (desktop only) */}
-              {idx < steps.length - 1 && (
-                <div className="hidden lg:block absolute top-16 -right-4 w-8 h-8 text-pink-500/30">
-                  <svg className="w-full h-full" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
+          <div className="hidden lg:block absolute top-16 left-0 right-0 h-0.5 bg-gradient-to-r from-pin
