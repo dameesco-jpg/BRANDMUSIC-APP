@@ -12,7 +12,8 @@ const plans = [
     period: 'forever',
     description: 'Perfect for trying out the platform',
     icon: Sparkles,
-    color: 'from-electric-cyan to-electric-blue',
+    color: 'from-electric-cyan/60 to-electric-blue/60',
+    accentColor: 'electric-cyan',
     features: [
       'Browse 50,000+ tracks',
       'AI-powered search',
@@ -29,7 +30,8 @@ const plans = [
     period: 'per seat/month',
     description: 'For agencies and creative teams',
     icon: Zap,
-    color: 'from-electric-blue to-electric-purple',
+    color: 'from-electric-blue/60 to-electric-purple/60',
+    accentColor: 'electric-blue',
     features: [
       'Everything in Free',
       'Unlimited downloads',
@@ -48,7 +50,8 @@ const plans = [
     period: 'contact us',
     description: 'For large organizations',
     icon: Crown,
-    color: 'from-electric-purple to-fuchsia-500',
+    color: 'from-electric-purple/60 to-violet-500/60',
+    accentColor: 'electric-purple',
     features: [
       'Everything in Pro',
       'Custom music commissions',
@@ -67,21 +70,21 @@ export default function PricingSectionV2() {
   const [hoveredPlan, setHoveredPlan] = useState<number | null>(null)
 
   return (
-    <section className="relative py-32 bg-gradient-to-b from-[#0A0A0A] via-[#0A1520] to-[#0A0A0A] overflow-hidden">
-      {/* Background effects */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-electric-blue/10 via-transparent to-transparent" />
+    <section className="relative py-32 bg-gradient-to-b from-[#0A1015] via-[#0A0A0A] to-[#0A0A0A] overflow-hidden">
+      {/* Subtle background gradient */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-electric-blue/5 via-transparent to-transparent" />
       
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
         {/* Section header */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-electric-blue/10 border border-electric-blue/30 rounded-full text-sm font-medium mb-6 backdrop-blur-xl">
-            <Sparkles className="w-4 h-4 text-electric-cyan" />
-            <span className="text-electric-cyan">Simple, Transparent Pricing</span>
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-electric-blue/10 border border-electric-blue/20 rounded-full text-sm font-medium mb-6 backdrop-blur-xl">
+            <Sparkles className="w-4 h-4 text-electric-blue/80" />
+            <span className="text-electric-blue/90">Simple, Transparent Pricing</span>
           </div>
           <h2 className="font-display font-bold text-[40px] md:text-[56px] mb-6 text-white leading-[1.1]">
             Choose Your Plan
           </h2>
-          <p className="text-lg text-white/70 max-w-2xl mx-auto">
+          <p className="text-lg text-white/60 max-w-2xl mx-auto">
             Start free, upgrade when you need more. No hidden fees.
           </p>
         </div>
@@ -98,19 +101,19 @@ export default function PricingSectionV2() {
               {/* Popular badge */}
               {plan.popular && (
                 <div className="absolute -top-5 left-1/2 -translate-x-1/2 z-20">
-                  <div className="px-4 py-1.5 bg-gradient-to-r from-electric-blue to-electric-cyan rounded-full text-white text-xs font-bold shadow-lg shadow-electric-blue/50">
+                  <div className="px-4 py-1.5 bg-gradient-to-r from-electric-blue/80 to-electric-purple/80 rounded-full text-white text-xs font-bold backdrop-blur-xl border border-white/20">
                     MOST POPULAR
                   </div>
                 </div>
               )}
 
-              {/* Glowing border effect */}
-              <div className={`absolute -inset-[1px] bg-gradient-to-b ${plan.color} rounded-3xl opacity-0 group-hover:opacity-100 blur-xl transition-all duration-500 ${plan.popular ? 'opacity-50' : ''}`} />
+              {/* Subtle glowing border effect */}
+              <div className={`absolute -inset-[1px] bg-gradient-to-b ${plan.color} rounded-3xl opacity-0 group-hover:opacity-30 blur-lg transition-all duration-500 ${plan.popular ? 'opacity-20' : ''}`} />
               
               {/* Card */}
               <div className={`relative h-full p-8 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-2xl rounded-3xl border transition-all duration-500 ${
                 plan.popular 
-                  ? 'border-electric-blue/50 shadow-2xl shadow-electric-blue/20' 
+                  ? 'border-electric-blue/30 shadow-xl shadow-electric-blue/10' 
                   : 'border-white/10 hover:border-white/20'
               }`}>
                 {/* Icon */}
@@ -124,11 +127,11 @@ export default function PricingSectionV2() {
                 </h3>
                 
                 {/* Description */}
-                <p className="text-sm text-white/60 mb-6">
+                <p className="text-sm text-white/50 mb-6">
                   {plan.description}
                 </p>
 
-                {/* Price - FIXED: Always white, no gradient on hover */}
+                {/* Price - Always white and legible */}
                 <div className="mb-8">
                   <div className="flex items-baseline gap-2">
                     <span className="text-5xl font-bold text-white">
@@ -153,7 +156,7 @@ export default function PricingSectionV2() {
                     size="lg" 
                     className={`w-full mb-8 ${
                       plan.popular 
-                        ? 'bg-gradient-to-r from-electric-blue to-electric-cyan hover:shadow-lg hover:shadow-electric-blue/50' 
+                        ? 'bg-gradient-to-r from-electric-blue/80 to-electric-purple/80 hover:from-electric-blue hover:to-electric-purple border border-white/20' 
                         : 'bg-white/10 hover:bg-white/20 border border-white/20'
                     }`}
                   >
@@ -165,10 +168,10 @@ export default function PricingSectionV2() {
                 <div className="space-y-4">
                   {plan.features.map((feature) => (
                     <div key={feature} className="flex items-start gap-3">
-                      <div className={`w-5 h-5 bg-gradient-to-br ${plan.color} rounded-full flex items-center justify-center flex-shrink-0 mt-0.5`}>
+                      <div className={`w-5 h-5 bg-gradient-to-br ${plan.color} opacity-60 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5`}>
                         <Check className="w-3 h-3 text-white" />
                       </div>
-                      <span className="text-sm text-white/80">
+                      <span className="text-sm text-white/70">
                         {feature}
                       </span>
                     </div>
@@ -181,7 +184,7 @@ export default function PricingSectionV2() {
 
         {/* Bottom note */}
         <div className="text-center mt-12">
-          <p className="text-sm text-white/50">
+          <p className="text-sm text-white/40">
             All plans include 14-day free trial. No credit card required.
           </p>
         </div>
