@@ -39,7 +39,7 @@ const detailedFeatures = [
   {
     icon: Wand2,
     title: 'Conversational AI Search',
-    description: 'Our AI understands nuanced descriptions like "confident but not aggressive" or "warm, nostalgic with forward momentum." No more scrolling through endless tracks—just describe what you need.',
+    description: 'Our AI understands nuanced descriptions like confident but not aggressive or warm nostalgic with forward momentum. No more scrolling through endless tracks just describe what you need.',
     benefits: [
       'Natural language queries',
       'Context-aware recommendations',
@@ -52,7 +52,7 @@ const detailedFeatures = [
   {
     icon: Video,
     title: 'Free Video Sync Preview',
-    description: 'Upload your video and instantly preview how tracks sound synced to your footage—before you even license. Present multiple options to clients and get approvals faster.',
+    description: 'Upload your video and instantly preview how tracks sound synced to your footage before you even license. Present multiple options to clients and get approvals faster.',
     benefits: [
       'Drag-and-drop video upload',
       'Real-time audio sync',
@@ -136,15 +136,11 @@ const additionalFeatures = [
 ]
 
 export default function FeaturesPage() {
-  const [activeFeature, setActiveFeature] = useState(0)
-
   return (
     <main className="min-h-screen bg-[#0A0A0A]">
       <Navigation />
       
-      {/* Hero Section - WITH BACKGROUND TREATMENTS */}
       <section className="relative pt-32 pb-20 overflow-hidden">
-        {/* BACKGROUND EFFECTS - THESE ARE THE CHANGES */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-electric-blue/10 via-transparent to-transparent" />
         <div className="absolute top-20 left-1/4 w-[600px] h-[600px] bg-electric-purple/10 rounded-full blur-[120px]" />
         <div className="absolute top-40 right-1/4 w-[600px] h-[600px] bg-electric-cyan/10 rounded-full blur-[120px]" />
@@ -182,9 +178,7 @@ export default function FeaturesPage() {
         </div>
       </section>
 
-      {/* Detailed Features - WITH PURPLE TINT BACKGROUND */}
       <section className="relative py-24 bg-gradient-to-b from-transparent via-[#0A0515]/30 to-transparent overflow-hidden">
-        {/* FLOATING ACCENT ORBS - THESE ARE NEW */}
         <div className="absolute left-0 top-1/4 w-[500px] h-[500px] bg-electric-purple/5 rounded-full blur-[100px]" />
         <div className="absolute right-0 bottom-1/4 w-[500px] h-[500px] bg-electric-cyan/5 rounded-full blur-[100px]" />
         
@@ -249,9 +243,7 @@ export default function FeaturesPage() {
         </div>
       </section>
 
-      {/* Additional Features - WITH DARKER BACKGROUND */}
       <section className="relative py-24 bg-gradient-to-b from-[#0A0A0A] via-[#0A0A15] to-[#0A0A0A] overflow-hidden">
-        {/* MORE ACCENT ORBS - THESE ARE NEW */}
         <div className="absolute right-0 top-1/3 w-[600px] h-[600px] bg-electric-blue/5 rounded-full blur-[120px]" />
         <div className="absolute left-0 bottom-1/3 w-[600px] h-[600px] bg-electric-cyan/5 rounded-full blur-[120px]" />
         
@@ -274,3 +266,49 @@ export default function FeaturesPage() {
                     <feature.icon className="w-6 h-6 text-white" />
                   </div>
                   <h3 className="font-bold text-xl text-white mb-3">{feature.title}</h3>
+                  <p className="text-white/60 leading-relaxed">{feature.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="relative py-24 overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-electric-purple/5 via-transparent to-transparent" />
+        
+        <div className="relative z-10 max-w-4xl mx-auto px-6 lg:px-8 text-center">
+          <div className="relative">
+            <div className="absolute -inset-4 bg-gradient-to-r from-electric-blue via-electric-purple to-electric-cyan rounded-3xl blur-2xl opacity-20" />
+            <div className="relative p-12 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-3xl border border-white/20">
+              <h2 className="font-display font-bold text-[36px] md:text-[48px] mb-6 text-white leading-[1.1]">
+                Ready to Get Started?
+              </h2>
+              <p className="text-lg text-white/70 mb-8 max-w-2xl mx-auto">
+                Join hundreds of agencies and brands using AI to find the perfect soundtrack in minutes.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Link href="/signup">
+                  <Button size="lg" className="bg-gradient-to-r from-electric-blue to-electric-purple hover:shadow-xl hover:shadow-electric-blue/30">
+                    Start Free Trial
+                    <ArrowRight className="ml-2 w-5 h-5" />
+                  </Button>
+                </Link>
+                <Link href="/library">
+                  <Button variant="outline" size="lg" className="border-white/20 hover:border-white/40">
+                    Browse Music
+                  </Button>
+                </Link>
+              </div>
+              <p className="text-sm text-white/40 mt-6">
+                No credit card required • 14-day free trial
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
+    </main>
+  )
+}
