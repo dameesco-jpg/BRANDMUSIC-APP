@@ -18,9 +18,9 @@ export default function Navigation() {
             <Image
               src="/BrandMusic_H.png"
               alt="Brandmusic"
-              width={200}
-              height={50}
-              className="h-10 w-auto"
+              width={280}
+              height={70}
+              className="h-14 w-auto"
               priority
             />
           </Link>
@@ -63,62 +63,3 @@ export default function Navigation() {
             aria-label="Toggle menu"
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile Menu */}
-      {isOpen && (
-        <div className="md:hidden bg-[#0A0A0A] border-t border-white/5">
-          <div className="px-6 py-4 space-y-4">
-            <Link
-              href="/library"
-              className="block text-white/70 hover:text-white transition-colors py-2"
-              onClick={() => setIsOpen(false)}
-            >
-              Browse Music
-            </Link>
-            <Link
-              href="/features"
-              className="block text-white/70 hover:text-white transition-colors py-2"
-              onClick={() => setIsOpen(false)}
-            >
-              Features
-            </Link>
-            <Link
-              href="/pricing"
-              className="block text-white/70 hover:text-white transition-colors py-2"
-              onClick={() => setIsOpen(false)}
-            >
-              Pricing
-            </Link>
-            <Link
-              href="/services"
-              className="block text-white/70 hover:text-white transition-colors py-2"
-              onClick={() => setIsOpen(false)}
-            >
-              Services
-            </Link>
-            <Link
-              href="/enterprise"
-              className="block text-white/70 hover:text-white transition-colors py-2"
-              onClick={() => setIsOpen(false)}
-            >
-              For Enterprise
-            </Link>
-            <div className="pt-4 border-t border-white/5 space-y-3">
-              <Link href="/login" onClick={() => setIsOpen(false)}>
-                <button className="w-full text-left text-white/70 hover:text-white transition-colors py-2">
-                  Log in
-                </button>
-              </Link>
-              <Link href="/signup" onClick={() => setIsOpen(false)}>
-                <Button className="w-full">Start Free</Button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      )}
-    </nav>
-  )
-}
