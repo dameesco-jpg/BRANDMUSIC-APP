@@ -37,7 +37,7 @@ const plans = [
       'Everything in Free',
       'Unlimited downloads',
       'Full stem access',
-      'Commercial licensing',
+      'Commercial licensing (pay-per-use)',
       'Remove watermarks',
       'Team collaboration',
       'Priority support',
@@ -80,6 +80,10 @@ const faqs = [
     answer: 'Yes! You can cancel your subscription at any time from your account settings. There are no long-term commitments or cancellation fees.',
   },
   {
+    question: 'How does pay-per-use licensing work?',
+    answer: 'Pro plan members pay a monthly platform fee ($45/seat) for unlimited access to browse, download, and preview tracks. When you\'re ready to use a track commercially, you purchase a license separately based on your usage needs.',
+  },
+  {
     question: 'What types of licenses do you offer?',
     answer: 'We offer commercial licenses that cover usage across all platforms including paid advertising, social media, broadcast, and more. Enterprise plans include custom licensing terms.',
   },
@@ -103,7 +107,7 @@ const comparisonFeatures = [
   { name: 'Video Sync Tool', free: true, pro: true, enterprise: true },
   { name: 'Watermarked Downloads', free: true, pro: false, enterprise: false },
   { name: 'Unlimited Downloads', free: false, pro: true, enterprise: true },
-  { name: 'Commercial Licensing', free: false, pro: true, enterprise: true },
+  { name: 'Commercial Licensing (Pay-Per-Use)', free: false, pro: true, enterprise: true },
   { name: 'Full Stem Access', free: false, pro: true, enterprise: true },
   { name: 'Team Collaboration', free: false, pro: true, enterprise: true },
   { name: 'Priority Support', free: false, pro: true, enterprise: true },
