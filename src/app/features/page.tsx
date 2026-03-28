@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Navigation from '@/components/ui/Navigation'
 import Footer from '@/components/ui/Footer'
-import { Sparkles, Search, Video, Sliders, Users, Wand2, Music, Database, Zap, Shield, BarChart, Headphones, ArrowRight } from 'lucide-react'
+import { Sparkles, Search, Video, Sliders, Users, Wand2, Music, Database, Zap, Shield, BarChart, Headphones, ArrowRight, Code } from 'lucide-react'
 import Link from 'next/link'
 import Button from '@/components/ui/Button'
 import Image from 'next/image'
@@ -126,6 +126,12 @@ const additionalFeatures = [
     title: 'Custom Commissions',
     description: 'Need something truly unique? Our team of composers can create original music tailored to your brand.',
     color: 'from-amber-500 to-orange-500',
+  },
+  {
+    icon: Code,
+    title: 'API for Live Commerce',
+    description: 'Integrate our music library directly into your e-commerce platform, live shopping streams, and product pages via API.',
+    color: 'from-indigo-500 to-blue-500',
   },
 ]
 
