@@ -17,9 +17,9 @@ export default function Navigation() {
             <Image
               src="/BrandMusic_H.png"
               alt="Brandmusic"
-              width={280}
-              height={70}
-              className="h-14 w-auto"
+              width={400}
+              height={100}
+              className="h-20 w-auto"
               priority
             />
           </Link>
