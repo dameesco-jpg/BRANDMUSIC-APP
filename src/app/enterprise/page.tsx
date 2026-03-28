@@ -86,12 +86,14 @@ const useCases = [
 
 export default function EnterprisePage() {
   return (
-    <main className="min-h-screen bg-background">
+    <main className="min-h-screen bg-[#0A0A0A]">
       <Navigation />
 
-      {/* Hero */}
-      <section className="relative pt-32 pb-20 border-b border-white/5">
-        <div className="absolute inset-0 bg-gradient-mesh opacity-30"></div>
+      <section className="relative pt-32 pb-20 overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-electric-blue/10 via-transparent to-transparent" />
+        <div className="absolute top-20 left-1/4 w-[600px] h-[600px] bg-electric-purple/10 rounded-full blur-[120px]" />
+        <div className="absolute top-40 right-1/4 w-[600px] h-[600px] bg-electric-cyan/10 rounded-full blur-[120px]" />
+        
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -99,26 +101,26 @@ export default function EnterprisePage() {
             transition={{ duration: 0.6 }}
             className="text-center max-w-4xl mx-auto"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-surface-elevated/50 backdrop-blur-sm rounded-full border border-electric-blue/30 mb-8">
-              <Building2 className="w-4 h-4 text-electric-blue" />
-              <span className="text-sm font-medium text-electric-blue">Enterprise Solutions</span>
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-electric-purple/10 border border-electric-purple/20 rounded-full text-sm font-medium mb-8 backdrop-blur-xl">
+              <Building2 className="w-4 h-4 text-electric-purple/80" />
+              <span className="text-electric-purple/90">Enterprise Solutions</span>
             </div>
 
-            <h1 className="font-display font-bold text-5xl md:text-6xl mb-6">
+            <h1 className="font-display font-bold text-5xl md:text-6xl mb-6 text-white leading-[1.1]">
               Scale Your Brand Sound
               <br />
-              <span className="gradient-blue-purple text-gradient">Operations</span>
+              <span className="bg-gradient-to-r from-electric-blue to-electric-purple bg-clip-text text-transparent">Operations</span>
             </h1>
 
-            <p className="text-xl md:text-2xl text-text-secondary mb-12">
+            <p className="text-xl md:text-2xl text-white/60 mb-12">
               Advanced tools, team management, and dedicated support for agencies and brands managing complex sonic ecosystems.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg">
+              <Button size="lg" className="bg-gradient-to-r from-electric-blue to-electric-purple hover:shadow-xl hover:shadow-electric-blue/30">
                 Schedule Demo
               </Button>
-              <Button variant="outline" size="lg">
+              <Button variant="outline" size="lg" className="border-white/20 hover:border-white/40">
                 Contact Sales
               </Button>
             </div>
@@ -126,14 +128,13 @@ export default function EnterprisePage() {
         </div>
       </section>
 
-      {/* Enterprise Features */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="font-display font-bold text-4xl md:text-5xl mb-6">
+            <h2 className="font-display font-bold text-4xl md:text-5xl mb-6 text-white">
               Enterprise-Grade Features
             </h2>
-            <p className="text-xl text-text-secondary max-w-3xl mx-auto">
+            <p className="text-xl text-white/60 max-w-3xl mx-auto">
               Everything your team needs to manage brand sound at scale
             </p>
           </div>
@@ -152,17 +153,17 @@ export default function EnterprisePage() {
                     <feature.icon className="w-7 h-7 text-electric-blue" />
                   </div>
 
-                  <h3 className="font-display font-bold text-2xl mb-3">
+                  <h3 className="font-display font-bold text-2xl mb-3 text-white">
                     {feature.title}
                   </h3>
 
-                  <p className="text-text-secondary mb-6">
+                  <p className="text-white/70 mb-6">
                     {feature.description}
                   </p>
 
                   <ul className="space-y-2">
                     {feature.features.map((item, i) => (
-                      <li key={i} className="flex items-start gap-2 text-sm text-text-tertiary">
+                      <li key={i} className="flex items-start gap-2 text-sm text-white/60">
                         <div className="w-1.5 h-1.5 rounded-full bg-electric-blue mt-2 flex-shrink-0" />
                         <span>{item}</span>
                       </li>
@@ -175,14 +176,13 @@ export default function EnterprisePage() {
         </div>
       </section>
 
-      {/* Use Cases */}
-      <section className="py-20 bg-surface/30 border-y border-white/5">
+      <section className="py-20 bg-gradient-to-b from-transparent via-[#0A0515]/30 to-transparent border-y border-white/5">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="font-display font-bold text-4xl md:text-5xl mb-6">
+            <h2 className="font-display font-bold text-4xl md:text-5xl mb-6 text-white">
               Built for Scale
             </h2>
-            <p className="text-xl text-text-secondary max-w-3xl mx-auto">
+            <p className="text-xl text-white/60 max-w-3xl mx-auto">
               Trusted by teams managing complex brand sound ecosystems
             </p>
           </div>
@@ -197,10 +197,10 @@ export default function EnterprisePage() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
                 <Card className="p-8 text-center h-full">
-                  <h3 className="font-display font-bold text-2xl mb-4">
+                  <h3 className="font-display font-bold text-2xl mb-4 text-white">
                     {useCase.title}
                   </h3>
-                  <p className="text-text-secondary mb-8">
+                  <p className="text-white/70 mb-8">
                     {useCase.description}
                   </p>
                   <div className="grid grid-cols-3 gap-4">
@@ -209,7 +209,7 @@ export default function EnterprisePage() {
                         <div className="font-display font-bold text-2xl text-electric-blue mb-1">
                           {stat.value}
                         </div>
-                        <div className="text-xs text-text-tertiary">
+                        <div className="text-xs text-white/50">
                           {stat.label}
                         </div>
                       </div>
@@ -222,15 +222,14 @@ export default function EnterprisePage() {
         </div>
       </section>
 
-      {/* Premium Services */}
       <section className="py-20 border-t border-white/5">
         <div className="max-w-4xl mx-auto px-6 lg:px-8">
-          <Card className="p-8 lg:p-12 bg-gradient-to-br from-surface-elevated to-surface">
+          <Card className="p-8 lg:p-12 bg-gradient-to-br from-white/10 to-white/5">
             <div className="text-center mb-8">
-              <h2 className="font-display font-bold text-3xl mb-4">
+              <h2 className="font-display font-bold text-3xl mb-4 text-white">
                 Premium Services for Enterprise Clients
               </h2>
-              <p className="text-text-secondary text-lg">
+              <p className="text-white/70 text-lg">
                 Beyond our platform, we offer custom sonic solutions for brands that need something truly unique.
               </p>
             </div>
@@ -242,7 +241,7 @@ export default function EnterprisePage() {
                 </div>
                 <div>
                   <h3 className="font-semibold text-white mb-1">Custom Music Commissions</h3>
-                  <p className="text-sm text-text-secondary">Original compositions tailored to your brand</p>
+                  <p className="text-sm text-white/60">Original compositions tailored to your brand</p>
                 </div>
               </div>
 
@@ -252,7 +251,7 @@ export default function EnterprisePage() {
                 </div>
                 <div>
                   <h3 className="font-semibold text-white mb-1">Sonic Branding Packages</h3>
-                  <p className="text-sm text-text-secondary">Complete sonic identity systems</p>
+                  <p className="text-sm text-white/60">Complete sonic identity systems</p>
                 </div>
               </div>
 
@@ -262,7 +261,7 @@ export default function EnterprisePage() {
                 </div>
                 <div>
                   <h3 className="font-semibold text-white mb-1">Audio Logo Creation</h3>
-                  <p className="text-sm text-text-secondary">Memorable sonic signatures</p>
+                  <p className="text-sm text-white/60">Memorable sonic signatures</p>
                 </div>
               </div>
 
@@ -272,14 +271,14 @@ export default function EnterprisePage() {
                 </div>
                 <div>
                   <h3 className="font-semibold text-white mb-1">Brand Sound Strategy</h3>
-                  <p className="text-sm text-text-secondary">Strategic sonic identity consultation</p>
+                  <p className="text-sm text-white/60">Strategic sonic identity consultation</p>
                 </div>
               </div>
             </div>
 
             <div className="text-center">
               <Link href="/services">
-                <Button variant="outline" size="lg">
+                <Button variant="outline" size="lg" className="border-white/20 hover:border-white/40">
                   View All Services
                 </Button>
               </Link>
@@ -288,14 +287,13 @@ export default function EnterprisePage() {
         </div>
       </section>
 
-      {/* Security */}
-      <section className="py-20 bg-surface/30 border-t border-white/5">
+      <section className="py-20 bg-gradient-to-b from-transparent via-[#0A0515]/20 to-transparent border-t border-white/5">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="font-display font-bold text-4xl mb-4">
+            <h2 className="font-display font-bold text-4xl mb-4 text-white">
               Enterprise-Grade Security
             </h2>
-            <p className="text-xl text-text-secondary max-w-2xl mx-auto">
+            <p className="text-xl text-white/60 max-w-2xl mx-auto">
               Built with security and compliance at the core
             </p>
           </div>
@@ -312,7 +310,7 @@ export default function EnterprisePage() {
                 <h3 className="font-semibold text-white mb-2">
                   {item.title}
                 </h3>
-                <p className="text-text-tertiary text-sm">
+                <p className="text-white/50 text-sm">
                   {item.desc}
                 </p>
               </Card>
@@ -321,23 +319,23 @@ export default function EnterprisePage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="relative py-32 bg-surface">
-        <div className="absolute inset-0 bg-gradient-mesh opacity-40"></div>
+      <section className="relative py-32 overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-electric-purple/5 via-transparent to-transparent" />
+        
         <div className="relative max-w-4xl mx-auto px-6 lg:px-8 text-center">
-          <h2 className="font-display font-bold text-5xl mb-6">
+          <h2 className="font-display font-bold text-5xl mb-6 text-white leading-[1.1]">
             Ready to scale your
             <br />
-            <span className="gradient-blue-purple text-gradient">brand sound operations?</span>
+            <span className="bg-gradient-to-r from-electric-blue to-electric-purple bg-clip-text text-transparent">brand sound operations?</span>
           </h2>
-          <p className="text-xl text-text-secondary mb-8">
+          <p className="text-xl text-white/60 mb-8">
             Talk to our team about Enterprise pricing and custom solutions.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg">
+            <Button size="lg" className="bg-gradient-to-r from-electric-blue to-electric-purple hover:shadow-xl hover:shadow-electric-blue/30">
               Schedule Demo
             </Button>
-            <Button variant="outline" size="lg">
+            <Button variant="outline" size="lg" className="border-white/20 hover:border-white/40">
               Contact Sales
             </Button>
           </div>
