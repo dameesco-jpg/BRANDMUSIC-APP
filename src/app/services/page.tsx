@@ -69,17 +69,15 @@ export default function ServicesPage() {
     <main className="min-h-screen bg-[#0A0A0A]">
       <Navigation />
       
-      {/* Hero Section */}
       <section className="relative pt-32 pb-20 overflow-hidden">
-        {/* Background effects */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-teal-500/10 via-transparent to-transparent" />
-        <div className="absolute top-20 left-1/4 w-[600px] h-[600px] bg-teal-500/10 rounded-full blur-[120px]" />
-        <div className="absolute top-40 right-1/4 w-[600px] h-[600px] bg-cyan-500/10 rounded-full blur-[120px]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-electric-blue/10 via-transparent to-transparent" />
+        <div className="absolute top-20 left-1/4 w-[600px] h-[600px] bg-electric-purple/10 rounded-full blur-[120px]" />
+        <div className="absolute top-40 right-1/4 w-[600px] h-[600px] bg-electric-cyan/10 rounded-full blur-[120px]" />
         
         <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-teal-500/10 border border-teal-500/20 rounded-full text-sm font-medium mb-6 backdrop-blur-xl">
-            <Sparkles className="w-4 h-4 text-teal-400" />
-            <span className="text-teal-400">Premium Services</span>
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-electric-purple/10 border border-electric-purple/20 rounded-full text-sm font-medium mb-6 backdrop-blur-xl">
+            <Sparkles className="w-4 h-4 text-electric-purple/80" />
+            <span className="text-electric-purple/90">Premium Services</span>
           </div>
           
           <h1 className="font-display font-bold text-[48px] md:text-[72px] mb-6 text-white leading-[1.1]">
@@ -91,7 +89,7 @@ export default function ServicesPage() {
           </p>
 
           <Link href="/contact">
-            <Button size="lg" className="bg-gradient-to-r from-teal-500 to-cyan-500 hover:shadow-xl hover:shadow-teal-500/30">
+            <Button size="lg" className="bg-gradient-to-r from-electric-blue to-electric-purple hover:shadow-xl hover:shadow-electric-blue/30">
               Schedule Consultation
               <ArrowRight className="ml-2 w-5 h-5" />
             </Button>
@@ -99,11 +97,9 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Main Services Grid - Subtle background treatment */}
-      <section className="relative py-24 bg-gradient-to-b from-transparent via-[#0A1515]/30 to-transparent overflow-hidden">
-        {/* Floating accent orbs */}
-        <div className="absolute left-0 top-1/3 w-[500px] h-[500px] bg-teal-500/5 rounded-full blur-[100px]" />
-        <div className="absolute right-0 bottom-1/3 w-[500px] h-[500px] bg-cyan-500/5 rounded-full blur-[100px]" />
+      <section className="relative py-24 bg-gradient-to-b from-transparent via-[#0A0515]/30 to-transparent overflow-hidden">
+        <div className="absolute left-0 top-1/3 w-[500px] h-[500px] bg-electric-purple/5 rounded-full blur-[100px]" />
+        <div className="absolute right-0 bottom-1/3 w-[500px] h-[500px] bg-electric-cyan/5 rounded-full blur-[100px]" />
         
         <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-8">
@@ -140,11 +136,9 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Additional Services - Different background treatment */}
-      <section className="relative py-24 bg-gradient-to-b from-[#0A0A0A] via-[#0A1F1F] to-[#0A0A0A] overflow-hidden">
-        {/* Accent orbs positioned differently */}
-        <div className="absolute right-1/4 top-1/4 w-[600px] h-[600px] bg-emerald-500/5 rounded-full blur-[120px]" />
-        <div className="absolute left-1/4 bottom-1/4 w-[600px] h-[600px] bg-teal-500/5 rounded-full blur-[120px]" />
+      <section className="relative py-24 bg-gradient-to-b from-[#0A0A0A] via-[#0A0A15] to-[#0A0A0A] overflow-hidden">
+        <div className="absolute right-1/4 top-1/4 w-[600px] h-[600px] bg-electric-blue/5 rounded-full blur-[120px]" />
+        <div className="absolute left-1/4 bottom-1/4 w-[600px] h-[600px] bg-electric-cyan/5 rounded-full blur-[120px]" />
         
         <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -166,7 +160,7 @@ export default function ServicesPage() {
                   </div>
                   <h3 className="font-bold text-xl text-white mb-3">{service.title}</h3>
                   <p className="text-white/60 leading-relaxed mb-6">{service.description}</p>
-                  <Link href="/contact" className="text-teal-400 hover:text-teal-300 text-sm font-medium inline-flex items-center gap-2">
+                  <Link href="/contact" className="text-electric-blue hover:text-electric-cyan text-sm font-medium inline-flex items-center gap-2">
                     Learn More
                     <ArrowRight className="w-4 h-4" />
                   </Link>
@@ -177,13 +171,12 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* CTA Section - Subtle gradient treatment */}
       <section className="relative py-24 overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-teal-500/5 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-electric-purple/5 via-transparent to-transparent" />
         
         <div className="relative z-10 max-w-4xl mx-auto px-6 lg:px-8 text-center">
           <div className="relative">
-            <div className="absolute -inset-4 bg-gradient-to-r from-teal-500 via-cyan-500 to-teal-500 rounded-3xl blur-2xl opacity-20" />
+            <div className="absolute -inset-4 bg-gradient-to-r from-electric-blue via-electric-purple to-electric-cyan rounded-3xl blur-2xl opacity-20" />
             <div className="relative p-12 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-3xl border border-white/20">
               <h2 className="font-display font-bold text-[36px] md:text-[48px] mb-6 text-white leading-[1.1]">
                 Ready to Create Something Unique?
@@ -192,7 +185,7 @@ export default function ServicesPage() {
                 Schedule a free consultation to discuss your project and get a custom quote.
               </p>
               <Link href="/contact">
-                <Button size="lg" className="bg-gradient-to-r from-teal-500 to-cyan-500 hover:shadow-xl hover:shadow-teal-500/30">
+                <Button size="lg" className="bg-gradient-to-r from-electric-blue to-electric-purple hover:shadow-xl hover:shadow-electric-blue/30">
                   Schedule Consultation
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
