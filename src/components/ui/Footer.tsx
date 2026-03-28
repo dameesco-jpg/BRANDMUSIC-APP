@@ -22,7 +22,7 @@ const footerLinks = {
 
 export default function Footer() {
   return (
-    <footer className="bg-white border-t border-border-light">
+    <footer className="bg-surface border-t border-white/5">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-12">
         <div className="grid md:grid-cols-4 gap-8 mb-8">
           <div>
@@ -30,42 +30,48 @@ export default function Footer() {
               <div className="w-10 h-10 bg-gradient-to-br from-electric-blue to-electric-purple rounded-lg flex items-center justify-center">
                 <div className="w-6 h-6 border-2 border-white rounded"></div>
               </div>
-              <span className="font-display font-semibold text-xl text-text-primary">Brandmusic</span>
+              <span className="font-display font-semibold text-lg text-white">Brandmusic</span>
             </div>
             <p className="text-sm text-text-secondary">AI-powered music discovery for your brand.</p>
           </div>
           <div>
-            <h3 className="font-semibold text-text-primary mb-4">Product</h3>
+            <h3 className="font-semibold text-white mb-4 text-sm">Product</h3>
             <ul className="space-y-2">
               {footerLinks.product.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="text-sm text-text-secondary hover:text-text-primary transition-colors">{link.label}</Link>
+                  <Link href={link.href} className="text-sm text-text-secondary hover:text-white transition-colors">
+                    {link.label}
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
           <div>
-            <h3 className="font-semibold text-text-primary mb-4">Company</h3>
+            <h3 className="font-semibold text-white mb-4 text-sm">Company</h3>
             <ul className="space-y-2">
               {footerLinks.company.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="text-sm text-text-secondary hover:text-text-primary transition-colors">{link.label}</Link>
+                  <Link href={link.href} className="text-sm text-text-secondary hover:text-white transition-colors">
+                    {link.label}
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
           <div>
-            <h3 className="font-semibold text-text-primary mb-4">Legal</h3>
+            <h3 className="font-semibold text-white mb-4 text-sm">Legal</h3>
             <ul className="space-y-2">
               {footerLinks.legal.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="text-sm text-text-secondary hover:text-text-primary transition-colors">{link.label}</Link>
+                  <Link href={link.href} className="text-sm text-text-secondary hover:text-white transition-colors">
+                    {link.label}
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
         </div>
-        <div className="pt-8 border-t border-border-light">
+        <div className="pt-8 border-t border-white/5">
           <p className="text-sm text-text-tertiary text-center">© {new Date().getFullYear()} Brandmusic. All rights reserved.</p>
         </div>
       </div>
