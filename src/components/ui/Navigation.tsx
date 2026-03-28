@@ -19,7 +19,7 @@ export default function Navigation() {
               alt="Brandmusic"
               width={600}
               height={150}
-              className="h-24 w-auto"
+              className="h-24 w-auto brightness-0 invert"
               priority
             />
           </Link>
@@ -111,9 +111,3 @@ export default function Navigation() {
                 <Button className="w-full">Start Free</Button>
               </Link>
             </div>
-          </div>
-        </div>
-      )}
-    </nav>
-  )
-}
