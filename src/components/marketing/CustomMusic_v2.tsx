@@ -10,25 +10,25 @@ const services = [
     icon: Music,
     title: 'Custom Music Commissions',
     description: 'Original compositions tailored specifically to your brand. Work directly with professional composers.',
-    gradient: 'from-teal-500 to-cyan-500',
+    gradient: 'from-emerald-500 to-teal-500',
   },
   {
     icon: Mic2,
     title: 'Sonic Branding Packages',
     description: 'Complete sonic identity systems from audio logos to brand anthems. Create consistency across all touchpoints.',
-    gradient: 'from-cyan-500 to-blue-500',
+    gradient: 'from-teal-500 to-cyan-500',
   },
   {
     icon: Volume2,
     title: 'Audio Logo Creation',
     description: 'Memorable sonic signatures that become synonymous with your brand. Think Intel\'s bong or McDonald\'s jingle.',
-    gradient: 'from-blue-500 to-teal-500',
+    gradient: 'from-cyan-500 to-emerald-500',
   },
   {
     icon: Lightbulb,
     title: 'Brand Sound Strategy',
     description: 'Strategic consulting to help you understand how sound can elevate your brand and create a roadmap.',
-    gradient: 'from-emerald-500 to-cyan-500',
+    gradient: 'from-teal-500 to-emerald-500',
   },
 ]
 
@@ -71,10 +71,10 @@ export default function CustomMusicV2() {
         const x = i * barWidth
         const y = (canvas.offsetHeight - height) / 2
 
-        // Gradient from teal to cyan
+        // Gradient from emerald to teal
         const gradient = ctx.createLinearGradient(0, 0, canvas.offsetWidth, 0)
-        gradient.addColorStop(0, 'rgba(20, 184, 166, 0.6)') // teal-500
-        gradient.addColorStop(1, 'rgba(6, 182, 212, 0.6)') // cyan-500
+        gradient.addColorStop(0, 'rgba(16, 185, 129, 0.6)') // emerald-500
+        gradient.addColorStop(1, 'rgba(20, 184, 166, 0.6)') // teal-500
 
         ctx.fillStyle = gradient
         ctx.fillRect(x, y, barWidth - 2, height)
@@ -91,11 +91,11 @@ export default function CustomMusicV2() {
   }, [])
 
   return (
-    <section className="relative py-32 bg-gradient-to-b from-[#0A0A0A] via-[#0A1F1F] to-[#0A0A0A] overflow-hidden">
-      {/* Blended teal/cyan gradient that fades to black */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-teal-500/10 via-cyan-500/5 to-transparent" />
-      <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-teal-500/10 rounded-full blur-[120px]" />
-      <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-cyan-500/10 rounded-full blur-[120px]" />
+    <section className="relative py-32 bg-gradient-to-b from-[#0A0A0A] via-[#051510] to-[#0A0A0A] overflow-hidden">
+      {/* Blended emerald/teal gradient that fades to black */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-emerald-500/8 via-teal-500/4 to-transparent" />
+      <div className="absolute top-20 left-1/4 w-[600px] h-[600px] bg-emerald-500/8 rounded-full blur-[120px]" />
+      <div className="absolute bottom-20 right-1/4 w-[600px] h-[600px] bg-teal-500/8 rounded-full blur-[120px]" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
         {/* Section header */}
@@ -111,7 +111,7 @@ export default function CustomMusicV2() {
         {/* Waveform visualization */}
         <div className="max-w-4xl mx-auto mb-16">
           <div className="relative">
-            <div className="absolute -inset-4 bg-gradient-to-r from-teal-500/20 to-cyan-500/20 rounded-3xl blur-2xl" />
+            <div className="absolute -inset-4 bg-gradient-to-r from-emerald-500/20 to-teal-500/20 rounded-3xl blur-2xl" />
             <div className="relative p-8 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-2xl rounded-3xl border border-white/10">
               <canvas
                 ref={canvasRef}
@@ -144,7 +144,7 @@ export default function CustomMusicV2() {
         {/* CTA */}
         <div className="text-center">
           <Link href="/services">
-            <Button size="lg" className="group bg-gradient-to-r from-teal-500 to-cyan-500 hover:shadow-xl hover:shadow-teal-500/30">
+            <Button size="lg" className="group bg-gradient-to-r from-emerald-500 to-teal-500 hover:shadow-xl hover:shadow-emerald-500/30">
               Explore Services
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Button>
