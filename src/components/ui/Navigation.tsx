@@ -111,3 +111,9 @@ export default function Navigation() {
                 <Button className="w-full">Start Free</Button>
               </Link>
             </div>
+          </div>
+        </div>
+      )}
+    </nav>
+  )
+}
