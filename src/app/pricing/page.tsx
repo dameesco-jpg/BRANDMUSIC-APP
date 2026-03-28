@@ -60,7 +60,7 @@ const plans = [
       'Sonic branding packages',
       'Dedicated account manager',
       'Custom licensing terms',
-      'API access',
+      'API access for live commerce',
       'SSO & advanced security',
       'White-label options',
     ],
@@ -88,6 +88,10 @@ const faqs = [
     answer: 'We offer commercial licenses that cover usage across all platforms including paid advertising, social media, broadcast, and more. Enterprise plans include custom licensing terms.',
   },
   {
+    question: 'How does the API for live commerce work?',
+    answer: 'Enterprise clients get API access to integrate our music library directly into their e-commerce platforms, live shopping streams, and product pages. The API allows real-time track selection, automated licensing, and usage analytics.',
+  },
+  {
     question: 'Do you offer team/multi-seat pricing?',
     answer: 'Yes! Pro plans are billed per seat/month. Contact our sales team for volume discounts on 10+ seats.',
   },
@@ -111,13 +115,13 @@ const comparisonFeatures = [
   { name: 'Full Stem Access', free: false, pro: true, enterprise: true },
   { name: 'Team Collaboration', free: false, pro: true, enterprise: true },
   { name: 'Priority Support', free: false, pro: true, enterprise: true },
+  { name: 'API for Live Commerce', free: false, pro: false, enterprise: true },
   { name: 'Custom Music Commissions', free: false, pro: false, enterprise: true },
   { name: 'Dedicated Account Manager', free: false, pro: false, enterprise: true },
-  { name: 'API Access', free: false, pro: false, enterprise: true },
   { name: 'SSO & Advanced Security', free: false, pro: false, enterprise: true },
 ]
 
-export default function PricingPageV2() {
+export default function PricingPage() {
   const [billingPeriod, setBillingPeriod] = useState<'monthly' | 'annual'>('monthly')
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null)
 
@@ -185,228 +189,4 @@ export default function PricingPageV2() {
                 className={`relative group ${plan.popular ? 'md:-mt-4 md:mb-4' : ''}`}
               >
                 {/* Popular badge */}
-                {plan.popular && (
-                  <div className="absolute -top-5 left-1/2 -translate-x-1/2 z-20">
-                    <div className="px-4 py-1.5 bg-gradient-to-r from-electric-blue/80 to-electric-purple/80 rounded-full text-white text-xs font-bold backdrop-blur-xl border border-white/20">
-                      MOST POPULAR
-                    </div>
-                  </div>
-                )}
-
-                {/* Subtle glowing border effect */}
-                <div className={`absolute -inset-[1px] bg-gradient-to-b ${plan.color} rounded-3xl opacity-0 group-hover:opacity-30 blur-lg transition-all duration-500 ${plan.popular ? 'opacity-20' : ''}`} />
-                
-                {/* Card */}
-                <div className={`relative h-full p-8 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-2xl rounded-3xl border transition-all duration-500 ${
-                  plan.popular 
-                    ? 'border-electric-blue/30 shadow-xl shadow-electric-blue/10' 
-                    : 'border-white/10 hover:border-white/20'
-                }`}>
-                  {/* Icon */}
-                  <div className={`w-14 h-14 bg-gradient-to-br ${plan.color} opacity-20 rounded-2xl flex items-center justify-center mb-6 group-hover:opacity-30 transition-opacity`}>
-                    <plan.icon className="w-7 h-7 text-white" />
-                  </div>
-
-                  {/* Plan name */}
-                  <h3 className="text-2xl font-bold text-white mb-2">
-                    {plan.name}
-                  </h3>
-                  
-                  {/* Description */}
-                  <p className="text-sm text-white/50 mb-6">
-                    {plan.description}
-                  </p>
-
-                  {/* Price */}
-                  <div className="mb-8">
-                    <div className="flex items-baseline gap-2">
-                      <span className="text-5xl font-bold text-white">
-                        {plan.price === 'Custom' 
-                          ? plan.price 
-                          : billingPeriod === 'annual' && plan.price !== '$0'
-                            ? `$${Math.floor(parseInt(plan.price.slice(1)) * 0.8)}`
-                            : plan.price
-                        }
-                      </span>
-                      {plan.price !== 'Custom' && plan.price !== '$0' && (
-                        <span className="text-white/40 text-sm">
-                          /{billingPeriod === 'annual' ? 'seat/year' : plan.period}
-                        </span>
-                      )}
-                    </div>
-                    {plan.price === 'Custom' && (
-                      <span className="text-white/40 text-sm">
-                        {plan.period}
-                      </span>
-                    )}
-                    {plan.price === '$0' && (
-                      <span className="text-white/40 text-sm">
-                        {plan.period}
-                      </span>
-                    )}
-                  </div>
-
-                  {/* CTA Button */}
-                  <Link href={plan.ctaLink}>
-                    <Button 
-                      size="lg" 
-                      className={`w-full mb-8 ${
-                        plan.popular 
-                          ? 'bg-gradient-to-r from-electric-blue/80 to-electric-purple/80 hover:from-electric-blue hover:to-electric-purple border border-white/20' 
-                          : 'bg-white/10 hover:bg-white/20 border border-white/20'
-                      }`}
-                    >
-                      {plan.cta}
-                      <ArrowRight className="ml-2 w-4 h-4" />
-                    </Button>
-                  </Link>
-
-                  {/* Features */}
-                  <div className="space-y-4">
-                    {plan.features.map((feature) => (
-                      <div key={feature} className="flex items-start gap-3">
-                        <div className={`w-5 h-5 bg-gradient-to-br ${plan.color} opacity-60 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5`}>
-                          <Check className="w-3 h-3 text-white" />
-                        </div>
-                        <span className="text-sm text-white/70">
-                          {feature}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Bottom note */}
-          <div className="text-center mt-12">
-            <p className="text-sm text-white/40">
-              All plans include 14-day free trial. No credit card required.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Feature Comparison Table */}
-      <section className="relative py-24">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="font-display font-bold text-[40px] md:text-[56px] mb-6 text-white leading-[1.1]">
-              Compare Plans
-            </h2>
-            <p className="text-lg text-white/60 max-w-2xl mx-auto">
-              See what's included in each plan
-            </p>
-          </div>
-
-          <div className="overflow-x-auto">
-            <div className="inline-block min-w-full align-middle">
-              <div className="overflow-hidden bg-white/5 backdrop-blur-xl rounded-3xl border border-white/10">
-                <table className="min-w-full">
-                  <thead>
-                    <tr className="border-b border-white/10">
-                      <th className="px-6 py-4 text-left text-sm font-semibold text-white">
-                        Feature
-                      </th>
-                      <th className="px-6 py-4 text-center text-sm font-semibold text-white">
-                        Free
-                      </th>
-                      <th className="px-6 py-4 text-center text-sm font-semibold text-white">
-                        Pro
-                      </th>
-                      <th className="px-6 py-4 text-center text-sm font-semibold text-white">
-                        Enterprise
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-white/10">
-                    {comparisonFeatures.map((feature) => (
-                      <tr key={feature.name} className="hover:bg-white/5 transition-colors">
-                        <td className="px-6 py-4 text-sm text-white/70">
-                          {feature.name}
-                        </td>
-                        <td className="px-6 py-4 text-center">
-                          {feature.free ? (
-                            <Check className="w-5 h-5 text-electric-cyan mx-auto" />
-                          ) : (
-                            <X className="w-5 h-5 text-white/20 mx-auto" />
-                          )}
-                        </td>
-                        <td className="px-6 py-4 text-center">
-                          {feature.pro ? (
-                            <Check className="w-5 h-5 text-electric-blue mx-auto" />
-                          ) : (
-                            <X className="w-5 h-5 text-white/20 mx-auto" />
-                          )}
-                        </td>
-                        <td className="px-6 py-4 text-center">
-                          {feature.enterprise ? (
-                            <Check className="w-5 h-5 text-electric-purple mx-auto" />
-                          ) : (
-                            <X className="w-5 h-5 text-white/20 mx-auto" />
-                          )}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ Section */}
-      <section className="relative py-24 bg-gradient-to-b from-[#0A0A0A] via-[#0A0A15] to-[#0A0A0A]">
-        <div className="max-w-4xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="font-display font-bold text-[40px] md:text-[56px] mb-6 text-white leading-[1.1]">
-              Frequently Asked Questions
-            </h2>
-            <p className="text-lg text-white/60">
-              Everything you need to know about our pricing
-            </p>
-          </div>
-
-          <div className="space-y-4">
-            {faqs.map((faq, idx) => (
-              <div
-                key={idx}
-                className="overflow-hidden bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10 hover:border-white/20 transition-all"
-              >
-                <button
-                  onClick={() => setOpenFaqIndex(openFaqIndex === idx ? null : idx)}
-                  className="w-full px-6 py-5 flex items-center justify-between text-left"
-                >
-                  <span className="font-semibold text-white pr-8">
-                    {faq.question}
-                  </span>
-                  <HelpCircle className={`w-5 h-5 text-white/60 flex-shrink-0 transition-transform ${openFaqIndex === idx ? 'rotate-180' : ''}`} />
-                </button>
-                {openFaqIndex === idx && (
-                  <div className="px-6 pb-5">
-                    <p className="text-white/60 leading-relaxed">
-                      {faq.answer}
-                    </p>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-12 text-center">
-            <p className="text-white/60 mb-4">Still have questions?</p>
-            <Link href="/contact">
-              <Button variant="outline" size="lg" className="border-white/20 hover:border-white/40">
-                Contact Sales
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <Footer />
-    </main>
-  )
-}
+                {pla
