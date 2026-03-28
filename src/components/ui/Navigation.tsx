@@ -10,16 +10,16 @@ export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0A0A0A]/80 backdrop-blur-xl border-b border-white/5">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0A0A0A]/95 backdrop-blur-xl border-b border-white/10">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
-          <Link href="/" className="flex items-center gap-3">
+        <div className="flex items-center justify-between h-24">
+          <Link href="/" className="flex items-center gap-3 px-6 py-3 bg-white/5 rounded-xl backdrop-blur-sm">
             <Image
               src="/BrandMusic_H.png"
               alt="Brandmusic"
-              width={400}
-              height={100}
-              className="h-20 w-auto"
+              width={500}
+              height={125}
+              className="h-16 w-auto"
               priority
             />
           </Link>
