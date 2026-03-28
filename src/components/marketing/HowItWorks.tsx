@@ -30,11 +30,9 @@ const steps = [
 export default function HowItWorks() {
   return (
     <section className="relative py-32 bg-gradient-to-b from-[#0A0A0A] via-[#1F0A1A] to-[#0A0A0A] overflow-hidden">
-      {/* Pink/Magenta glow effects */}
       <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-pink-500/20 rounded-full blur-3xl" />
       <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-fuchsia-500/20 rounded-full blur-3xl" />
       
-      {/* Decorative dots pattern */}
       <div className="absolute inset-0 opacity-20">
         <div className="absolute top-20 left-10 w-2 h-2 bg-pink-400 rounded-full animate-pulse" />
         <div className="absolute top-40 right-20 w-3 h-3 bg-fuchsia-400 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }} />
@@ -56,5 +54,38 @@ export default function HowItWorks() {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
-          {/* Connecting line */}
-          <div className="hidden lg:block absolute top-16 left-0 right-0 h-0.5 bg-gradient-to-r from-pin
+          <div className="hidden lg:block absolute top-16 left-0 right-0 h-0.5 bg-gradient-to-r from-pink-500/0 via-pink-500/30 to-pink-500/0" />
+          
+          {steps.map((step, idx) => (
+            <div key={step.number} className="relative group">
+              <div className="relative p-6 bg-surface-elevated/60 rounded-2xl border border-pink-500/20 hover:border-pink-500/50 transition-all backdrop-blur-sm h-full">
+                <div className="absolute -top-4 -left-4 w-12 h-12 bg-gradient-to-br from-pink-500 to-fuchsia-600 rounded-full flex items-center justify-center shadow-lg shadow-pink-500/50 group-hover:scale-110 transition-transform">
+                  <span className="text-white font-bold text-sm">{step.number}</span>
+                </div>
+                
+                <div className="w-14 h-14 bg-gradient-to-br from-pink-500/20 to-fuchsia-500/20 rounded-xl flex items-center justify-center mb-6 mt-4 group-hover:scale-110 transition-transform border border-pink-500/30">
+                  <step.icon className="w-7 h-7 text-pink-400" />
+                </div>
+                
+                <h3 className="font-semibold text-lg text-white mb-3">
+                  {step.title}
+                </h3>
+                <p className="text-sm text-text-secondary leading-relaxed">
+                  {step.description}
+                </p>
+              </div>
+              
+              {idx < steps.length - 1 && (
+                <div className="hidden lg:block absolute top-16 -right-4 w-8 h-8 text-pink-500/30">
+                  <svg className="w-full h-full" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
