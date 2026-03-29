@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { motion } from 'framer-motion'
 import Navigation from '@/components/ui/Navigation'
 import Footer from '@/components/ui/Footer'
 import { Sparkles, Search, Video, Sliders, Users, Wand2, Music, Database, Zap, Shield, BarChart, Headphones, ArrowRight, Code } from 'lucide-react'
@@ -135,6 +136,36 @@ const additionalFeatures = [
   },
 ]
 
+// Animation variants
+const fadeInUp = {
+  hidden: { opacity: 0, y: 60 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] }
+  }
+}
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.1
+    }
+  }
+}
+
+const scaleIn = {
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: { 
+    opacity: 1, 
+    scale: 1,
+    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] }
+  }
+}
+
 export default function FeaturesPage() {
   const [activeFeature, setActiveFeature] = useState(0)
 
@@ -150,40 +181,64 @@ export default function FeaturesPage() {
         <div className="absolute top-40 right-1/4 w-[600px] h-[600px] bg-electric-cyan/10 rounded-full blur-[120px]" />
         
         <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-electric-purple/10 border border-electric-purple/20 rounded-full text-sm font-medium mb-6 backdrop-blur-xl">
+          <motion.div 
+            className="text-center mb-16"
+            initial="hidden"
+            animate="visible"
+            variants={fadeInUp}
+          >
+            <motion.div 
+              className="inline-flex items-center gap-2 px-4 py-2 bg-electric-purple/10 border border-electric-purple/20 rounded-full text-sm font-medium mb-6 backdrop-blur-xl"
+              variants={scaleIn}
+            >
               <Sparkles className="w-4 h-4 text-electric-purple/80" />
               <span className="text-electric-purple/90">Platform Capabilities</span>
-            </div>
+            </motion.div>
             
-            <h1 className="font-display font-bold text-[48px] md:text-[72px] mb-6 text-white leading-[1.1]">
+            <motion.h1 
+              className="font-display font-bold text-[48px] md:text-[72px] mb-6 text-white leading-[1.1]"
+              variants={fadeInUp}
+            >
               Built for Agency Workflows
-            </h1>
+            </motion.h1>
             
-            <p className="text-xl text-white/60 max-w-3xl mx-auto mb-12">
+            <motion.p 
+              className="text-xl text-white/60 max-w-3xl mx-auto mb-12"
+              variants={fadeInUp}
+            >
               Professional tools designed for creative directors, producers, and brand teams who demand precision and flexibility
-            </p>
-          </div>
+            </motion.p>
+          </motion.div>
 
-          {/* Hero Feature Cards - WITH TITLES */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* Hero Feature Cards - WITH ANIMATIONS */}
+          <motion.div 
+            className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
+            initial="hidden"
+            animate="visible"
+            variants={staggerContainer}
+          >
             {heroFeatures.map((feature, idx) => (
-              <div key={feature.title} className="group relative">
-                <div className={`absolute -inset-[1px] bg-gradient-to-r ${feature.color} rounded-2xl opacity-0 group-hover:opacity-30 blur-lg transition-opacity`} />
-                <div className="relative p-6 bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10 hover:border-white/20 transition-all">
-                  <div className={`w-12 h-12 bg-gradient-to-br ${feature.color} opacity-20 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
+              <motion.div 
+                key={feature.title} 
+                className="group relative"
+                variants={fadeInUp}
+                whileHover={{ y: -8, transition: { duration: 0.3 } }}
+              >
+                <div className={`absolute -inset-[1px] bg-gradient-to-r ${feature.color} rounded-2xl opacity-0 group-hover:opacity-30 blur-lg transition-opacity duration-500`} />
+                <div className="relative p-6 bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10 hover:border-white/20 transition-all duration-300">
+                  <div className={`w-12 h-12 bg-gradient-to-br ${feature.color} opacity-20 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
                     <feature.icon className="w-6 h-6 text-white" />
                   </div>
                   <h3 className="font-semibold text-white mb-2">{feature.title}</h3>
                   <p className="text-sm text-white/60">{feature.description}</p>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Detailed Features - Alternating Layout */}
+      {/* Detailed Features - Alternating Layout WITH SCROLL ANIMATIONS */}
       <section className="relative py-24 bg-gradient-to-b from-transparent via-[#0A0515]/30 to-transparent overflow-hidden">
         {/* Floating accent orb - left side */}
         <div className="absolute left-0 top-1/4 w-[500px] h-[500px] bg-electric-purple/5 rounded-full blur-[100px]" />
@@ -193,17 +248,28 @@ export default function FeaturesPage() {
         <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
           <div className="space-y-32">
             {detailedFeatures.map((feature, idx) => (
-              <div
+              <motion.div
                 key={feature.title}
                 className={`grid lg:grid-cols-2 gap-16 items-center ${
                   idx % 2 === 1 ? 'lg:flex-row-reverse' : ''
                 }`}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-100px" }}
+                variants={fadeInUp}
               >
                 {/* Content */}
-                <div className={idx % 2 === 1 ? 'lg:order-2' : ''}>
-                  <div className={`w-14 h-14 bg-gradient-to-br ${feature.color} opacity-20 rounded-2xl flex items-center justify-center mb-6`}>
+                <motion.div 
+                  className={idx % 2 === 1 ? 'lg:order-2' : ''}
+                  variants={fadeInUp}
+                >
+                  <motion.div 
+                    className={`w-14 h-14 bg-gradient-to-br ${feature.color} opacity-20 rounded-2xl flex items-center justify-center mb-6`}
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    transition={{ duration: 0.3 }}
+                  >
                     <feature.icon className="w-7 h-7 text-white" />
-                  </div>
+                  </motion.div>
                   
                   <h2 className="font-display font-bold text-[36px] md:text-[48px] mb-6 text-white leading-[1.1]">
                     {feature.title}
@@ -213,85 +279,130 @@ export default function FeaturesPage() {
                     {feature.description}
                   </p>
 
-                  <div className="space-y-3 mb-8">
+                  <motion.div 
+                    className="space-y-3 mb-8"
+                    variants={staggerContainer}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                  >
                     {feature.benefits.map((benefit) => (
-                      <div key={benefit} className="flex items-start gap-3">
+                      <motion.div 
+                        key={benefit} 
+                        className="flex items-start gap-3"
+                        variants={fadeInUp}
+                      >
                         <div className={`w-5 h-5 bg-gradient-to-br ${feature.color} opacity-60 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5`}>
                           <div className="w-2 h-2 bg-white rounded-full" />
                         </div>
                         <span className="text-white/80">{benefit}</span>
-                      </div>
+                      </motion.div>
                     ))}
-                  </div>
+                  </motion.div>
 
                   <Link href="/signup">
-                    <Button size="lg" className={`group bg-gradient-to-r ${feature.color} hover:shadow-lg transition-all`}>
-                      Try It Free
-                      <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                    </Button>
+                    <motion.div
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <Button size="lg" className={`group bg-gradient-to-r ${feature.color} hover:shadow-lg transition-all`}>
+                        Try It Free
+                        <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                      </Button>
+                    </motion.div>
                   </Link>
-                </div>
+                </motion.div>
 
-                {/* Visual - NO TEXT OVERLAY */}
-                <div className={idx % 2 === 1 ? 'lg:order-1' : ''}>
-                  <div className="relative group">
-                    <div className={`absolute -inset-4 bg-gradient-to-r ${feature.color} rounded-3xl opacity-20 blur-2xl group-hover:opacity-30 transition-opacity`} />
+                {/* Visual - NO TEXT OVERLAY, WITH HOVER ANIMATION */}
+                <motion.div 
+                  className={idx % 2 === 1 ? 'lg:order-1' : ''}
+                  variants={fadeInUp}
+                >
+                  <motion.div 
+                    className="relative group"
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ duration: 0.4 }}
+                  >
+                    <div className={`absolute -inset-4 bg-gradient-to-r ${feature.color} rounded-3xl opacity-20 blur-2xl group-hover:opacity-30 transition-opacity duration-500`} />
                     <div className="relative aspect-[4/3] rounded-3xl overflow-hidden border border-white/20">
                       <Image
                         src={feature.image}
-                        alt={feature.title}
+                        alt=""
                         fill
-                        className="object-cover"
+                        className="object-cover group-hover:scale-105 transition-transform duration-700"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                     </div>
-                  </div>
-                </div>
-              </div>
+                  </motion.div>
+                </motion.div>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Additional Features Grid */}
+      {/* Additional Features Grid WITH SCROLL ANIMATIONS */}
       <section className="relative py-24 bg-gradient-to-b from-[#0A0A0A] via-[#0A0A15] to-[#0A0A0A] overflow-hidden">
         {/* Accent orbs */}
         <div className="absolute right-0 top-1/3 w-[600px] h-[600px] bg-electric-blue/5 rounded-full blur-[120px]" />
         <div className="absolute left-0 bottom-1/3 w-[600px] h-[600px] bg-electric-cyan/5 rounded-full blur-[120px]" />
         
         <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <motion.div 
+            className="text-center mb-16"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={fadeInUp}
+          >
             <h2 className="font-display font-bold text-[40px] md:text-[56px] mb-6 text-white leading-[1.1]">
               Everything You Need
             </h2>
             <p className="text-lg text-white/60 max-w-2xl mx-auto">
               A complete suite of tools for modern music licensing
             </p>
-          </div>
+          </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <motion.div 
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={staggerContainer}
+          >
             {additionalFeatures.map((feature) => (
-              <div key={feature.title} className="group relative">
-                <div className={`absolute -inset-[1px] bg-gradient-to-r ${feature.color} rounded-2xl opacity-0 group-hover:opacity-30 blur-lg transition-opacity`} />
-                <div className="relative p-8 bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10 hover:border-white/20 transition-all h-full">
-                  <div className={`w-12 h-12 bg-gradient-to-br ${feature.color} opacity-20 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
+              <motion.div 
+                key={feature.title} 
+                className="group relative"
+                variants={fadeInUp}
+                whileHover={{ y: -8, transition: { duration: 0.3 } }}
+              >
+                <div className={`absolute -inset-[1px] bg-gradient-to-r ${feature.color} rounded-2xl opacity-0 group-hover:opacity-30 blur-lg transition-opacity duration-500`} />
+                <div className="relative p-8 bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10 hover:border-white/20 transition-all duration-300 h-full">
+                  <div className={`w-12 h-12 bg-gradient-to-br ${feature.color} opacity-20 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
                     <feature.icon className="w-6 h-6 text-white" />
                   </div>
                   <h3 className="font-bold text-xl text-white mb-3">{feature.title}</h3>
                   <p className="text-white/60 leading-relaxed">{feature.description}</p>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* CTA Section WITH ANIMATION */}
       <section className="relative py-24 overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-electric-purple/5 via-transparent to-transparent" />
         
         <div className="relative z-10 max-w-4xl mx-auto px-6 lg:px-8 text-center">
-          <div className="relative">
+          <motion.div 
+            className="relative"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+          >
             <div className="absolute -inset-4 bg-gradient-to-r from-electric-blue via-electric-purple to-electric-cyan rounded-3xl blur-2xl opacity-20" />
             <div className="relative p-12 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-3xl border border-white/20">
               <h2 className="font-display font-bold text-[36px] md:text-[48px] mb-6 text-white leading-[1.1]">
@@ -302,22 +413,32 @@ export default function FeaturesPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/signup">
-                  <Button size="lg" className="bg-gradient-to-r from-electric-blue to-electric-purple hover:shadow-xl hover:shadow-electric-blue/30">
-                    Start Free Trial
-                    <ArrowRight className="ml-2 w-5 h-5" />
-                  </Button>
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Button size="lg" className="bg-gradient-to-r from-electric-blue to-electric-purple hover:shadow-xl hover:shadow-electric-blue/30">
+                      Start Free Trial
+                      <ArrowRight className="ml-2 w-5 h-5" />
+                    </Button>
+                  </motion.div>
                 </Link>
                 <Link href="/library">
-                  <Button variant="outline" size="lg" className="border-white/20 hover:border-white/40">
-                    Browse Music
-                  </Button>
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Button variant="outline" size="lg" className="border-white/20 hover:border-white/40">
+                      Browse Music
+                    </Button>
+                  </motion.div>
                 </Link>
               </div>
               <p className="text-sm text-white/40 mt-6">
                 No credit card required • 14-day free trial
               </p>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
