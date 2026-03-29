@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import Navigation from '@/components/ui/Navigation'
 import Footer from '@/components/ui/Footer'
 import { Sparkles, Search, Video, Sliders, Users, Wand2, Music, Database, Zap, Shield, BarChart, Headphones, ArrowRight, Code } from 'lucide-react'
@@ -38,7 +39,7 @@ const detailedFeatures = [
   {
     icon: Wand2,
     title: 'Conversational AI Search',
-    description: 'Our AI understands nuanced descriptions like confident but not aggressive or warm nostalgic with forward momentum. No more scrolling through endless tracks just describe what you need.',
+    description: 'Our AI understands nuanced descriptions like "confident but not aggressive" or "warm, nostalgic with forward momentum." No more scrolling through endless tracks—just describe what you need.',
     benefits: [
       'Natural language queries',
       'Context-aware recommendations',
@@ -51,7 +52,7 @@ const detailedFeatures = [
   {
     icon: Video,
     title: 'Free Video Sync Preview',
-    description: 'Upload your video and instantly preview how tracks sound synced to your footage before you even license. Present multiple options to clients and get approvals faster.',
+    description: 'Upload your video and instantly preview how tracks sound synced to your footage—before you even license. Present multiple options to clients and get approvals faster.',
     benefits: [
       'Drag-and-drop video upload',
       'Real-time audio sync',
@@ -135,11 +136,15 @@ const additionalFeatures = [
 ]
 
 export default function FeaturesPage() {
+  const [activeFeature, setActiveFeature] = useState(0)
+
   return (
     <main className="min-h-screen bg-[#0A0A0A]">
       <Navigation />
       
+      {/* Hero Section */}
       <section className="relative pt-32 pb-20 overflow-hidden">
+        {/* Background effects */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-electric-blue/10 via-transparent to-transparent" />
         <div className="absolute top-20 left-1/4 w-[600px] h-[600px] bg-electric-purple/10 rounded-full blur-[120px]" />
         <div className="absolute top-40 right-1/4 w-[600px] h-[600px] bg-electric-cyan/10 rounded-full blur-[120px]" />
@@ -160,6 +165,7 @@ export default function FeaturesPage() {
             </p>
           </div>
 
+          {/* Hero Feature Cards - NO TITLES */}
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {heroFeatures.map((feature, idx) => (
               <div key={feature.title} className="group relative">
@@ -168,7 +174,6 @@ export default function FeaturesPage() {
                   <div className={`w-12 h-12 bg-gradient-to-br ${feature.color} opacity-20 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
                     <feature.icon className="w-6 h-6 text-white" />
                   </div>
-                  <h3 className="font-semibold text-white mb-2">{feature.title}</h3>
                   <p className="text-sm text-white/60">{feature.description}</p>
                 </div>
               </div>
@@ -177,8 +182,11 @@ export default function FeaturesPage() {
         </div>
       </section>
 
+      {/* Detailed Features - Alternating Layout */}
       <section className="relative py-24 bg-gradient-to-b from-transparent via-[#0A0515]/30 to-transparent overflow-hidden">
+        {/* Floating accent orb - left side */}
         <div className="absolute left-0 top-1/4 w-[500px] h-[500px] bg-electric-purple/5 rounded-full blur-[100px]" />
+        {/* Floating accent orb - right side */}
         <div className="absolute right-0 bottom-1/4 w-[500px] h-[500px] bg-electric-cyan/5 rounded-full blur-[100px]" />
         
         <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
@@ -190,6 +198,7 @@ export default function FeaturesPage() {
                   idx % 2 === 1 ? 'lg:flex-row-reverse' : ''
                 }`}
               >
+                {/* Content */}
                 <div className={idx % 2 === 1 ? 'lg:order-2' : ''}>
                   <div className={`w-14 h-14 bg-gradient-to-br ${feature.color} opacity-20 rounded-2xl flex items-center justify-center mb-6`}>
                     <feature.icon className="w-7 h-7 text-white" />
@@ -222,6 +231,7 @@ export default function FeaturesPage() {
                   </Link>
                 </div>
 
+                {/* Visual */}
                 <div className={idx % 2 === 1 ? 'lg:order-1' : ''}>
                   <div className="relative group">
                     <div className={`absolute -inset-4 bg-gradient-to-r ${feature.color} rounded-3xl opacity-20 blur-2xl group-hover:opacity-30 transition-opacity`} />
@@ -242,7 +252,9 @@ export default function FeaturesPage() {
         </div>
       </section>
 
+      {/* Additional Features Grid */}
       <section className="relative py-24 bg-gradient-to-b from-[#0A0A0A] via-[#0A0A15] to-[#0A0A0A] overflow-hidden">
+        {/* Accent orbs */}
         <div className="absolute right-0 top-1/3 w-[600px] h-[600px] bg-electric-blue/5 rounded-full blur-[120px]" />
         <div className="absolute left-0 bottom-1/3 w-[600px] h-[600px] bg-electric-cyan/5 rounded-full blur-[120px]" />
         
@@ -273,6 +285,7 @@ export default function FeaturesPage() {
         </div>
       </section>
 
+      {/* CTA Section */}
       <section className="relative py-24 overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-electric-purple/5 via-transparent to-transparent" />
         
