@@ -136,7 +136,6 @@ const additionalFeatures = [
   },
 ]
 
-// Animation variants
 const fadeInUp = {
   hidden: { opacity: 0, y: 60 },
   visible: { 
@@ -173,9 +172,7 @@ export default function FeaturesPage() {
     <main className="min-h-screen bg-[#0A0A0A]">
       <Navigation />
       
-      {/* Hero Section */}
       <section className="relative pt-32 pb-20 overflow-hidden">
-        {/* Background effects */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-electric-blue/10 via-transparent to-transparent" />
         <div className="absolute top-20 left-1/4 w-[600px] h-[600px] bg-electric-purple/10 rounded-full blur-[120px]" />
         <div className="absolute top-40 right-1/4 w-[600px] h-[600px] bg-electric-cyan/10 rounded-full blur-[120px]" />
@@ -210,7 +207,6 @@ export default function FeaturesPage() {
             </motion.p>
           </motion.div>
 
-          {/* Hero Feature Cards - WITH ANIMATIONS */}
           <motion.div 
             className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
             initial="hidden"
@@ -238,11 +234,8 @@ export default function FeaturesPage() {
         </div>
       </section>
 
-      {/* Detailed Features - Alternating Layout WITH SCROLL ANIMATIONS */}
       <section className="relative py-24 bg-gradient-to-b from-transparent via-[#0A0515]/30 to-transparent overflow-hidden">
-        {/* Floating accent orb - left side */}
         <div className="absolute left-0 top-1/4 w-[500px] h-[500px] bg-electric-purple/5 rounded-full blur-[100px]" />
-        {/* Floating accent orb - right side */}
         <div className="absolute right-0 bottom-1/4 w-[500px] h-[500px] bg-electric-cyan/5 rounded-full blur-[100px]" />
         
         <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
@@ -258,7 +251,6 @@ export default function FeaturesPage() {
                 viewport={{ once: true, margin: "-100px" }}
                 variants={fadeInUp}
               >
-                {/* Content */}
                 <motion.div 
                   className={idx % 2 === 1 ? 'lg:order-2' : ''}
                   variants={fadeInUp}
@@ -313,7 +305,6 @@ export default function FeaturesPage() {
                   </Link>
                 </motion.div>
 
-                {/* Visual - NO TEXT OVERLAY, WITH HOVER ANIMATION */}
                 <motion.div 
                   className={idx % 2 === 1 ? 'lg:order-1' : ''}
                   variants={fadeInUp}
@@ -341,9 +332,7 @@ export default function FeaturesPage() {
         </div>
       </section>
 
-      {/* Additional Features Grid WITH SCROLL ANIMATIONS */}
       <section className="relative py-24 bg-gradient-to-b from-[#0A0A0A] via-[#0A0A15] to-[#0A0A0A] overflow-hidden">
-        {/* Accent orbs */}
         <div className="absolute right-0 top-1/3 w-[600px] h-[600px] bg-electric-blue/5 rounded-full blur-[120px]" />
         <div className="absolute left-0 bottom-1/3 w-[600px] h-[600px] bg-electric-cyan/5 rounded-full blur-[120px]" />
         
@@ -391,7 +380,6 @@ export default function FeaturesPage() {
         </div>
       </section>
 
-      {/* CTA Section WITH ANIMATION */}
       <section className="relative py-24 overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-electric-purple/5 via-transparent to-transparent" />
         
