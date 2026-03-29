@@ -165,7 +165,7 @@ export default function FeaturesPage() {
             </p>
           </div>
 
-          {/* Hero Feature Cards - NO TITLES */}
+          {/* Hero Feature Cards - WITH TITLES */}
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {heroFeatures.map((feature, idx) => (
               <div key={feature.title} className="group relative">
@@ -174,6 +174,7 @@ export default function FeaturesPage() {
                   <div className={`w-12 h-12 bg-gradient-to-br ${feature.color} opacity-20 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
                     <feature.icon className="w-6 h-6 text-white" />
                   </div>
+                  <h3 className="font-semibold text-white mb-2">{feature.title}</h3>
                   <p className="text-sm text-white/60">{feature.description}</p>
                 </div>
               </div>
@@ -231,7 +232,7 @@ export default function FeaturesPage() {
                   </Link>
                 </div>
 
-                {/* Visual */}
+                {/* Visual - NO TEXT OVERLAY */}
                 <div className={idx % 2 === 1 ? 'lg:order-1' : ''}>
                   <div className="relative group">
                     <div className={`absolute -inset-4 bg-gradient-to-r ${feature.color} rounded-3xl opacity-20 blur-2xl group-hover:opacity-30 transition-opacity`} />
