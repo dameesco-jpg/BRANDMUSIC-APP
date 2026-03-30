@@ -16,7 +16,7 @@ const enterpriseFeatures = [
     points: [
       '99.9% uptime SLA guarantee',
       'Dedicated account manager',
-      'Priority support with 1-hour response time',
+      'Priority support with 1-hour response time', 
       'Custom onboarding and training',
       'Quarterly business reviews'
     ]
